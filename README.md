@@ -1,2 +1,2 @@
 # kpi_student
-I'm a bit lazy now
+I'm a bit lazy now...
