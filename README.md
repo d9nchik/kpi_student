@@ -10,6 +10,7 @@ Game contains:
 - a bit of mystery
 - a lot of study
 - and much more
+
 Could you survive all it's challenges? The KPI and his hostels are waiting for you.
 <!-- TODO: add figma images here -->
 ## Requirements
