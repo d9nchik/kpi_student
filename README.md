@@ -12,7 +12,15 @@ Game contains:
 - and much more
 
 Could you survive all it's challenges? The KPI and his hostels are waiting for you.
-<!-- TODO: add figma images here -->
+### Demo of game play
+![Image of main page](readme_images/main.svg)
+
+_The main page of screen_
+
+![Image of main page](readme_images/menu.svg)
+
+_Example of game menu_
+
 ## Requirements
 To start an adventure you need a modern browser with __JavaScript support__ and nothing more.
 ## Dependencies
