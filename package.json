@@ -21,7 +21,7 @@
     "format": "prettier --write .",
     "format:stage": "pretty-quick --staged",
     "check-format": "prettier --check .",
-    "lint": "eslint \"**/*.{t,j}s{x,}\"",
+    "lint": "eslint \"src/**/*.{t,j}s{x,}\"",
     "lint:write": "eslint --debug src/ --fix",
     "build": "react-scripts build",
     "test": "CI=true npm run test:watch",
