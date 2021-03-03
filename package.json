@@ -18,6 +18,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "prepare": "husky install",
     "format": "prettier --write .",
     "format:stage": "pretty-quick --staged",
     "check-format": "prettier --check .",
