@@ -27,7 +27,8 @@
     "test": "CI=true npm run test:watch",
     "test:watch": "react-scripts test",
     "test:coverage": "npm run test:watch -- --coverage",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "prepare": "husky install"
   },
   "eslintConfig": {
     "extends": [
