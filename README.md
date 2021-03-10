@@ -46,11 +46,13 @@ To start an adventure you need a modern browser with **JavaScript support** and 
 
 ### We depend on
 
-- [React](https://reactjs.org/) library
-- [Typescript](https://www.typescriptlang.org/) -> typization for pure JS
+- [Firebase library](https://www.npmjs.com/package/firebase) -> interaction with backend
+- [Web vitals](https://web.dev/vitals/) -> testing web performance on client
 
 ### Development dependencies
 
+- [React](https://reactjs.org/) library
+- [Typescript](https://www.typescriptlang.org/) -> typization for pure JS
 - [Jest](https://jestjs.io/) -> _testing_ library
 - [Prettier](https://prettier.io/) -> formater tool
 - [Eslint](https://eslint.org/) -> reduce common bugs with linter
