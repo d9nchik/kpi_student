@@ -1,4 +1,4 @@
-![Student](READMEs/readme_images/student.png)
+![Student](readme_images/student.png)
 
 # kpi_student
 
@@ -20,9 +20,30 @@ Could you survive all it's challenges? The KPI and his hostels are waiting for y
 
 _weekly you will be fighting with boss_
 
-### Features
+### Features and Requests
 
-Our game is _**not** planned_ with **hardcoded** plot. Everyone can change it with the submission of plot fragment via our in-game submitting form.
+#### Our game is _**not** planned_ with **hardcoded** plot. Everyone can change it with the submission of plot fragment via our in-game submitting form.
+
+In this project, a game will have those features:
+
+1. The user must log in to start the game in one of the following ways:
+   - Mail
+   - Google account
+   - Github account
+
+![Login form](readme_images/login.svg)
+
+_login form_
+
+2. If the user has forgotten his password, he will be able to restore it at the next authorization attempt
+3. The user will be able to monitor and pump his character within the categories of actions presented in the game, namely, train him, monitor his health, finances
+4. The user will be able to log in on any device that supports the browser and then continue the game with the saved progress
+5. The game contains events. Events will affect the game progress, depending on the user decision and the state of the character. The episode will occur as the character develops and depending on the playing time
+6. Each user will be able to offer his event, which will have to go through the approval stage by other users to add to the game
+7. In the game, realized inside the game currency, which the user can spend on the development of his character and passing events
+8. The game has a scale of experience, which the user can replenish by performing various actions during the game
+9. Inside the game: time counts from the moment the user login until the moment the user left the game
+10. Also, inside the game, actions that the user will perform with his character in addition to proposing new events and voting will influence the time
 
 ![Submission of new cool idea](readme_images/ideaForm.svg)
 
@@ -30,11 +51,11 @@ _you create the game_
 
 ### Demo of gameplay
 
-![Image of main page](READMEs/readme_images/main.svg)
+![Image of main page](readme_images/main.svg)
 
 _The main page of screen_
 
-![Image of main page](READMEs/readme_images/menu.svg)
+![Image of main page](readme_images/menu.svg)
 
 _Example of game menu_
 
