@@ -16,7 +16,7 @@ const App: FunctionComponent = () => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
+          KPI student
         </a>
       </header>
     </div>
