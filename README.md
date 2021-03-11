@@ -43,11 +43,17 @@ _login form_
 7. In the game, realized inside the game currency, which the user can spend on the development of his character and passing events
 8. The game has a scale of experience, which the user can replenish by performing various actions during the game
 9. Inside the game: time counts from the moment the user login until the moment the user left the game
-10. Also, inside the game, actions that the user will perform with his character in addition to proposing new events and voting will influence the time
+10. Also, inside the game, actions that the user will perform with his character in addition to proposing new events and voting will influence the time.
+11. We will use firebase for deploying on hosting, authenticate the user and store data for synchronization.
 
 ![Submission of new cool idea](readme_images/ideaForm.svg)
 
 _you create the game_
+
+## CI/CD
+
+- For CI we will use Github actions. We will test code with prettier, eslint and test available tests for node 10, 12, 14.
+- For CD we will use [Firebase GitHub actions](https://github.com/FirebaseExtended/action-hosting-deploy) to deploy a pull request on a temporary link and see the result. Also, after merging into master we will deploy the site on firebase hosting with a permanent link.
 
 ### Demo of gameplay
 
