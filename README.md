@@ -14,11 +14,19 @@ Game contains:
 - a lot of studies
 - and much more
 
+Could you survive all it's challenges? The KPI and his hostels are waiting for you.
+
+![Interaction with boss](readme_images/boss.svg)
+
+_weekly you will be fighting with boss_
+
 ### Features
 
 Our game is _**not** planned_ with **hardcoded** plot. Everyone can change it with the submission of plot fragment via our in-game submitting form.
 
-Could you survive all it's challenges? The KPI and his hostels are waiting for you.
+![Submission of new cool idea](readme_images/ideaForm.svg)
+
+_you create the game_
 
 ### Demo of gameplay
 
