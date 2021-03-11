@@ -122,3 +122,4 @@ dist
 
 # Remove husky system script
 /.husky/_
+/.husky/.gitignore

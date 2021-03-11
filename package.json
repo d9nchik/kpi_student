@@ -2,54 +2,15 @@
   "name": "kpi_student",
   "version": "0.1.0",
   "private": true,
-  "dependencies": {
-    "firebase": "^8.2.10",
-    "web-vitals": "^1.0.1"
-  },
   "scripts": {
-    "start": "react-scripts start",
+    "test": "cd frontend && npm t",
     "format": "prettier --write .",
     "format:stage": "pretty-quick --staged",
     "check-format": "prettier --check .",
-    "lint": "eslint \"src/**/*.{t,j}s{x,}\"",
-    "lint:write": "eslint --debug src/ --fix",
-    "build": "react-scripts build",
-    "test": "CI=true npm run test:watch",
-    "test:watch": "react-scripts test",
-    "test:coverage": "npm run test:watch -- --coverage",
-    "eject": "react-scripts eject",
+    "lint": "cd frontend && npm run lint",
     "prepare": "husky install"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
   "devDependencies": {
-    "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^11.1.0",
-    "@testing-library/user-event": "^12.1.10",
-    "@types/jest": "^26.0.15",
-    "@types/node": "^12.0.0",
-    "@types/react": "^17.0.0",
-    "@types/react-dom": "^17.0.0",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "react-scripts": "4.0.3",
-    "typescript": "^4.1.2",
-    "@typescript-eslint/eslint-plugin": "^4.15.2",
-    "@typescript-eslint/parser": "^4.15.2",
-    "eslint": "^7.21.0",
-    "eslint-config-prettier": "^8.1.0",
-    "eslint-plugin-react": "^7.22.0",
-    "eslint-plugin-sonarjs": "^0.6.0",
     "husky": "^5.1.2",
     "prettier": "2.2.1",
     "pretty-quick": "^3.1.0"
