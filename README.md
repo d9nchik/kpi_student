@@ -1,4 +1,4 @@
-![Student](readme_images/student.png)
+![Student](readme_stuff/student.png)
 
 # kpi_student
 
@@ -16,7 +16,7 @@ Game contains:
 
 Could you survive all it's challenges? The KPI and his hostels are waiting for you.
 
-![Interaction with boss](readme_images/boss.svg)
+![Interaction with boss](readme_stuff/boss.svg)
 
 _weekly you will be fighting with boss_
 
@@ -31,7 +31,7 @@ In this project, a game will have those features:
    - Google account
    - Github account
 
-![Login form](readme_images/login.svg)
+![Login form](readme_stuff/login.svg)
 
 _login form_
 
@@ -46,7 +46,7 @@ _login form_
 10. Also, inside the game, actions that the user will perform with his character in addition to proposing new events and voting will influence the time.
 11. We will use firebase for deploying on hosting, authenticate the user and store data for synchronization.
 
-![Submission of new cool idea](readme_images/ideaForm.svg)
+![Submission of new cool idea](readme_stuff/ideaForm.svg)
 
 _you create the game_
 
@@ -57,11 +57,11 @@ _you create the game_
 
 ### Demo of gameplay
 
-![Image of main page](readme_images/main.svg)
+![Image of main page](readme_stuff/main.svg)
 
 _The main page of screen_
 
-![Image of main page](readme_images/menu.svg)
+![Image of main page](readme_stuff/menu.svg)
 
 _Example of game menu_
 
