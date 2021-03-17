@@ -87,6 +87,10 @@ To start an adventure you need a modern browser with **JavaScript support** and 
 - [pretty-quick](https://www.npmjs.com/package/pretty-quick) -> for formating stage zone
 - [create-react-app](https://create-react-app.dev/docs/adding-typescript/) -> template for creating react application
 
+## Architecture of application
+
+Architecture as has been mentioned before is based on firebase services. [Look more about architecture.](readme_stuff/appArchitecture.md)
+
 ## Available Scripts
 
 In the project directory, you can run:
