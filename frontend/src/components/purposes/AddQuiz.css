@@ -1,0 +1,44 @@
+#addQuizzes {
+  background-color: #242423;
+  margin-top: 10%;
+  display: flex;
+  flex-direction: column;
+  background-color: #242423;
+  font-family: Montserrat, serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 15px;
+  color: white;
+  border-radius: 10px;
+  width: 1000px;
+}
+#addQuizzes button {
+  background-color: #ff8500;
+  border-radius: 5px;
+  color: white;
+  height: 30px;
+}
+#nameQuiz {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+#importImg button {
+  margin-bottom: 10px;
+}
+#inputImport {
+  margin-top: 10px;
+  margin-left: 50px;
+  margin-bottom: 10px;
+}
+#inputImport button {
+  background-color: #ff8500;
+}
+#addQuizButton {
+  background-color: #ff8500;
+  border-radius: 5px;
+  color: white;
+  height: 30px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}

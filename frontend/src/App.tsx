@@ -1,24 +1,33 @@
-import React, { FunctionComponent } from 'react';
-import logo from './logo.svg';
+import React, { FunctionComponent, lazy, Suspense } from 'react';
 import './App.css';
+import './normalize.css';
+import AuthenticatedRouter from './components/AuthenticatedRouter';
+import { Switch, BrowserRouter as Router, Route, Link } from 'react-router-dom';
+
+const Authentication = lazy(() => import('./components/auth/Authentication'));
+const Game = lazy(() => import('./components/game/Game'));
+const PurposeAndVote = lazy(
+  () => import('./components/purposes/PurposeAndVote')
+);
 
 const App: FunctionComponent = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          KPI student
-        </a>
-      </header>
+    <div>
+      <Router>
+        <Link to="/">
+          <h1>Welcome to game KPI Student!</h1>
+        </Link>
+        <Suspense fallback={<h2>Loading</h2>}>
+          <Authentication />
+          <AuthenticatedRouter>
+            <Switch>
+              <Route exact path="/" component={Game} />
+              <Route path="/main" render={() => <div>main page</div>} />
+              <Route path="/purposes" component={PurposeAndVote} />
+            </Switch>
+          </AuthenticatedRouter>
+        </Suspense>
+      </Router>
     </div>
   );
 };

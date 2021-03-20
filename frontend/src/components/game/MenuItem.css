@@ -1,0 +1,21 @@
+.menuItem {
+  color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 90%;
+  align-items: center;
+}
+
+.menuItem h3,
+.menuItem img {
+  width: 25px;
+  cursor: pointer;
+}
+.menuItem h3 {
+  width: 200px;
+}
+#charBlock {
+  display: flex;
+  margin-right: 20px;
+}

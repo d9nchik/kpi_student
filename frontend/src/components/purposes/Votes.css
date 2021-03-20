@@ -1,0 +1,8 @@
+.votes img {
+  height: 25px;
+  margin-left: 10px;
+}
+
+.votes {
+  cursor: pointer;
+}

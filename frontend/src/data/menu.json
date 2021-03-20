@@ -1,0 +1,278 @@
+{
+  "hostel": [
+    {
+      "name": "Сделать ремонт",
+      "characteristics": {
+        "money": -2000,
+        "careLevel": "65%"
+      }
+    },
+    {
+      "name": "Вынести мусор",
+      "characteristics": {
+        "careLevel": "20%",
+        "heartsPoint": "-20%"
+      }
+    },
+    {
+      "name": "Сделать лабораторку",
+      "characteristics": {
+        "educationLevel": "5%",
+        "satietyLevel": "-5%"
+      }
+    },
+    {
+      "name": "Убрать в комнате",
+      "characteristics": {
+        "careLevel": "25%",
+        "satietyLevel": "-10%"
+      }
+    },
+    {
+      "name": "Сделка с тараканами",
+      "characteristics": {
+        "careLevel": "45%",
+        "money": -150
+      }
+    },
+    {
+      "name": "Поспать",
+      "characteristics": {
+        "heartsPoint": "25%",
+        "satietyLevel": "-25%"
+      }
+    }
+  ],
+  "university": [
+    {
+      "name": "Пойти на пары",
+      "characteristics": {
+        "educationLevel": "+30%",
+        "satietyLevel": "-25%"
+      }
+    },
+    {
+      "name": "Прийти ко 2-ой",
+      "characteristics": {
+        "educationLevel": "+15%",
+        "satietyLevel": "-15%"
+      }
+    },
+    {
+      "name": "Сдать курсач",
+      "characteristics": {
+        "educationLevel": "+75%",
+        "satietyLevel": "-90%"
+      }
+    },
+    {
+      "name": "Сделать домашку",
+      "characteristics": {
+        "educationLevel": "+25%",
+        "satietyLevel": "-10%"
+      }
+    },
+    {
+      "name": "Поиграть на парах в Майн",
+      "characteristics": {
+        "educationLevel": "-25%",
+        "mentalStrength": "+30%"
+      }
+    },
+    {
+      "name": "Прийти на день факультета и выиграть шару",
+      "characteristics": {
+        "educationLevel": "-95%",
+        "mentalStrength": "+80%"
+      }
+    }
+  ],
+  "work": [
+    {
+      "name": "Пойти работать дворником",
+      "characteristics": {
+        "money": 3000,
+        "mentalStrength": "-30%"
+      }
+    },
+    {
+      "name": "Пойти работать в колл центр",
+      "characteristics": {
+        "money": 7000,
+        "mentalStrength": "-50%"
+      }
+    },
+    {
+      "name": "Пойти летом на подработку в универ",
+      "characteristics": {
+        "money": 2000,
+        "mentalStrength": "-20%"
+      }
+    },
+    {
+      "name": "Пойти работать программистом",
+      "characteristics": {
+        "money": 15000,
+        "mentalStrength": "-80%"
+      }
+    },
+    {
+      "name": "Сделать пару задач на Вертолетике",
+      "characteristics": {
+        "money": 500,
+        "mentalStrength": "-5%"
+      }
+    },
+    {
+      "name": "Пойти на миттинг",
+      "characteristics": {
+        "money": 500,
+        "mentalStrength": "-10%"
+      }
+    }
+  ],
+  "relax": [
+    {
+      "name": "Пойти поспать",
+      "characteristics": {
+        "mentalStrength": "+30%",
+        "careLevel": "+40%"
+      }
+    },
+    {
+      "name": "Пойти в душ",
+      "characteristics": {
+        "mentalStrength": "+10%",
+        "careLevel": "+20%"
+      }
+    },
+    {
+      "name": "Посмотреть фильм",
+      "characteristics": {
+        "mentalStrength": "+5%",
+        "careLevel": "+10%"
+      }
+    },
+    {
+      "name": "Пойти прогуляться в парке КПИ",
+      "characteristics": {
+        "mentalStrength": "+25%",
+        "careLevel": "-10%"
+      }
+    },
+    {
+      "name": "Пойти перекусить",
+      "characteristics": {
+        "mentalStrength": "+10%",
+        "satietyLevel": "+40%"
+      }
+    },
+    {
+      "name": "Залипнуть в ТикТоке",
+      "characteristics": {
+        "educationLevel": "-10%",
+        "mentalStrength": "+10%",
+        "satietyLevel": "+40%"
+      }
+    }
+  ],
+  "library": [
+    {
+      "name": "Прийти позаниматься",
+      "characteristics": {
+        "educationLevel": "+30%",
+        "mentalStrength": "-10%",
+        "satietyLevel": "-20%"
+      }
+    },
+    {
+      "name": "Взять почитать книги",
+      "characteristics": {
+        "educationLevel": "+30%",
+        "mentalStrength": "-5%",
+        "satietyLevel": "-10%"
+      }
+    },
+    {
+      "name": "Посидеть на лекции в Белке",
+      "characteristics": {
+        "educationLevel": "+10%",
+        "mentalStrength": "-10%",
+        "satietyLevel": "-20%"
+      }
+    },
+    {
+      "name": "Переночевать с книгами",
+      "characteristics": {
+        "educationLevel": "+70%",
+        "mentalStrength": "-40%",
+        "satietyLevel": "-60%"
+      }
+    },
+    {
+      "name": "Обговорить проблемы с лабораторной с старшекурсниками",
+      "characteristics": {
+        "educationLevel": "+10%",
+        "mentalStrength": "-5%",
+        "satietyLevel": "-5%"
+      }
+    },
+    {
+      "name": "Обложиться книгами и начать делать рассчетку",
+      "characteristics": {
+        "educationLevel": "+30%",
+        "mentalStrength": "-10%",
+        "satietyLevel": "-10%"
+      }
+    }
+  ],
+  "shop": [
+    {
+      "name": "Пойти купить продукты для просмотра фильма",
+      "characteristics": {
+        "money": -150,
+        "satietyLevel": "+15%"
+      }
+    },
+    {
+      "name": "Пойти бутылочку для релакса",
+      "characteristics": {
+        "money": -30,
+        "satietyLevel": "+3%",
+        "mentalStrength": "+30%"
+      }
+    },
+    {
+      "name": "Пойти купить 5 пачек доширака",
+      "characteristics": {
+        "money": -50,
+        "satietyLevel": "+70%",
+        "mentalStrength": "-30%"
+      }
+    },
+    {
+      "name": "Пойти купить моющие средства для уборки",
+      "characteristics": {
+        "money": -200,
+        "careLevel": "+70%",
+        "mentalStrength": "-10%"
+      }
+    },
+    {
+      "name": "Пойти купить все по уходу за собой",
+      "characteristics": {
+        "money": -300,
+        "careLevel": "+90%",
+        "mentalStrength": "-5%"
+      }
+    },
+    {
+      "name": "Пойти купить все для пати в общаге",
+      "characteristics": {
+        "money": -500,
+        "careLevel": "+5%",
+        "mentalStrength": "+50%"
+      }
+    }
+  ]
+}

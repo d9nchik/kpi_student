@@ -45,6 +45,15 @@ jspm_packages/
 
 # FIXME: some of ignores are useless
 
+# Webstorm
+.idea
+
+# VSCode
+.vscode
+
+# build directory
+*/build/
+
 # TypeScript v1 declaration files
 typings/
 

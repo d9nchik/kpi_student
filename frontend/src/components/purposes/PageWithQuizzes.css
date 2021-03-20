@@ -1,0 +1,77 @@
+#ListProp {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  background-color: #242423;
+  font-family: Montserrat, serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 15px;
+  color: white;
+  border-radius: 10px;
+}
+#ListQuizzes {
+  display: flex;
+  flex-direction: column;
+}
+#ListQuizzes li {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-bottom: 2px solid white;
+}
+
+#ListQuizzes li div {
+  margin-top: 8px;
+  margin-left: auto;
+}
+#ListQuizzes li h3 {
+  margin-right: 140px;
+}
+
+#ListQuizzes li a {
+  color: white;
+}
+
+#addProp {
+  margin-bottom: 20px;
+  color: white;
+  background-color: #ff8500;
+  display: flex;
+  flex-direction: column;
+  height: 30px;
+  width: 120px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 5px;
+  padding-top: 10px;
+}
+#prevNext {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+#prevNext button {
+  background-color: #ff8500;
+  border-radius: 5px;
+  color: white;
+  height: 30px;
+}
+
+.comments img {
+  height: 25px;
+  margin-left: 5px;
+}
+.comments {
+  margin-left: 10px;
+  margin-right: 20px;
+}
+
+.quizPreview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
