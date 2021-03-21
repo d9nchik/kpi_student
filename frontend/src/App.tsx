@@ -1,24 +1,19 @@
 import React, { FunctionComponent } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
+import Login from './components/Login';
+import Register from './components/Register';
 
 const App: FunctionComponent = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          KPI student
-        </a>
-      </header>
+    <div>
+      <h1>Welcome to game KPI Student!</h1>
+      <Router>
+        <Switch>
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/register" component={Register} />
+        </Switch>
+      </Router>
     </div>
   );
 };
