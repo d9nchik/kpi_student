@@ -5,7 +5,7 @@ import {
   loginWithGithub,
   loginWithGoogle,
 } from '../utilities/auth';
-import { Redirect, useHistory } from 'react-router-dom';
+import { Redirect, useHistory, Link } from 'react-router-dom';
 
 const Login: FunctionComponent = () => {
   const [email, setEmail] = useState('');
@@ -34,7 +34,6 @@ const Login: FunctionComponent = () => {
           E-mail
           <input
             name="email"
-            id="email"
             type="email"
             value={email}
             onChange={event => setEmail(event.target.value)}
@@ -44,7 +43,6 @@ const Login: FunctionComponent = () => {
           Password
           <input
             type="password"
-            id="password"
             name="password"
             value={password}
             onChange={event => setPassword(event.target.value)}
@@ -75,6 +73,9 @@ const Login: FunctionComponent = () => {
       >
         Login with GitHub
       </p>
+
+      <Link to="/register"> Don`t have account</Link>
+      <Link to="/resetPass">Forgot password</Link>
     </div>
   );
 
