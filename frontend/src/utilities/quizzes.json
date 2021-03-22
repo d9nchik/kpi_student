@@ -1,0 +1,30 @@
+[
+  {
+    "id": "zjdejwljwfwfnwtrjktbtwq",
+    "quizName": "Organize a party",
+    "likes": 5,
+    "author": { "uid": "2", "displayName": "Andrew" },
+    "answerVariants": [
+      {
+        "name": "participate",
+        "requirements": { "money": { "minValue": 1000 } },
+        "successProbability": 0.12,
+        "successCharacteristics": {
+          "money": { "minValue": -1000, "maxValue": -500 },
+          "mentalStrength": { "minValue": 200, "maxValue": 1000 }
+        },
+        "loseCharacteristics": {
+          "money": { "minValue": -1000, "maxValue": -500 }
+        }
+      }
+    ],
+    "comments": [
+      {
+        "id": "fejrkentiintkonwAjsjwhdjed",
+        "content": "I like this idea",
+        "author": { "uid": "1", "displayName": "Boris" }
+      }
+    ],
+    "commentsCount": 1
+  }
+]
