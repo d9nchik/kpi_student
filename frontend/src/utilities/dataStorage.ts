@@ -84,6 +84,7 @@ export const addComment = (
   if (!quizWithCommentsObj) {
     return false;
   }
+  quizWithCommentsObj.commentsCount++;
   const id = generateRandomID();
   quizWithCommentsObj.comments.push({ ...comment, id });
   return true;
@@ -109,7 +110,17 @@ export const removeComment = (quizID: string, commentID: string): boolean => {
     return false;
   }
 
+  quizWithCommentsObj.commentsCount--;
   commentsObj.splice(indexOfComment, 1);
+  return true;
+};
+
+export const likePost = (quizID: string): boolean => {
+  const quizWithCommentsObj = getQuizWithComment(quizID);
+  if (!quizWithCommentsObj) {
+    return false;
+  }
+  quizWithCommentsObj.likes++;
   return true;
 };
 
