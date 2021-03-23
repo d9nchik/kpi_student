@@ -4,6 +4,8 @@ const dataWithTypes = data as QuizWithComment[];
 
 const DEFAULT_IMAGE_URL = '../logo.svg';
 
+const author = { uid: '098123', displayName: 'test-admin' };
+
 interface Range {
   minValue?: number;
   maxValue?: number;
@@ -32,17 +34,18 @@ interface User {
   photoURL?: string;
 }
 
-interface QuizWithoutId {
+export interface QuizWithOnlyBody {
   quizName: string;
-  likes: number;
-  author: User;
   answerVariants: AnswerVariant[];
-  commentsCount: number;
-  imageURL: string;
+  imageURL?: string;
 }
 
-interface Quiz extends QuizWithoutId {
+interface Quiz extends QuizWithOnlyBody {
   id: string;
+  author: User;
+  likes: number;
+  commentsCount: number;
+  imageURL: string;
 }
 
 export const getQuizzes = (pageNumber = 0): Quiz[] => {
@@ -52,13 +55,10 @@ export const getQuizzes = (pageNumber = 0): Quiz[] => {
   });
 };
 
-interface CommentWithoutID {
+interface Comment {
+  id: string;
   content: string;
   author: User;
-}
-
-interface Comment extends CommentWithoutID {
-  id: string;
 }
 
 interface QuizWithComment extends Quiz {
@@ -70,23 +70,32 @@ export const getCommentsOfQuiz = (quizID: string): Comment[] => {
   return quizWithCommentsObj ? quizWithCommentsObj.comments : [];
 };
 
-export const addQuiz = (quiz: QuizWithoutId): boolean => {
+export const addQuiz = (quiz: QuizWithOnlyBody): boolean => {
   const id = generateRandomID();
-  dataWithTypes.push({ ...quiz, id, comments: [] });
+  const quizWithBody: QuizWithComment = {
+    ...quiz,
+    id,
+    comments: [],
+    likes: 0,
+    commentsCount: 0,
+    imageURL: DEFAULT_IMAGE_URL,
+    author,
+  };
+  if (quiz.imageURL) {
+    quizWithBody.imageURL = quiz.imageURL;
+  }
+  dataWithTypes.push(quizWithBody);
   return true;
 };
 
-export const addComment = (
-  quizID: string,
-  comment: CommentWithoutID
-): boolean => {
+export const addComment = (quizID: string, content: string): boolean => {
   const quizWithCommentsObj = getQuizWithComment(quizID);
   if (!quizWithCommentsObj) {
     return false;
   }
   quizWithCommentsObj.commentsCount++;
   const id = generateRandomID();
-  quizWithCommentsObj.comments.push({ ...comment, id });
+  quizWithCommentsObj.comments.push({ content, id, author });
   return true;
 };
 
