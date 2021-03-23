@@ -133,6 +133,15 @@ export const likePost = (quizID: string): boolean => {
   return true;
 };
 
+export const dislikePost = (quizID: string): boolean => {
+  const quizWithCommentsObj = getQuizWithComment(quizID);
+  if (!quizWithCommentsObj) {
+    return false;
+  }
+  quizWithCommentsObj.likes--;
+  return true;
+};
+
 function generateRandomID(): string {
   return String(Date.now());
 }

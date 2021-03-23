@@ -7,6 +7,7 @@ import {
   addComment,
   removeComment,
   likePost,
+  dislikePost,
 } from '../dataStorage';
 
 it('test getQuizzes', () => {
@@ -113,4 +114,13 @@ it('test likePost', () => {
   expect(likePost(firstQuiz.id)).toBeTruthy();
   firstQuiz = getQuizzes()[0];
   expect(firstQuiz.likes).toBe(6);
+});
+
+it('test', () => {
+  let firstQuiz = getQuizzes()[0];
+  expect(firstQuiz.likes).toBe(6);
+  expect(dislikePost('48394j843hhfr8h483534')).toBeFalsy();
+  expect(dislikePost(firstQuiz.id)).toBeTruthy();
+  firstQuiz = getQuizzes()[0];
+  expect(firstQuiz.likes).toBe(5);
 });
