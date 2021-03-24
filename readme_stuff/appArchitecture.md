@@ -4,6 +4,10 @@
 
 ![application segregation](application_modules_split.png)
 
+## Backend functions
+
+![backend_schema](backend.png)
+
 ## Data and Links between them
 
 ![data schema](db_architecture.png)
