@@ -41,14 +41,11 @@
 
 The game contains the mechanics of adding new quizzes from users. To do this, go to the appropriate tab in the game, where you can add, remove, view, vote for the desired quiz:
 
-1. Adding
+1. ### Adding
    To add a new quiz, you need to click on the plus in the upper part of the window and then write the name, description, the necessary characteristics for passing, possible answer options, it is also possible to add an image for the quiz window (otherwise the default image will be used)
-
-2. Remove
+2. ### Remove
    To delete your quiz, just click the image of the "Basket", which is located next to the quiz you created. After which the quiz will be completely deleted without the possibility of recovery
-
-3. View
+3. ### View
    By clicking on the "Quiz" tab in the game, the user will see all the quizzes added by him and other users, it is also possible to see how the quiz window will look before it is added to the game, for this, just click on the quiz you need
-
-4. Voting and writing comments
+4. ### Voting and writing comments
    To add a quiz to the game, the quiz must collect the number of likes set by the administrator, after which it will be added to the game. To see the entire list of comments, just click on the "Messages" image on the side, after which a window with all the comments will open, and in this window you can also write your comment, indicating the reason why the quiz is bad or, on the contrary, good
