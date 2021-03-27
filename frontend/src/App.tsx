@@ -1,12 +1,21 @@
 import React, { FunctionComponent } from 'react';
 import './App.css';
 import Authentication from './components/auth/Authentication';
+import AuthenticatedRouter from './components/AuthenticatedRouter';
+import { Switch, BrowserRouter as Router, Route } from 'react-router-dom';
 
 const App: FunctionComponent = () => {
   return (
     <div>
       <h1>Welcome to game KPI Student!</h1>
-      <Authentication />
+      <Router>
+        <Authentication />
+        <AuthenticatedRouter>
+          <Switch>
+            <Route path="/main" render={() => <div>main page</div>} />
+          </Switch>
+        </AuthenticatedRouter>
+      </Router>
     </div>
   );
 };

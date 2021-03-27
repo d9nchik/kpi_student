@@ -15,13 +15,18 @@ const AuthenticatedRouter: FunctionComponent<AuxProps> = ({
   return (
     <Route
       {...rest}
-      render={({ location }) =>
-        isAuthenticated() ? (
-          children
-        ) : (
-          <Redirect to={{ pathname: '/login', state: { from: location } }} />
-        )
-      }
+      render={({ location }) => {
+        if (isAuthenticated()) {
+          return children;
+        }
+        const authPages = ['/login', '/register', '/resetPass'];
+        if (!authPages.includes(location.pathname)) {
+          return (
+            <Redirect to={{ pathname: '/login', state: { from: location } }} />
+          );
+        }
+        return <div></div>;
+      }}
     />
   );
 };
