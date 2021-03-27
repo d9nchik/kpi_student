@@ -4,7 +4,7 @@ import {
   loginWithEmail,
   loginWithGithub,
   loginWithGoogle,
-} from '../utilities/auth';
+} from '../../utilities/auth';
 import { Redirect, useHistory, Link } from 'react-router-dom';
 
 const Login: FunctionComponent = () => {

@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react';
 import './App.css';
-import Authentication from './components/Authentication';
+import Authentication from './components/auth/Authentication';
 
 const App: FunctionComponent = () => {
   return (
