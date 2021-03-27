@@ -1,7 +1,8 @@
 export const LOCAL_STORAGE_EMAIL_KEY = 'email-credentials';
+export const LOCAL_STORAGE_IS_AUTHENTICATED = 'isAuthenticated';
 
-let isUserAuthenticated = false;
-export const isAuthenticated = (): boolean => isUserAuthenticated;
+export const isAuthenticated = (): boolean =>
+  localStorage.getItem(LOCAL_STORAGE_IS_AUTHENTICATED) === 'true';
 
 export const loginWithEmail = (email: string, password: string): boolean => {
   const credentials = localStorage.getItem(LOCAL_STORAGE_EMAIL_KEY);
@@ -11,14 +12,14 @@ export const loginWithEmail = (email: string, password: string): boolean => {
   const emailPairs = JSON.parse(credentials);
 
   if (emailPairs[email] === password) {
-    isUserAuthenticated = true;
+    localStorage.setItem(LOCAL_STORAGE_IS_AUTHENTICATED, 'true');
     return true;
   }
   return false;
 };
 
 function loginWithServiceProvider(): boolean {
-  isUserAuthenticated = true;
+  localStorage.setItem(LOCAL_STORAGE_IS_AUTHENTICATED, 'true');
   return true;
 }
 
@@ -28,7 +29,7 @@ export {
 };
 
 export const logout = (): void => {
-  isUserAuthenticated = false;
+  localStorage.setItem(LOCAL_STORAGE_IS_AUTHENTICATED, 'false');
 };
 
 export const registerEmail = (email: string, password: string): boolean => {
@@ -39,7 +40,7 @@ export const registerEmail = (email: string, password: string): boolean => {
   }
   emailPairs[email] = password;
   localStorage.setItem(LOCAL_STORAGE_EMAIL_KEY, JSON.stringify(emailPairs));
-  isUserAuthenticated = true;
+  localStorage.setItem(LOCAL_STORAGE_IS_AUTHENTICATED, 'true');
   return true;
 };
 
