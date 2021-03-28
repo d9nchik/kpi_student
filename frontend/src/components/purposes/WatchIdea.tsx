@@ -1,6 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import { useParams, Redirect, useLocation } from 'react-router-dom';
 import { getQuiz, likePost, dislikePost } from '../../utilities/dataStorage';
+import defaultImage from '../../logo.svg';
 
 import Vote from './Vote';
 import Comments from './Comments';
@@ -18,19 +19,12 @@ const WatchIdea: FunctionComponent = () => {
       <Redirect to={{ pathname: '/purposes', state: { from: location } }} />
     );
   }
-  const {
-    quizName,
-    imageURL,
-    likes,
-    commentsCount,
-    answerVariants,
-    author,
-  } = quiz;
+  const { quizName, likes, commentsCount, answerVariants, author } = quiz;
 
   return (
     <div>
       <h2>{quizName}</h2>
-      <img alt={quizName} src={imageURL} />
+      <img alt={quizName} src={defaultImage} />
       <ul>
         {answerVariants?.map(
           ({
