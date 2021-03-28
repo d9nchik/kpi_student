@@ -1,26 +1,24 @@
 import React, { FunctionComponent, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { getQuizzes, likePost } from '../../utilities/dataStorage';
+import { getQuizzes, likePost, dislikePost } from '../../utilities/dataStorage';
+import Vote from './Vote';
 
 const PageWithQuizzes: FunctionComponent = () => {
   const [page, setPage] = useState(0);
-  const [quizzes, setQuizzes] = useState(getQuizzes(page));
+  const quizzes = getQuizzes(page);
   return (
     <div>
       <ul>
-        {quizzes.map(({ likes, id, quizName }) => {
+        {quizzes.map(({ likes, id, quizName, commentsCount }) => {
           return (
             <li key={JSON.stringify(`${likes} ${id} ${quizName}`)}>
               <h3>{quizName}</h3>
-              <button
-                onClick={() => {
-                  likePost(id);
-                  setQuizzes(getQuizzes(0));
-                }}
-              >
-                {likes} Like
-              </button>
-              <Link to={`/purposes/${id}`}>Watch more</Link>
+              <Vote
+                onLike={() => likePost(id)}
+                onDislike={() => dislikePost(id)}
+                likes={likes}
+              />
+              <Link to={`/purposes/${id}`}>{commentsCount} comments</Link>
             </li>
           );
         })}
