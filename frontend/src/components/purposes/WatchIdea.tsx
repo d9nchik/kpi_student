@@ -5,6 +5,7 @@ import defaultImage from '../../logo.svg';
 
 import Vote from './Vote';
 import Comments from './Comments';
+import WatchCharacteristics from './WatchCharacteristics';
 
 interface ParamTypes {
   id: string;
@@ -38,6 +39,12 @@ const WatchIdea: FunctionComponent = () => {
               <li key={`${name} ${successProbability}`}>
                 <h3>{name}</h3>
                 <em>{successProbability * 100}%</em>
+                <h4>Requirements</h4>
+                <WatchCharacteristics {...requirements} />
+                <h4>Success Loot</h4>
+                <WatchCharacteristics {...successCharacteristics} />
+                <h4>Loose Pay</h4>
+                <WatchCharacteristics {...loseCharacteristics} />
               </li>
             );
           }

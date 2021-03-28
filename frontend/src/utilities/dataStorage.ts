@@ -6,12 +6,12 @@ const DEFAULT_IMAGE_URL = '../logo.svg';
 
 const author = { uid: '098123', displayName: 'test-admin' };
 
-interface Range {
+export interface Range {
   minValue?: number;
   maxValue?: number;
 }
 
-interface Characteristic {
+export interface Characteristic {
   heartsPoint?: Range;
   satietyLevel?: Range;
   mentalStrength?: Range;
@@ -20,7 +20,7 @@ interface Characteristic {
   careLevel?: Range;
 }
 
-interface AnswerVariant {
+export interface AnswerVariant {
   name: string;
   requirements: Characteristic;
   successProbability: number;
