@@ -55,7 +55,11 @@ export const getQuizzes = (pageNumber = 0): Quiz[] => {
   });
 };
 
-interface Comment {
+export const getQuiz = (quizID: string): Quiz | undefined => {
+  return getQuizWithComment(quizID);
+};
+
+export interface Comment {
   id: string;
   content: string;
   author: User;
