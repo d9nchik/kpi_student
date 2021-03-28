@@ -27,7 +27,6 @@ const WatchIdea: FunctionComponent = () => {
     author,
   } = quiz;
 
-  const onLike = () => likePost(id);
   return (
     <div>
       <h2>{quizName}</h2>
@@ -57,7 +56,7 @@ const WatchIdea: FunctionComponent = () => {
         onDislike={() => dislikePost(id)}
         likes={likes}
       />
-      <h3>Comments</h3>
+      <h3>Comments ({commentsCount})</h3>
       <Comments id={id} />
     </div>
   );
