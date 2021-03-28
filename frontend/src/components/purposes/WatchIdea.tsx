@@ -56,8 +56,7 @@ const WatchIdea: FunctionComponent = () => {
         onDislike={() => dislikePost(id)}
         likes={likes}
       />
-      <h3>Comments ({commentsCount})</h3>
-      <Comments id={id} />
+      <Comments id={id} commentsCount={commentsCount} />
     </div>
   );
 };
