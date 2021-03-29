@@ -59,6 +59,7 @@ const AnswerVariant: FunctionComponent<IProps> = ({
             });
             setPrivateName(newName);
           }}
+          required
         />
       </label>
       <label>
@@ -77,6 +78,7 @@ const AnswerVariant: FunctionComponent<IProps> = ({
             });
             setPrivateSuccessProbability(newSuccessProbability);
           }}
+          required
         />
       </label>
       <h4>Requirements</h4>
