@@ -14,7 +14,7 @@ const AddComment: FunctionComponent<IProps> = ({ onComment }: IProps) => {
         setUserComment('');
       }}
     >
-      <textarea onChange={ev => setUserComment(ev.target.value)}>
+      <textarea onChange={ev => setUserComment(ev.target.value)} required>
         {userComment}
       </textarea>
       <input type="submit" value="Submit" />
