@@ -18,7 +18,11 @@ const ChangeRange: FunctionComponent<IProps> = ({
           type="number"
           value={minValue}
           onChange={e => {
-            const newMinValue = Number(e.target.value);
+            const value = e.target.value;
+            if (!value) {
+              setRange({ maxValue });
+            }
+            const newMinValue = Number(value);
             if (Number.isNaN(newMinValue)) {
               return;
             }
@@ -32,7 +36,11 @@ const ChangeRange: FunctionComponent<IProps> = ({
           type="number"
           value={maxValue}
           onChange={e => {
-            const newMaxValue = Number(e.target.value);
+            const value = e.target.value;
+            if (!value) {
+              setRange({ minValue });
+            }
+            const newMaxValue = Number(value);
             if (Number.isNaN(newMaxValue)) {
               return;
             }
