@@ -16,6 +16,14 @@ const AddCharacteristic: FunctionComponent<IProps> = ({
   careLevel,
   setCharacteristic,
 }: IProps) => {
+  const characteristic: Characteristic = {
+    heartsPoint,
+    satietyLevel,
+    mentalStrength,
+    money,
+    educationLevel,
+    careLevel,
+  };
   const sendCharacteristicUp = (
     nameOfField:
       | 'heartsPoint'
@@ -26,46 +34,41 @@ const AddCharacteristic: FunctionComponent<IProps> = ({
       | 'careLevel',
     range: Range
   ) => {
-    const characteristic: Characteristic = {
-      heartsPoint,
-      satietyLevel,
-      mentalStrength,
-      money,
-      educationLevel,
-      careLevel,
-    };
     characteristic[nameOfField] = range;
     setCharacteristic(characteristic);
   };
   return (
     <div>
-      Hearts Point
       <ChangeRange
         {...heartsPoint}
-        setRange={range => sendCharacteristicUp('heartsPoint', range)}
+        name="Hearts Point"
+        setRange={range => {
+          sendCharacteristicUp('heartsPoint', range);
+          console.log(range);
+        }}
       />
-      Satiety Level
       <ChangeRange
         {...satietyLevel}
+        name="Satiety Level"
         setRange={range => sendCharacteristicUp('satietyLevel', range)}
       />
-      Mental Strength
       <ChangeRange
+        name="Mental Strength"
         {...mentalStrength}
         setRange={range => sendCharacteristicUp('mentalStrength', range)}
       />
-      Money
       <ChangeRange
+        name="Money"
         {...money}
         setRange={range => sendCharacteristicUp('money', range)}
       />
-      Education Level
       <ChangeRange
+        name="Education Level"
         {...educationLevel}
         setRange={range => sendCharacteristicUp('educationLevel', range)}
       />
-      Care Level
       <ChangeRange
+        name="Care Level"
         {...careLevel}
         setRange={range => sendCharacteristicUp('careLevel', range)}
       />

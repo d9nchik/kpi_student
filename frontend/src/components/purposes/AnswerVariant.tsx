@@ -23,22 +23,26 @@ const AnswerVariant: FunctionComponent<IProps> = ({
     successProbability
   );
 
+  const answer: Answer = {
+    name: privateName,
+    loseCharacteristics,
+    successCharacteristics,
+    successProbability: privateSuccessProbability,
+    requirements,
+  };
+
   const sendCharacteristic = (
     characteristic: Characteristic,
     key: 'loseCharacteristics' | 'successCharacteristics' | 'requirements'
   ) => {
-    const answer: Answer = {
-      name: privateName,
-      loseCharacteristics,
-      successCharacteristics,
-      successProbability: privateSuccessProbability,
-      requirements,
-    };
+    answer.name = privateName;
+    answer.successProbability = privateSuccessProbability;
     answer[key] = characteristic;
     setAnswer(answer);
   };
   return (
     <div>
+      <h3>Variant</h3>
       <label>
         Answer name
         <input
@@ -75,23 +79,23 @@ const AnswerVariant: FunctionComponent<IProps> = ({
           }}
         />
       </label>
-      Requirements
+      <h4>Requirements</h4>
       <AddCharacteristic
         {...requirements}
         setCharacteristic={characteristic =>
           sendCharacteristic(characteristic, 'requirements')
         }
       />
-      Success Characteristic
+      <h4>Success Characteristic</h4>
       <AddCharacteristic
-        {...requirements}
+        {...successCharacteristics}
         setCharacteristic={characteristic =>
           sendCharacteristic(characteristic, 'successCharacteristics')
         }
       />
-      Lose Characteristic
+      <h4>Lose Characteristic</h4>
       <AddCharacteristic
-        {...requirements}
+        {...loseCharacteristics}
         setCharacteristic={characteristic =>
           sendCharacteristic(characteristic, 'loseCharacteristics')
         }

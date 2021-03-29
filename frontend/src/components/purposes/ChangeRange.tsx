@@ -1,17 +1,33 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useState } from 'react';
 import { Range } from '../../utilities/dataStorage';
 
 interface IProps extends Range {
   setRange: (range: Range) => void;
+  name: string;
 }
 
 const ChangeRange: FunctionComponent<IProps> = ({
   minValue,
   maxValue,
   setRange,
+  name,
 }: IProps) => {
+  const [isVisible, setVisible] = useState(!!minValue || !!maxValue);
+  if (!isVisible) {
+    return (
+      <button
+        onClick={e => {
+          e.preventDefault();
+          setVisible(true);
+        }}
+      >
+        {`Add '${name}'`}
+      </button>
+    );
+  }
   return (
     <div>
+      <h5>{name}</h5>
       <label>
         Minimal Value
         <input
@@ -21,12 +37,14 @@ const ChangeRange: FunctionComponent<IProps> = ({
             const value = e.target.value;
             if (!value) {
               setRange({ maxValue });
+              return;
             }
             const newMinValue = Number(value);
             if (Number.isNaN(newMinValue)) {
               return;
             }
-            setRange({ minValue: newMinValue, maxValue });
+            minValue = newMinValue;
+            setRange({ minValue, maxValue });
           }}
         />
       </label>
@@ -39,15 +57,24 @@ const ChangeRange: FunctionComponent<IProps> = ({
             const value = e.target.value;
             if (!value) {
               setRange({ minValue });
+              return;
             }
             const newMaxValue = Number(value);
             if (Number.isNaN(newMaxValue)) {
               return;
             }
-            setRange({ minValue, maxValue: newMaxValue });
+            maxValue = newMaxValue;
+            setRange({ minValue, maxValue });
           }}
         />
       </label>
+      <button
+        onClick={e => {
+          e.preventDefault();
+          setVisible(false);
+          setRange({});
+        }}
+      >{`Remove '${name}'`}</button>
     </div>
   );
 };

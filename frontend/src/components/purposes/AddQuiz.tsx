@@ -21,6 +21,7 @@ const AddQuiz: FunctionComponent = () => {
         history.push('/purposes');
       }}
     >
+      <h2>Add quiz</h2>
       <label>
         Quiz Name
         <input

@@ -26,7 +26,8 @@ const AnswerVariants: FunctionComponent<IProps> = ({ setAnswers }: IProps) => {
         />
       ))}
       <button
-        onClick={() => {
+        onClick={e => {
+          e.preventDefault();
           setAnsw([
             ...answers,
             {
