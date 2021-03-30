@@ -20,7 +20,7 @@
 
         "successCharacteristics": {
 
-          "educationLevel": { "minValue": 300, "maxValue": 500 },
+          "educationLevel": { "minValue": 300, "maxValue": 500 }
 
         },
 
@@ -43,13 +43,13 @@
 
         "successCharacteristics": {
 
-          "educationLevel": { "minValue": 100, "maxValue": 200 },
+          "educationLevel": { "minValue": 100, "maxValue": 200 }
 
         },
 
         "loseCharacteristics": {
 
-          "educationLevel": { "minValue": 30, "maxValue": 40 }
+          "educationLevel": { "minValue": 30, "maxValue": 40 },
 
           "heartsPoint": { "minValue": -20, "maxValue": -50 }
 
@@ -58,7 +58,7 @@
       },
 {
 
-        "name": "Ничего не учить, но крикнуть в полночь на поляне "Халява Прийди!!!"",
+        "name": "Ничего не учить, но крикнуть в полночь на поляне Халява Прийди!!!",
 
         "requirements": { "educationLevel": { "minValue": 0 } },
 
@@ -103,7 +103,7 @@
 
         }
 
-      }
+      },
 {
 
         "name": "Не прийти на сдачу",
@@ -141,11 +141,9 @@
 
   },
 
-}
-},
 {
 
-    "id": "zjdejwljwfwfnwtrjktbtwr»,
+    "id": "zjdejwljwfwfnwtrjktbtwr",
 
     "quizName": "День Первокурсника",
 
@@ -164,13 +162,13 @@
 
         "successCharacteristics": {
 
-          "gameLevel": { "minValue": 1, "maxValue": 2},
+          "gameLevel": { "minValue": 1, "maxValue": 2}
 
         },
 
         "loseCharacteristics": {
 
-          "money": { "minValue": -200, "maxValue": -300 }
+          "money": { "minValue": -200, "maxValue": -300 },
 
           "heartsPoint": { "minValue": -300, "maxValue": -200 }
 
@@ -187,13 +185,13 @@
 
         "successCharacteristics": {
 
-          "gameLevel": { "minValue": 1, "maxValue": 2},
+          "gameLevel": { "minValue": 1, "maxValue": 2}
 
         },
 
         "loseCharacteristics": {
 
-          "money": { "minValue": -200, "maxValue": -300 }
+          "money": { "minValue": -200, "maxValue": -300 },
 
           "heartsPoint": { "minValue": -300, "maxValue": -200 }
 
@@ -210,7 +208,7 @@
 
         "successCharacteristics": {
 
-          "gameLevel": { "minValue": 1, "maxValue": 2},
+          "gameLevel": { "minValue": 1, "maxValue": 2}
 
         },
 
@@ -232,7 +230,7 @@
 
         "successCharacteristics": {
 
-          "gameLevel": { "minValue": 3, "maxValue": 4},
+          "gameLevel": { "minValue": 3, "maxValue": 4}
 
         },
 
@@ -242,7 +240,7 @@
 
         }
 
-      },
+      }
     ],
 
     "comments": [
@@ -264,7 +262,7 @@
   },
 {
 
-    "id": "zjdejwljwfwfnwtrjktbtwp»,
+    "id": "zjdejwljwfwfnwtrjktbtwp",
 
     "quizName": "Расчетка по МатАнализу",
 
@@ -285,13 +283,13 @@
 
         "educationLevel": { "minValue": 800, "maxValue": 900 },
 
-	      "mentalStrenght": {"minValue": -300, "maxValue": -200 }
+	"mentalStrenght": {"minValue": -300, "maxValue": -200 }
 
         },
 
         "loseCharacteristics": {
 
-          "educationLevel": { "minValue": 100, "maxValue": 150 }
+          "educationLevel": { "minValue": 100, "maxValue": 150 },
 
           "mentalStrenght": {"minValue": -300, "maxValue": -200 }
 
@@ -316,7 +314,7 @@
 
         "loseCharacteristics": {
 
-        "money": { "minValue": -150, "maxValue": -100 }
+        "money": { "minValue": -150, "maxValue": -100 },
 
         "mentalStrenght": {"minValue": -300, "maxValue": -200 }
 
@@ -328,7 +326,7 @@
         "name": "Купить у опытного решалы",
 
         "requirements": { "educationLevel": { "minValue": 20 },
- 		    "money": { "minValue": -800 }}
+ 		    "money": { "minValue": -800 }},
 
         "successProbability": 0.7,
 
@@ -342,7 +340,7 @@
 
         "loseCharacteristics": {
 
-        "money": { "minValue": -550, "maxValue": -500 }
+        "money": { "minValue": -550, "maxValue": -500 },
 
         "mentalStrenght": {"minValue": -300, "maxValue": -200 }
 
@@ -353,7 +351,7 @@
 
         "name": "Забить и забыть",
 
-        "requirements": { "educationLevel": { "minValue": 0 }}
+        "requirements": { "educationLevel": { "minValue": 0 }},
 
         "successProbability": 1,
 
@@ -370,7 +368,7 @@
 
         "name": "Рассказать анекдот на сдаче",
 
-        "requirements": { "educationLevel": { "minValue": 0 }}
+        "requirements": { "educationLevel": { "minValue": 0 }},
 
         "successProbability": 0.00001,
 
@@ -404,7 +402,7 @@
   },
 {
 
-    "id": "zjdejwljwfwfnwtrjktbtwb»,
+    "id": "zjdejwljwfwfnwtrjktbtwb",
 
     "quizName": "Пойти перекусить",
 
@@ -506,7 +504,7 @@
 
         "loseCharacteristics": {}
 
-      },
+      }
 
     ],
 
@@ -529,7 +527,7 @@
   },
 {
 
-    "id": "zjdejwljwfwfnwtrjktbtxz»,
+    "id": "zjdejwljwfwfnwtrjktbtxz",
 
     "quizName": "Плавка",
 
@@ -542,9 +540,7 @@
 
         "name": "Пойти",
 
-        "requirements": { "educationLevel": { "minValue": 500 },
-
-	      "heartsPoint": { "minValue": 300},
+        "requirements": { "educationLevel": { "minValue": 500 },"heartsPoint": { "minValue": 300}},
 
         "successProbability": 1,
 
@@ -552,7 +548,7 @@
 
           "educationLevel": { "minValue": 200, "maxValue": 300 },
 
-	  «heartsPoint»: { "minValue": -200, "maxValue": -100}
+	  "heartsPoint": { "minValue": -200, "maxValue": -100}
 
 
         },
@@ -564,9 +560,7 @@
 
         "name": "Сказать что забыл шапочку",
 
-        "requirements": { "educationLevel": { "minValue": 50 },
-
-	      "heartsPoint": { "minValue": 700},
+        "requirements": { "educationLevel": { "minValue": 50 },"heartsPoint": { "minValue": 700}},
 
         "successProbability": 0.2,
 
@@ -590,9 +584,7 @@
 
         "name": "Отметится, и тайком уйти домой",
 
-        "requirements": { "educationLevel": { "minValue": 200 },
-
-	      "heartsPoint": { "minValue": 800},
+        "requirements": { "educationLevel": { "minValue": 200 },"heartsPoint": { "minValue": 800}},
 
         "successProbability": 0.00001,
 
@@ -620,9 +612,7 @@
 
         "name": "Сделать вид что тебе плохо и сидеть всю пару",
 
-        "requirements": { "educationLevel": { "minValue": 20 },
-
-	      "heartsPoint": { "minValue": 100},
+        "requirements": { "educationLevel": { "minValue": 20 },"heartsPoint": { "minValue": 100}},
 
         "successProbability": 0.6,
 
@@ -650,9 +640,7 @@
 
         "name": "Не прийти",
 
-        "requirements": { "educationLevel": { "minValue": 0 },
-
-	      "heartsPoint": { "minValue": 900},
+        "requirements": { "educationLevel": { "minValue": 0 },"heartsPoint": { "minValue": 900}},
 
         "successProbability": 1,
 
