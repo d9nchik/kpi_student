@@ -1,30 +1,693 @@
 [
-  {
-    "id": "zjdejwljwfwfnwtrjktbtwq",
-    "quizName": "Organize a party",
-    "likes": 5,
-    "author": { "uid": "2", "displayName": "Andrew" },
+{
+
+    "id": "zjdejwljwfwfnwtrjktbtww",
+
+    "quizName": "Зачетная неделя",
+
+    "likes": 1,
+
+    "author": { "uid": "4", "displayName": "Artem" },
+
     "answerVariants": [
       {
-        "name": "participate",
-        "requirements": { "money": { "minValue": 1000 } },
-        "successProbability": 0.12,
+
+        "name": "Выучить все",
+
+        "requirements": { "educationLevel": { "minValue": 700 } },
+
+        "successProbability": 1,
+
         "successCharacteristics": {
-          "money": { "minValue": -1000, "maxValue": -500 },
-          "mentalStrength": { "minValue": 200, "maxValue": 1000 }
+
+          "educationLevel": { "minValue": 300, "maxValue": 500 },
+
         },
+
         "loseCharacteristics": {
-          "money": { "minValue": -1000, "maxValue": -500 }
+
+          "educationLevel": { "minValue": 50, "maxValue": 100 },
+
+          "heartsPoint": { "minValue": -20, "maxValue": -50 }
+
         }
+
+      },
+ {
+
+        "name": "Выучить половину",
+
+        "requirements": { "educationLevel": { "minValue": 300 } },
+
+        "successProbability": 0.5,
+
+        "successCharacteristics": {
+
+          "educationLevel": { "minValue": 100, "maxValue": 200 },
+
+        },
+
+        "loseCharacteristics": {
+
+          "educationLevel": { "minValue": 30, "maxValue": 40 }
+
+          "heartsPoint": { "minValue": -20, "maxValue": -50 }
+
+        }
+
+      },
+{
+
+        "name": "Ничего не учить, но крикнуть в полночь на поляне "Халява Прийди!!!"",
+
+        "requirements": { "educationLevel": { "minValue": 0 } },
+
+        "successProbability": 1,
+
+        "successCharacteristics": {
+
+        "educationLevel": { "minValue": 100, "maxValue": 200 },
+
+	      "heartsPoint": { "minValue": 600, "maxValue": 800 }
+
+        },
+
+        "loseCharacteristics": {
+
+          "educationLevel": { "minValue": 30, "maxValue": 40 },
+
+          "heartsPoint": { "minValue": -100, "maxValue": -200 }
+
+        }
+
+      },
+{
+
+        "name": "Дать взятку",
+
+        "requirements": { "money": { "minValue": 5000 } },
+
+        "successProbability": 0.8,
+
+        "successCharacteristics": {
+
+	      "money": { "minValue": -5000, "maxValue": -7000 }
+
+        },
+
+        "loseCharacteristics": {
+
+        "money": { "minValue": -5000, "maxValue": -7000 },
+
+       "heartsPoint": { "minValue": -100, "maxValue": -200 }
+
+        }
+
+      }
+{
+
+        "name": "Не прийти на сдачу",
+
+        "requirements": {},
+
+        "successProbability": 1,
+
+        "successCharacteristics": {
+
+	      "isDead": true
+
+        },
+
+        "loseCharacteristics": {}
+
       }
     ],
+
     "comments": [
+
       {
-        "id": "fejrkentiintkonwAjsjwhdjed",
-        "content": "I like this idea",
-        "author": { "uid": "1", "displayName": "Boris" }
+
+        "id": "fejrkentiintkonwAjsjwhdjef",
+
+        "content": "I hate this idea",
+
+        "author": { "uid": "3", "displayName": "Jack" }
+
+      }
+
+    ],
+
+    "commentsCount": 1
+
+  },
+
+}
+},
+{
+
+    "id": "zjdejwljwfwfnwtrjktbtwr»,
+
+    "quizName": "День Первокурсника",
+
+    "likes": 1000,
+
+    "author": { "uid": "666", "displayName": "Darvin" },
+
+    "answerVariants": [
+      {
+
+        "name": "Закинуть тележку на дерево",
+
+        "requirements": { "heartsPoint": { "minValue": 500 } },
+
+        "successProbability": 0.9,
+
+        "successCharacteristics": {
+
+          "gameLevel": { "minValue": 1, "maxValue": 2},
+
+        },
+
+        "loseCharacteristics": {
+
+          "money": { "minValue": -200, "maxValue": -300 }
+
+          "heartsPoint": { "minValue": -300, "maxValue": -200 }
+
+        }
+
+      },
+ {
+
+        "name": "Зажечь костер возле 1 корпуса",
+
+        "requirements": { "educationLevel": { "minValue": 0 } },
+
+        "successProbability": 0.7,
+
+        "successCharacteristics": {
+
+          "gameLevel": { "minValue": 1, "maxValue": 2},
+
+        },
+
+        "loseCharacteristics": {
+
+          "money": { "minValue": -200, "maxValue": -300 }
+
+          "heartsPoint": { "minValue": -300, "maxValue": -200 }
+
+        }
+
+      },
+{
+
+        "name": "Украсть шар",
+
+        "requirements": { "educationLevel": { "minValue": 0 } },
+
+        "successProbability": 0.4,
+
+        "successCharacteristics": {
+
+          "gameLevel": { "minValue": 1, "maxValue": 2},
+
+        },
+
+        "loseCharacteristics": {
+
+          "heartsPoint": { "minValue": -300, "maxValue": -200 }
+
+        }
+
+      },
+ {
+
+        "name": "Культурно выпить с одногруппниками",
+
+        "requirements": { "educationLevel": { "minValue": 800 },
+				     "money": {"minValue": 200} },
+
+        "successProbability": 0.00001,
+
+        "successCharacteristics": {
+
+          "gameLevel": { "minValue": 3, "maxValue": 4},
+
+        },
+
+        "loseCharacteristics": {
+
+	 "heartsPoint": { "minValue": -300, "maxValue": -200 }
+
+        }
+
+      },
+    ],
+
+    "comments": [
+
+      {
+
+        "id": "fejrkentiintkonwAjsjwhdjef",
+
+        "content": "I love Polyana",
+
+        "author": { "uid": "3", "displayName": "Jack" }
+
+      }
+
+    ],
+
+    "commentsCount": 1
+
+  },
+{
+
+    "id": "zjdejwljwfwfnwtrjktbtwp»,
+
+    "quizName": "Расчетка по МатАнализу",
+
+    "likes": 43,
+
+    "author": { "uid": "65", "displayName": "Sergii" },
+
+    "answerVariants": [
+      {
+
+        "name": "Сделать самому",
+
+        "requirements": { "educationLevel": { "minValue": 1000 } },
+
+        "successProbability": 0.5,
+
+        "successCharacteristics": {
+
+        "educationLevel": { "minValue": 800, "maxValue": 900 },
+
+	      "mentalStrenght": {"minValue": -300, "maxValue": -200 }
+
+        },
+
+        "loseCharacteristics": {
+
+          "educationLevel": { "minValue": 100, "maxValue": 150 }
+
+          "mentalStrenght": {"minValue": -300, "maxValue": -200 }
+
+        }
+
+      },
+{
+
+        "name": "Списать у ребят с параллельной группы",
+
+        "requirements": { "educationLevel": { "minValue": 20 } },
+
+        "successProbability": 0.1,
+
+        "successCharacteristics": {
+
+        "money": { "minValue": -400, "maxValue": -300 },
+
+	      "mentalStrenght": {"minValue": -300, "maxValue": -200 }
+
+        },
+
+        "loseCharacteristics": {
+
+        "money": { "minValue": -150, "maxValue": -100 }
+
+        "mentalStrenght": {"minValue": -300, "maxValue": -200 }
+
+        }
+
+      },
+{
+
+        "name": "Купить у опытного решалы",
+
+        "requirements": { "educationLevel": { "minValue": 20 },
+ 		    "money": { "minValue": -800 }}
+
+        "successProbability": 0.7,
+
+        "successCharacteristics": {
+
+        "money": { "minValue": -800, "maxValue": -850 },
+
+	      "mentalStrenght": {"minValue": -300, "maxValue": -200 }
+
+        },
+
+        "loseCharacteristics": {
+
+        "money": { "minValue": -550, "maxValue": -500 }
+
+        "mentalStrenght": {"minValue": -300, "maxValue": -200 }
+
+        }
+
+      },
+{
+
+        "name": "Забить и забыть",
+
+        "requirements": { "educationLevel": { "minValue": 0 }}
+
+        "successProbability": 1,
+
+        "successCharacteristics": {
+
+	      "isDead": true
+
+        },
+
+        "loseCharacteristics": {}
+
+      },
+{
+
+        "name": "Рассказать анекдот на сдаче",
+
+        "requirements": { "educationLevel": { "minValue": 0 }}
+
+        "successProbability": 0.00001,
+
+        "successCharacteristics": {
+
+		    "mentalStrenght": {"minValue": -300, "maxValue": -200 }
+
+        },
+
+        "loseCharacteristics": {"isDead": true}
+
       }
     ],
+
+    "comments": [
+
+      {
+
+        "id": "fejrkentiintkonwAjsjwhdjef",
+
+        "content": "I hate this idea",
+
+        "author": { "uid": "3", "displayName": "Jack" }
+
+      }
+
+    ],
+
     "commentsCount": 1
+
+  },
+{
+
+    "id": "zjdejwljwfwfnwtrjktbtwb»,
+
+    "quizName": "Пойти перекусить",
+
+    "likes": 21,
+
+    "author": { "uid": "456", "displayName": "Vlad" },
+
+    "answerVariants": [
+
+      {
+
+        "name": "Столовка",
+
+        "requirements": { "money": { "minValue": 50 } },
+
+        "successProbability": 1,
+
+        "successCharacteristics": {
+
+        "heartsPoint": { "minValue": 60, "maxValue": 70 },
+
+	      "money": { "minValue": -50, "maxValue": 70 }
+
+        },
+
+        "loseCharacteristics": {}
+
+      },
+ {
+
+        "name": "Shaurma",
+
+        "requirements": { "money": { "minValue": 90 } },
+
+        "successProbability": 1,
+
+        "successCharacteristics": {
+
+        "heartsPoint": { "minValue": 80, "maxValue": 90 },
+
+	      "money": { "minValue": -70, "maxValue": -90 }
+
+        },
+
+        "loseCharacteristics": {}
+
+      },
+{
+
+        "name": "Пойти в общагу на обед",
+
+        "requirements": {},
+
+        "successProbability": 1,
+
+        "successCharacteristics": {
+
+        "heartsPoint": { "minValue": 80, "maxValue": 90 }
+
+        },
+
+        "loseCharacteristics": {}
+
+      },
+{
+
+        "name": "Пузата Хата",
+
+        "requirements": {"money": { "minValue": 90 }},
+
+        "successProbability": 1,
+
+        "successCharacteristics": {
+
+        "heartsPoint": { "minValue": 90, "maxValue": 100 },
+
+	      "money": { "minValue": -120, "maxValue": -150 }
+
+        },
+
+        "loseCharacteristics": {}
+
+      },
+{
+
+        "name": "Глово",
+
+        "requirements": {"money": { "minValue": 250 }},
+
+        "successProbability": 1,
+
+        "successCharacteristics": {
+
+        "heartsPoint": { "minValue": 100, "maxValue": 110 },
+
+	      "money": { "minValue": -250, "maxValue": -270 }
+
+        },
+
+        "loseCharacteristics": {}
+
+      },
+
+    ],
+
+    "comments": [
+
+      {
+
+        "id": "fejrkentiintkonwAjsjwhdjef",
+
+        "content": "I hate this idea",
+
+        "author": { "uid": "3", "displayName": "Jack" }
+
+      }
+
+    ],
+
+    "commentsCount": 1
+
+  },
+{
+
+    "id": "zjdejwljwfwfnwtrjktbtxz»,
+
+    "quizName": "Плавка",
+
+    "likes": 98,
+
+    "author": { "uid": "78", "displayName": "Nikolay" },
+
+    "answerVariants": [
+      {
+
+        "name": "Пойти",
+
+        "requirements": { "educationLevel": { "minValue": 500 },
+
+	      "heartsPoint": { "minValue": 300},
+
+        "successProbability": 1,
+
+        "successCharacteristics": {
+
+          "educationLevel": { "minValue": 200, "maxValue": 300 },
+
+	  «heartsPoint»: { "minValue": -200, "maxValue": -100}
+
+
+        },
+
+        "loseCharacteristics": {}
+
+      },
+  {
+
+        "name": "Сказать что забыл шапочку",
+
+        "requirements": { "educationLevel": { "minValue": 50 },
+
+	      "heartsPoint": { "minValue": 700},
+
+        "successProbability": 0.2,
+
+        "successCharacteristics": {
+
+        "educationLevel": { "minValue": 10, "maxValue": 30 },
+
+	      "heartsPoint": { "minValue": -500, "maxValue": -400}
+
+        },
+
+        "loseCharacteristics": {
+		
+		    "heartsPoint": { "minValue": -500, "maxValue": -400},
+
+		    "gameLevel": { "minValue": -2, "maxValue": -1 }
+}
+
+      },
+{
+
+        "name": "Отметится, и тайком уйти домой",
+
+        "requirements": { "educationLevel": { "minValue": 200 },
+
+	      "heartsPoint": { "minValue": 800},
+
+        "successProbability": 0.00001,
+
+        "successCharacteristics": {
+
+        "educationLevel": { "minValue": 100, "maxValue": 300 },
+
+	      "heartsPoint": { "minValue": -50, "maxValue": -40},
+
+	      "gameLevel": { "minValue": 1, "maxValue": 2 }
+
+
+        },
+
+        "loseCharacteristics": {
+		
+		    "heartsPoint": { "minValue": -700, "maxValue": -500},
+
+		    "gameLevel": { "minValue": -2, "maxValue": -1 }
+
+}
+
+      },
+{
+
+        "name": "Сделать вид что тебе плохо и сидеть всю пару",
+
+        "requirements": { "educationLevel": { "minValue": 20 },
+
+	      "heartsPoint": { "minValue": 100},
+
+        "successProbability": 0.6,
+
+        "successCharacteristics": {
+
+        "educationLevel": { "minValue": 100, "maxValue": 300 },
+
+	      "heartsPoint": { "minValue": -50, "maxValue": -40},
+
+	      "gameLevel": { "minValue": 0, "maxValue": 1 }
+
+
+        },
+
+        "loseCharacteristics": {
+		
+		    "heartsPoint": { "minValue": -700, "maxValue": -500},
+
+		    "gameLevel": { "minValue": -2, "maxValue": -1 }
+
+}
+
+      },
+{
+
+        "name": "Не прийти",
+
+        "requirements": { "educationLevel": { "minValue": 0 },
+
+	      "heartsPoint": { "minValue": 900},
+
+        "successProbability": 1,
+
+        "successCharacteristics": {
+
+        "educationLevel": { "minValue": -100, "maxValue": -300 },
+
+	      "heartsPoint": { "minValue": -50, "maxValue": -40},
+
+	      "gameLevel": { "minValue": -2, "maxValue": -1 }
+
+
+        },
+
+        "loseCharacteristics": {}
+
+      }
+
+    ],
+
+    "comments": [
+
+      {
+
+        "id": "fejrkentiintkonwAjsjwhdjef",
+
+        "content": "I hate this idea",
+
+        "author": { "uid": "3", "displayName": "Jack" }
+
+      }
+
+    ],
+
+    "commentsCount": 1
+
   }
 ]
