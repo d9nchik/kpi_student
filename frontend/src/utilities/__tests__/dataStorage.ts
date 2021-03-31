@@ -12,11 +12,11 @@ import {
 
 it('test getQuizzes', () => {
   const quizzes = getQuizzes();
-  expect(quizzes.length).toBe(1);
+  expect(quizzes.length).toBe(5);
   const firstQuiz = quizzes[0];
-  expect(firstQuiz.quizName).toBe('Organize a party');
-  expect(firstQuiz.author.displayName).toBe('Andrew');
-  expect(firstQuiz.answerVariants.length).toBe(1);
+  expect(firstQuiz.quizName).toBe('Зачетная неделя');
+  expect(firstQuiz.author.displayName).toBe('Artem');
+  expect(firstQuiz.answerVariants.length).toBe(5);
   expect(getQuizzes(1).length).toBe(0);
 });
 
@@ -25,9 +25,9 @@ it('test getCommentsOfQuiz', () => {
   const commentsOfQuiz = getCommentsOfQuiz(quizID);
   expect(commentsOfQuiz.length).toBe(1);
   const firstComment = commentsOfQuiz[0];
-  expect(firstComment.content).toBe('I like this idea');
+  expect(firstComment.content).toBe('I hate this idea');
   expect(firstComment.author.photoURL).toBeUndefined();
-  expect(firstComment.author.uid).toBe('1');
+  expect(firstComment.author.uid).toBe('3');
 });
 
 const quiz: QuizWithOnlyBody = {
@@ -58,7 +58,9 @@ const quiz: QuizWithOnlyBody = {
 
 it('test addQuiz', () => {
   expect(addQuiz(quiz)).toBeTruthy();
-  const ourQuiz = getQuizzes()[1];
+  const allQuizzes = getQuizzes();
+  expect(allQuizzes.length).toBe(6);
+  const ourQuiz = allQuizzes[allQuizzes.length - 1];
   expect(ourQuiz.commentsCount).toBe(0);
   expect(ourQuiz.likes).toBe(0);
   expect(ourQuiz.quizName).toBe(quiz.quizName);
@@ -68,14 +70,14 @@ it('test addQuiz', () => {
 
 it('test removeQuiz', () => {
   let quizzes = getQuizzes();
-  expect(quizzes.length).toBe(2);
+  expect(quizzes.length).toBe(6);
   const secondQuiz = quizzes[1];
   expect(removeQuiz('65gy5y57ty57t5')).toBeFalsy();
   expect(removeQuiz(secondQuiz.id)).toBeTruthy();
   quizzes = getQuizzes();
-  expect(quizzes.length).toBe(1);
+  expect(quizzes.length).toBe(5);
   const firstQuiz = quizzes[0];
-  expect(firstQuiz.quizName).toBe('Organize a party');
+  expect(firstQuiz.quizName).toBe('Зачетная неделя');
 });
 
 it('test addComment', () => {
@@ -104,23 +106,23 @@ it('test removeComment', () => {
   comments = getCommentsOfQuiz(firstQuiz.id);
   expect(comments.length).toBe(1);
   const firstComment = comments[0];
-  expect(firstComment.content).toBe('I like this idea');
+  expect(firstComment.content).toBe('I hate this idea');
 });
 
 it('test likePost', () => {
   let firstQuiz = getQuizzes()[0];
-  expect(firstQuiz.likes).toBe(5);
+  expect(firstQuiz.likes).toBe(1);
   expect(likePost('23h1231iu2gbdbqjh324')).toBeFalsy();
   expect(likePost(firstQuiz.id)).toBeTruthy();
   firstQuiz = getQuizzes()[0];
-  expect(firstQuiz.likes).toBe(6);
+  expect(firstQuiz.likes).toBe(2);
 });
 
 it('test', () => {
   let firstQuiz = getQuizzes()[0];
-  expect(firstQuiz.likes).toBe(6);
+  expect(firstQuiz.likes).toBe(2);
   expect(dislikePost('48394j843hhfr8h483534')).toBeFalsy();
   expect(dislikePost(firstQuiz.id)).toBeTruthy();
   firstQuiz = getQuizzes()[0];
-  expect(firstQuiz.likes).toBe(5);
+  expect(firstQuiz.likes).toBe(1);
 });
