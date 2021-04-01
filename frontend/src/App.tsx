@@ -3,7 +3,10 @@ import './App.css';
 import Authentication from './components/auth/Authentication';
 import AuthenticatedRouter from './components/AuthenticatedRouter';
 import { Switch, BrowserRouter as Router, Route } from 'react-router-dom';
+
 import PurposeAndVote from './components/purposes/PurposeAndVote';
+import Game from './components/game/Game';
+
 const App: FunctionComponent = () => {
   return (
     <div>
@@ -12,6 +15,7 @@ const App: FunctionComponent = () => {
         <Authentication />
         <AuthenticatedRouter>
           <Switch>
+            <Route exact path="/" component={Game} />
             <Route path="/main" render={() => <div>main page</div>} />
             <Route path="/purposes" component={PurposeAndVote} />
           </Switch>
