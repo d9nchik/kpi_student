@@ -11,6 +11,7 @@ import {
   getGameObj,
   newGame,
   setGameObj,
+  newGameObj,
 } from '../dataStorage';
 
 it('test getQuizzes', () => {
@@ -132,7 +133,9 @@ it('test dislikePost', () => {
 
 it('test getGameStatusObj', () => {
   const status = getGameObj();
-  expect(status).toEqual(newGame);
+  expect(status).toEqual(null);
+  expect(newGame('Stas')).toBe(true);
+  expect(getGameObj()).toEqual({ ...newGameObj, characterName: 'Stas' });
 });
 
 it('test setGameObj', () => {
@@ -142,7 +145,7 @@ it('test setGameObj', () => {
     careLevel: 123,
     educationLevel: 142,
     gameLevel: 2,
-    isDead: true,
+    isDead: false,
     mentalStrength: 200,
     heartsPoint: 10,
     satietyLevel: 11,
@@ -150,4 +153,6 @@ it('test setGameObj', () => {
   setGameObj(newObj);
   const status = getGameObj();
   expect(status).toEqual(newObj);
+  setGameObj({ ...newObj, isDead: true });
+  expect(getGameObj()).toBeNull();
 });

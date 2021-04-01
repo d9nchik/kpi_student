@@ -158,7 +158,7 @@ interface GameStatus {
   isDead: boolean;
 }
 
-export const newGame: GameStatus = {
+export const newGameObj: GameStatus = {
   gameLevel: 1,
   characterName: 'Sam',
   heartsPoint: 100,
@@ -171,15 +171,23 @@ export const newGame: GameStatus = {
 };
 
 export const setGameObj = (gameStatus: GameStatus): void => {
+  if (gameStatus.isDead) {
+    localStorage.removeItem(GAME_KEY);
+    return;
+  }
   const stringifiedObj = JSON.stringify(gameStatus);
   localStorage.setItem(GAME_KEY, stringifiedObj);
 };
 
-export const getGameObj = (): GameStatus => {
+export const newGame = (characterName: string): boolean => {
+  setGameObj({ ...newGameObj, characterName });
+  return true;
+};
+
+export const getGameObj = (): GameStatus | null => {
   const item = localStorage.getItem(GAME_KEY);
   if (!item) {
-    setGameObj(newGame);
-    return newGame;
+    return null;
   }
   return JSON.parse(item);
 };
