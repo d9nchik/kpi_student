@@ -3,7 +3,7 @@ import data from './quizzes.json';
 const dataWithTypes = data as QuizWithComment[];
 
 const DEFAULT_IMAGE_URL = '../logo.svg';
-
+const GAME_KEY = 'GAME_OBJ';
 const author = { uid: '098123', displayName: 'test-admin' };
 
 export interface Range {
@@ -144,6 +144,44 @@ export const dislikePost = (quizID: string): boolean => {
   }
   quizWithCommentsObj.likes--;
   return true;
+};
+
+interface GameStatus {
+  gameLevel: number;
+  characterName: string;
+  heartsPoint: number;
+  satietyLevel: number;
+  mentalStrength: number;
+  money: number;
+  educationLevel: number;
+  careLevel: number;
+  isDead: boolean;
+}
+
+const newGame: GameStatus = {
+  gameLevel: 1,
+  characterName: 'Sam',
+  heartsPoint: 100,
+  satietyLevel: 100,
+  mentalStrength: 100,
+  money: 5000,
+  educationLevel: 25,
+  careLevel: 75,
+  isDead: false,
+};
+
+export const setGameObj = (gameStatus: GameStatus): void => {
+  const stringifiedObj = JSON.stringify(gameStatus);
+  localStorage.setItem(GAME_KEY, stringifiedObj);
+};
+
+export const getGameObj = (): GameStatus => {
+  const item = localStorage.getItem(GAME_KEY);
+  if (!item) {
+    setGameObj(newGame);
+    return newGame;
+  }
+  return JSON.parse(item);
 };
 
 function generateRandomID(): string {
