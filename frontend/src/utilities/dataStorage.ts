@@ -158,7 +158,7 @@ interface GameStatus {
   isDead: boolean;
 }
 
-const newGame: GameStatus = {
+export const newGame: GameStatus = {
   gameLevel: 1,
   characterName: 'Sam',
   heartsPoint: 100,

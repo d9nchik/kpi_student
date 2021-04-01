@@ -8,6 +8,9 @@ import {
   removeComment,
   likePost,
   dislikePost,
+  getGameObj,
+  newGame,
+  setGameObj,
 } from '../dataStorage';
 
 it('test getQuizzes', () => {
@@ -118,11 +121,33 @@ it('test likePost', () => {
   expect(firstQuiz.likes).toBe(2);
 });
 
-it('test', () => {
+it('test dislikePost', () => {
   let firstQuiz = getQuizzes()[0];
   expect(firstQuiz.likes).toBe(2);
   expect(dislikePost('48394j843hhfr8h483534')).toBeFalsy();
   expect(dislikePost(firstQuiz.id)).toBeTruthy();
   firstQuiz = getQuizzes()[0];
   expect(firstQuiz.likes).toBe(1);
+});
+
+it('test getGameStatusObj', () => {
+  const status = getGameObj();
+  expect(status).toEqual(newGame);
+});
+
+it('test setGameObj', () => {
+  const newObj = {
+    characterName: 'saske',
+    money: 2000,
+    careLevel: 123,
+    educationLevel: 142,
+    gameLevel: 2,
+    isDead: true,
+    mentalStrength: 200,
+    heartsPoint: 10,
+    satietyLevel: 11,
+  };
+  setGameObj(newObj);
+  const status = getGameObj();
+  expect(status).toEqual(newObj);
 });
