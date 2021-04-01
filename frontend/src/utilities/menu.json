@@ -1,0 +1,46 @@
+{
+  "Общага": [
+    {
+      "name": "Сделать ремонт",
+      "characteristics": {
+        "money": -2000,
+        "careLevel": "65%"
+      }
+    },
+    {
+      "name": "Вынести мусор",
+      "characteristics": {
+        "careLevel": "20%",
+        "heartsPoint": "-20%"
+      }
+    },
+    {
+      "name": "Сделать лабораторку",
+      "characteristics": {
+        "educationLevel": "5%",
+        "satietyLevel": "-5%"
+      }
+    },
+    {
+      "name": "Убрать в комнате",
+      "characteristics": {
+        "careLevel": "25%",
+        "satietyLevel": "-10%"
+      }
+    },
+    {
+      "name": "Сделка с тараканами",
+      "characteristics": {
+        "careLevel": "45%",
+        "money": -150
+      }
+    },
+    {
+      "name": "Поспать",
+      "characteristics": {
+        "heartsPoint": "25%",
+        "satietyLevel": "-25%"
+      }
+    }
+  ]
+}
