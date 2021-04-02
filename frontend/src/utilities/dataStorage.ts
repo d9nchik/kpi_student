@@ -146,7 +146,7 @@ export const dislikePost = (quizID: string): boolean => {
   return true;
 };
 
-interface GameStatus {
+export interface GameStatus {
   gameLevel: number;
   characterName: string;
   heartsPoint: number;

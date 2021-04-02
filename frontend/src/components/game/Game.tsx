@@ -2,6 +2,7 @@ import React, { FunctionComponent, useState } from 'react';
 import { getGameObj, newGame } from '../../utilities/dataStorage';
 
 import RegisterGame from './RegisterGame';
+import GameHeader from './GameHeader';
 
 const Game: FunctionComponent = () => {
   const [gameObj, setGameObj] = useState(getGameObj());
@@ -15,7 +16,12 @@ const Game: FunctionComponent = () => {
       />
     );
   }
-  return <div>Hi, {gameObj.characterName}</div>;
+
+  return (
+    <div>
+      <GameHeader {...gameObj} />
+    </div>
+  );
 };
 
 export default Game;
