@@ -1,6 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import { GameStatus } from '../../utilities/dataStorage';
 import { calculateLevel } from '../../utilities/tools';
+import { Link } from 'react-router-dom';
 
 import Money from './money.png';
 import HealthCare from './health-care.png';
@@ -8,6 +9,7 @@ import FastFood from './fast-food.png';
 import Thought from './thought.png';
 import Shelving from './shelving.png';
 import Household from './household.png';
+import Avatar from './avatar.jpg';
 
 const GameHeader: FunctionComponent<GameStatus> = ({
   satietyLevel,
@@ -22,6 +24,9 @@ const GameHeader: FunctionComponent<GameStatus> = ({
   const { XPNeeded, currentXP, level } = calculateLevel(gameLevel);
   return (
     <header>
+      <Link to="/logout">
+        <img src={Avatar} alt="avatar" />
+      </Link>
       <p>
         <img
           src={HealthCare}
