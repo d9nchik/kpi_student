@@ -25,6 +25,7 @@ const ChangeRange: FunctionComponent<IProps> = ({
       </button>
     );
   }
+
   return (
     <div>
       <h5>{name}</h5>
@@ -43,8 +44,9 @@ const ChangeRange: FunctionComponent<IProps> = ({
             if (Number.isNaN(newMinValue)) {
               return;
             }
+
             minValue = newMinValue;
-            setRange({ minValue, maxValue });
+            checkAndSetRange();
           }}
         />
       </label>
@@ -64,7 +66,7 @@ const ChangeRange: FunctionComponent<IProps> = ({
               return;
             }
             maxValue = newMaxValue;
-            setRange({ minValue, maxValue });
+            checkAndSetRange();
           }}
         />
       </label>
@@ -77,6 +79,16 @@ const ChangeRange: FunctionComponent<IProps> = ({
       >{`Remove '${name}'`}</button>
     </div>
   );
+
+  function checkAndSetRange() {
+    if (
+      maxValue === undefined ||
+      minValue === undefined ||
+      minValue < maxValue
+    ) {
+      setRange({ minValue, maxValue });
+    }
+  }
 };
 
 export default ChangeRange;
