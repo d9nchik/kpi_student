@@ -2,7 +2,7 @@ import React, { FunctionComponent } from 'react';
 import './App.css';
 import Authentication from './components/auth/Authentication';
 import AuthenticatedRouter from './components/AuthenticatedRouter';
-import { Switch, BrowserRouter as Router, Route } from 'react-router-dom';
+import { Switch, BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 import PurposeAndVote from './components/purposes/PurposeAndVote';
 import Game from './components/game/Game';
@@ -10,8 +10,10 @@ import Game from './components/game/Game';
 const App: FunctionComponent = () => {
   return (
     <div>
-      <h1>Welcome to game KPI Student!</h1>
       <Router>
+        <Link to="/">
+          <h1>Welcome to game KPI Student!</h1>
+        </Link>
         <Authentication />
         <AuthenticatedRouter>
           <Switch>
