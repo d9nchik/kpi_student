@@ -1,11 +1,14 @@
 import React, { FunctionComponent, useState } from 'react';
+import { Redirect, useHistory, Link } from 'react-router-dom';
 import {
   isAuthenticated,
   loginWithEmail,
   loginWithGithub,
   loginWithGoogle,
 } from '../../utilities/auth';
-import { Redirect, useHistory, Link } from 'react-router-dom';
+
+import GitHub from './GitHub.png';
+import Google from './google.png';
 
 const Login: FunctionComponent = () => {
   const [email, setEmail] = useState('');
@@ -50,6 +53,7 @@ const Login: FunctionComponent = () => {
         </label>
         <input type="submit" value="Login" />
       </form>
+
       <p
         onClick={() => {
           if (loginWithGoogle()) {
@@ -59,7 +63,7 @@ const Login: FunctionComponent = () => {
           }
         }}
       >
-        Login with Google
+        <img src={Google} alt="Google logo" />
       </p>
 
       <p
@@ -71,7 +75,7 @@ const Login: FunctionComponent = () => {
           }
         }}
       >
-        Login with GitHub
+        <img src={GitHub} alt="GitHub logo" />
       </p>
 
       <Link to="/register"> Don`t have account</Link>
