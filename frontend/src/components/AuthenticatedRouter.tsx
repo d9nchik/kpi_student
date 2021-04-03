@@ -25,7 +25,7 @@ const AuthenticatedRouter: FunctionComponent<AuxProps> = ({
             <Redirect to={{ pathname: '/login', state: { from: location } }} />
           );
         }
-        return <div></div>;
+        return <div />;
       }}
     />
   );
