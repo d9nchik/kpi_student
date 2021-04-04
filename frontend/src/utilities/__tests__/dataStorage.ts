@@ -12,6 +12,7 @@ import {
   newGame,
   setGameObj,
   newGameObj,
+  getDayInUniversity,
 } from '../dataStorage';
 
 it('test getQuizzes', () => {
@@ -113,6 +114,7 @@ it('test removeComment', () => {
   expect(firstComment.content).toBe('I hate this idea');
 });
 
+//FIXME: like should work only once
 it('test likePost', () => {
   let firstQuiz = getQuizzes()[0];
   expect(firstQuiz.likes).toBe(1);
@@ -155,4 +157,8 @@ it('test setGameObj', () => {
   expect(status).toEqual(newObj);
   setGameObj({ ...newObj, isDead: true });
   expect(getGameObj()).toBeNull();
+});
+
+it('test getDayInUniversity', () => {
+  expect(getDayInUniversity()).toBe(3);
 });

@@ -1,11 +1,22 @@
-import React, { FunctionComponent, useState } from 'react';
-import { getGameObj, newGame } from '../../utilities/dataStorage';
+import React, { FunctionComponent, useState, useEffect } from 'react';
+import {
+  getGameObj,
+  newGame,
+  subscribe,
+  unsubscribe,
+} from '../../utilities/dataStorage';
 
 import RegisterGame from './RegisterGame';
 import GameHeader from './GameHeader';
+import GameBody from './GameBody';
 
 const Game: FunctionComponent = () => {
   const [gameObj, setGameObj] = useState(getGameObj());
+  useEffect(() => {
+    subscribe(() => setGameObj(getGameObj()));
+    return unsubscribe;
+  });
+
   if (!gameObj) {
     return (
       <RegisterGame
@@ -20,6 +31,7 @@ const Game: FunctionComponent = () => {
   return (
     <div>
       <GameHeader {...gameObj} />
+      <GameBody characterName={gameObj.characterName} />
     </div>
   );
 };

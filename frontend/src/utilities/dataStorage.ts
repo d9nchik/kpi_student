@@ -170,13 +170,29 @@ export const newGameObj: GameStatus = {
   isDead: false,
 };
 
+// FIXME: use provider
+let subscriber: (() => void) | null = null;
+
+export const subscribe = (newSubscriber: () => void): void => {
+  subscriber = newSubscriber;
+};
+
+export const unsubscribe = (): void => {
+  subscriber = null;
+};
+
 export const setGameObj = (gameStatus: GameStatus): void => {
-  if (gameStatus.isDead) {
-    localStorage.removeItem(GAME_KEY);
-    return;
+  (() => {
+    if (gameStatus.isDead) {
+      localStorage.removeItem(GAME_KEY);
+      return;
+    }
+    const stringifiedObj = JSON.stringify(gameStatus);
+    localStorage.setItem(GAME_KEY, stringifiedObj);
+  })();
+  if (subscriber) {
+    subscriber();
   }
-  const stringifiedObj = JSON.stringify(gameStatus);
-  localStorage.setItem(GAME_KEY, stringifiedObj);
 };
 
 export const newGame = (characterName: string): boolean => {
@@ -199,3 +215,6 @@ function generateRandomID(): string {
 function getQuizWithComment(quizID: string) {
   return dataWithTypes.find(({ id }) => quizID === id);
 }
+
+//FIXME: should not be const
+export const getDayInUniversity = (): number => 5;
