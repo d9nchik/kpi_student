@@ -1,14 +1,14 @@
 import React, { FunctionComponent, useState } from 'react';
 import { isAuthenticated, sendPasswordResetEmail } from '../../utilities/auth';
 import { Redirect, useHistory } from 'react-router-dom';
-
+import './ResetPassword.css';
 const ResetPassword: FunctionComponent = () => {
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
   const history = useHistory();
 
   return (
-    <div>
+    <div id={'resetWindow'}>
       <h2>Reset Password</h2>
       <h3>{message}</h3>
       {isAuthenticated() && (
@@ -34,7 +34,7 @@ const ResetPassword: FunctionComponent = () => {
             onChange={e => setEmail(e.target.value)}
           />
         </label>
-        <input type="submit" />
+        <input id={'sendButton'} type="submit" value={'Send'} />
       </form>
     </div>
   );
