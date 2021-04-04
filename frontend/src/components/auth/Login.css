@@ -1,0 +1,80 @@
+#mainBlockLogin {
+  width: 800px;
+  background-color: #242423;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 40px;
+  margin-left: 25%;
+  margin-right: 25%;
+  margin-top: 60px;
+}
+body {
+  background-color: #ff8500;
+}
+#mainBlockLogin h2 {
+  font-family: Montserrat, serif;
+  font-size: 50px;
+  font-weight: 500;
+  line-height: 29px;
+  color: #ffffff;
+  margin-block-start: 0.8em;
+  margin-block-end: 0.4em;
+}
+#mainBlockLogin #buttonLogIn {
+  background: #ff8500;
+  font-family: Montserrat, serif;
+  font-size: 30px;
+  width: 200px;
+  height: 50px;
+  color: #ffffff;
+}
+#mainBlockLogin label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: Montserrat, serif;
+  font-size: 30px;
+  color: #ffffff;
+}
+#mainBlockLogin input {
+  width: 300px;
+  height: 40px;
+  border-radius: 30px;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  padding: 0 0.7em 0 0.7em;
+}
+#mainBlockLogin form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+div#imgLogo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+div#imgLogo img {
+  width: 130px;
+  height: 130px;
+  margin-right: 90px;
+  margin-left: 90px;
+  margin-bottom: 15px;
+}
+div#linkForgot {
+  display: flex;
+  flex-direction: row;
+}
+div#linkForgot a {
+  color: #757981;
+  font-family: Montserrat, serif;
+  font-size: 25px;
+  font-weight: 500;
+  line-height: 17px;
+  margin-left: 65px;
+  margin-right: 65px;
+  margin-bottom: 20px;
+  text-decoration: none;
+}

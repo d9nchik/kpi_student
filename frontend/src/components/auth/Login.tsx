@@ -9,6 +9,7 @@ import {
 
 import GitHub from './GitHub.png';
 import Google from './google.png';
+import './Login.css';
 
 const Login: FunctionComponent = () => {
   const [email, setEmail] = useState('');
@@ -17,7 +18,7 @@ const Login: FunctionComponent = () => {
   const history = useHistory();
 
   return (
-    <div>
+    <div id={'mainBlockLogin'}>
       {isAuthenticated() && (
         <Redirect to={{ pathname: '/', state: { from: '/login' } }} />
       )}
@@ -51,35 +52,37 @@ const Login: FunctionComponent = () => {
             onChange={event => setPassword(event.target.value)}
           />
         </label>
-        <input type="submit" value="Login" />
+        <input id={'buttonLogIn'} type="submit" value="Login" />
       </form>
+      <div id={'linkForgot'}>
+        <Link to="/register"> Don`t have account</Link>
+        <Link to="/resetPass">Forgot password</Link>
+      </div>
+      <div id={'imgLogo'}>
+        <p
+          onClick={() => {
+            if (loginWithGoogle()) {
+              goToMainPage();
+            } else {
+              setMessage('Problems with login via GOOGLE');
+            }
+          }}
+        >
+          <img src={Google} alt="Google logo" />
+        </p>
 
-      <p
-        onClick={() => {
-          if (loginWithGoogle()) {
-            goToMainPage();
-          } else {
-            setMessage('Problems with login via GOOGLE');
-          }
-        }}
-      >
-        <img src={Google} alt="Google logo" />
-      </p>
-
-      <p
-        onClick={() => {
-          if (loginWithGithub()) {
-            goToMainPage();
-          } else {
-            setMessage('Problems with login via GitHub');
-          }
-        }}
-      >
-        <img src={GitHub} alt="GitHub logo" />
-      </p>
-
-      <Link to="/register"> Don`t have account</Link>
-      <Link to="/resetPass">Forgot password</Link>
+        <p
+          onClick={() => {
+            if (loginWithGithub()) {
+              goToMainPage();
+            } else {
+              setMessage('Problems with login via GitHub');
+            }
+          }}
+        >
+          <img src={GitHub} alt="GitHub logo" />
+        </p>
+      </div>
     </div>
   );
 
