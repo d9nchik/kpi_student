@@ -6,6 +6,11 @@
   height: 40vmin;
   pointer-events: none;
 }
+div a {
+  color: #242423;
+  text-decoration: none;
+  text-align: center;
+}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
