@@ -160,5 +160,5 @@ it('test setGameObj', () => {
 });
 
 it('test getDayInUniversity', () => {
-  expect(getDayInUniversity()).toBe(3);
+  expect(getDayInUniversity()).toBe(5);
 });
