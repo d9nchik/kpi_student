@@ -3,13 +3,13 @@ import { GameStatus } from '../../utilities/dataStorage';
 import { calculateLevel } from '../../utilities/tools';
 import { Link } from 'react-router-dom';
 
-import Money from './money.png';
-import HealthCare from './health-care.png';
-import FastFood from './fast-food.png';
-import Thought from './thought.png';
-import Shelving from './shelving.png';
-import Household from './household.png';
-import Avatar from './avatar.jpg';
+import Money from './images/money.png';
+import HealthCare from './images/health-care.png';
+import FastFood from './images/fast-food.png';
+import Thought from './images/thought.png';
+import Shelving from './images/shelving.png';
+import Household from './images/household.png';
+import Avatar from './images/avatar.jpg';
 
 const GameHeader: FunctionComponent<GameStatus> = ({
   satietyLevel,
