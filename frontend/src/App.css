@@ -6,6 +6,11 @@
   height: 40vmin;
   pointer-events: none;
 }
+#root > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 div a {
   color: #242423;
   text-decoration: none;
