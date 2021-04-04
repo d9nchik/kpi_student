@@ -86,8 +86,10 @@ export const applyMenuCharacteristic = (
       if (gameObj[key] < -number) {
         return;
       }
-      //FIXME: characteristics van overcome limit
+
       gameObj[key] += number;
+      if (key !== 'money' && gameObj[key] > level * 100)
+        gameObj[key] = level * 100;
     }
   }
   //FIXME: game level should be enlarged
