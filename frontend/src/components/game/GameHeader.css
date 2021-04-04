@@ -1,0 +1,19 @@
+.grid {
+  width: 100vw;
+  background: #333533;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 10px;
+}
+.span-col-4 {
+  grid-column: span 4 / auto;
+}
+
+.span-row-2 {
+  grid-row: span 2 / auto;
+}
+
+header #avatar {
+  width: 120px;
+  border-radius: 10px;
+}
