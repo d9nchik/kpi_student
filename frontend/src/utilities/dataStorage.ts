@@ -48,11 +48,15 @@ interface Quiz extends QuizWithOnlyBody {
   imageURL: string;
 }
 
+export const getAllQuizzes = (): Quiz[] => dataWithTypes;
+
 export const getQuizzes = (pageNumber = 0): Quiz[] => {
   const startingQuiz = pageNumber * 10;
-  return dataWithTypes.slice(startingQuiz, startingQuiz + 10).map(item => {
-    return { ...item, imageURL: DEFAULT_IMAGE_URL };
-  });
+  return getAllQuizzes()
+    .slice(startingQuiz, startingQuiz + 10)
+    .map(item => {
+      return { ...item, imageURL: DEFAULT_IMAGE_URL };
+    });
 };
 
 export const getQuiz = (quizID: string): Quiz | undefined => {

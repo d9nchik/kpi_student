@@ -1,4 +1,10 @@
-import { getGameObj, setGameObj } from './dataStorage';
+import {
+  getGameObj,
+  setGameObj,
+  QuizWithOnlyBody,
+  getAllQuizzes,
+  GameStatus,
+} from './dataStorage';
 import quizzes from './menu.json';
 
 const quizzesWithType = quizzes as Categories;
@@ -108,4 +114,57 @@ function parseMenuCharacteristic(
     return 0;
   }
   return numberPart * level;
+}
+
+export const getQuizWithSpecifiedRequirements = (
+  gameStatus: GameStatus
+): QuizWithOnlyBody => {
+  const keys: (
+    | 'heartsPoint'
+    | 'satietyLevel'
+    | 'mentalStrength'
+    | 'money'
+    | 'educationLevel'
+    | 'careLevel'
+  )[] = [
+    'heartsPoint',
+    'satietyLevel',
+    'mentalStrength',
+    'money',
+    'educationLevel',
+    'careLevel',
+  ];
+
+  const availableQuizzes = getAllQuizzes()
+    .map(quiz => {
+      const availableAnswers = quiz.answerVariants.filter(
+        ({ requirements }) => {
+          for (const key of keys) {
+            const range = requirements[key];
+            if (!range || (!range.minValue && !range.maxValue)) {
+              continue;
+            }
+
+            if (
+              (range.maxValue && range.maxValue < gameStatus[key]) ||
+              (range.minValue && range.minValue > gameStatus[key])
+            ) {
+              return false;
+            }
+          }
+          return true;
+        }
+      );
+      const copy = { ...quiz };
+      copy.answerVariants = availableAnswers;
+      return copy;
+    })
+    .filter(({ answerVariants }) => answerVariants.length >= 2);
+
+  return getRandomObj(availableQuizzes);
+};
+
+export function getRandomObj<T>(objects: T[]): T {
+  const index = Math.floor(Math.random() * objects.length);
+  return objects[index];
 }
