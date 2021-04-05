@@ -58,25 +58,25 @@ export function getMenus(): Categories {
   return quizzesWithType;
 }
 
+const characteristicKeys: (
+  | 'heartsPoint'
+  | 'satietyLevel'
+  | 'mentalStrength'
+  | 'money'
+  | 'educationLevel'
+  | 'careLevel'
+)[] = [
+  'heartsPoint',
+  'satietyLevel',
+  'mentalStrength',
+  'money',
+  'educationLevel',
+  'careLevel',
+];
+
 export const applyMenuCharacteristic = (
   menuCharacteristic: Characteristic
 ): void => {
-  const keys: (
-    | 'heartsPoint'
-    | 'satietyLevel'
-    | 'mentalStrength'
-    | 'money'
-    | 'educationLevel'
-    | 'careLevel'
-  )[] = [
-    'heartsPoint',
-    'satietyLevel',
-    'mentalStrength',
-    'money',
-    'educationLevel',
-    'careLevel',
-  ];
-
   const gameObj = getGameObj();
   if (!gameObj) {
     return;
@@ -85,7 +85,7 @@ export const applyMenuCharacteristic = (
   const { level } = calculateLevel(gameObj.gameLevel);
 
   // check if operation is valid
-  for (const key of keys) {
+  for (const key of characteristicKeys) {
     const characteristicValue = menuCharacteristic[key];
     if (characteristicValue) {
       const number = parseMenuCharacteristic(characteristicValue, level);
@@ -119,27 +119,11 @@ function parseMenuCharacteristic(
 export const getQuizWithSpecifiedRequirements = (
   gameStatus: GameStatus
 ): QuizWithOnlyBody => {
-  const keys: (
-    | 'heartsPoint'
-    | 'satietyLevel'
-    | 'mentalStrength'
-    | 'money'
-    | 'educationLevel'
-    | 'careLevel'
-  )[] = [
-    'heartsPoint',
-    'satietyLevel',
-    'mentalStrength',
-    'money',
-    'educationLevel',
-    'careLevel',
-  ];
-
   const availableQuizzes = getAllQuizzes()
     .map(quiz => {
       const availableAnswers = quiz.answerVariants.filter(
         ({ requirements }) => {
-          for (const key of keys) {
+          for (const key of characteristicKeys) {
             const range = requirements[key];
             if (!range || (!range.minValue && !range.maxValue)) {
               continue;
