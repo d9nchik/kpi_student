@@ -34,47 +34,96 @@ const GameHeader: FunctionComponent<GameStatus> = ({
           <img
             src={HealthCare}
             alt="health care"
-            style={{ background: 'brown', width: '25px' }}
+            style={{ background: 'brown', width: '45px', borderRadius: '5px' }}
           />
-          <progress max={100 * level} value={heartsPoint} />
+          <progress
+            max={100 * level}
+            value={heartsPoint}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              width: '10vw',
+              height: '3vh',
+            }}
+          />
         </div>
         <div>
           <img
             src={FastFood}
             alt="fast food"
-            style={{ background: 'brown', width: '25px' }}
+            style={{
+              background: 'brown',
+              width: '45px',
+              borderRadius: '5px',
+            }}
           />
-          <progress max={100 * level} value={satietyLevel} />
+          <progress
+            max={100 * level}
+            value={satietyLevel}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              width: '10vw',
+              height: '3vh',
+            }}
+          />
         </div>
         <div>
           <img
             src={Thought}
             alt="thought"
-            style={{ background: 'brown', width: '25px' }}
+            style={{ background: 'brown', width: '45px', borderRadius: '5px' }}
           />
-          <progress max={100 * level} value={mentalStrength} />
+          <progress
+            max={100 * level}
+            value={mentalStrength}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              width: '10vw',
+              height: '3vh',
+            }}
+          />
         </div>
-        <div>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'center',
+          }}
+        >
           <img
             src={Money}
             alt="money"
-            style={{ background: 'brown', width: '25px' }}
+            style={{ background: 'brown', width: '45px', borderRadius: '5px' }}
           />
           <span>{money}₴</span>
         </div>
-        <div>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'center',
+          }}
+        >
           <img
             src={Shelving}
             alt="shelving"
-            style={{ background: 'brown', width: '25px' }}
+            style={{ background: 'brown', width: '45px', borderRadius: '5px' }}
           />
           <span>{Math.floor(educationLevel / level)}%</span>
         </div>
-        <div>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'center',
+          }}
+        >
           <img
             src={Household}
             alt="household"
-            style={{ background: 'brown', width: '25px' }}
+            style={{ background: 'brown', width: '45px', borderRadius: '5px' }}
           />
           <span>{Math.floor(careLevel / level)}%</span>
         </div>
