@@ -4,6 +4,7 @@ import {
   QuizWithOnlyBody,
   getAllQuizzes,
   GameStatus,
+  Characteristic as CharacteristicRange,
 } from './dataStorage';
 import quizzes from './menu.json';
 
@@ -151,4 +152,53 @@ export const getQuizWithSpecifiedRequirements = (
 export function getRandomObj<T>(objects: T[]): T {
   const index = Math.floor(Math.random() * objects.length);
   return objects[index];
+}
+
+export const applyQuizVariantItem = (
+  successProbability: number,
+  successCharacteristics: CharacteristicRange,
+  loseCharacteristics: CharacteristicRange,
+  gameObj: GameStatus
+): void => {
+  const newGameObj = { ...gameObj };
+
+  const characteristics =
+    Math.random() > successProbability
+      ? loseCharacteristics
+      : successCharacteristics;
+
+  for (const key of characteristicKeys) {
+    const characteristic = characteristics[key];
+    if (
+      !characteristic ||
+      (!characteristic.minValue && !characteristic.maxValue)
+    ) {
+      continue;
+    }
+    const { minValue, maxValue } = characteristic;
+
+    const applyNumber = (() => {
+      if (!minValue) {
+        return maxValue;
+      }
+      if (!maxValue) {
+        return minValue;
+      }
+      return randomRangeValue(minValue, maxValue);
+    })();
+    if (!applyNumber) continue;
+
+    newGameObj[key] += applyNumber;
+  }
+  setGameObj(newGameObj);
+};
+
+/**
+ *
+ * @param min inclusive
+ * @param max inclusive
+ * @returns
+ */
+export function randomRangeValue(min: number, max: number): number {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
