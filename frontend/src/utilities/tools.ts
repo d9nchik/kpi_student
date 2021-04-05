@@ -1,6 +1,6 @@
 import {
   getGameObj,
-  setGameObj,
+  setGameObj as setGameStatus,
   QuizWithOnlyBody,
   getAllQuizzes,
   GameStatus,
@@ -75,6 +75,15 @@ const characteristicKeys: (
   'careLevel',
 ];
 
+const setGameObj = (gameStatus: GameStatus) => {
+  const { level } = calculateLevel(gameStatus.gameLevel);
+  for (const key of characteristicKeys) {
+    if (key !== 'money' && gameStatus[key] > level * 100)
+      gameStatus[key] = level * 100;
+  }
+  setGameStatus(gameStatus);
+};
+
 export const applyMenuCharacteristic = (
   menuCharacteristic: Characteristic
 ): void => {
@@ -95,8 +104,6 @@ export const applyMenuCharacteristic = (
       }
 
       gameObj[key] += number;
-      if (key !== 'money' && gameObj[key] > level * 100)
-        gameObj[key] = level * 100;
     }
   }
   //FIXME: game level should be enlarged
