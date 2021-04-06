@@ -75,9 +75,7 @@ const characteristicKeys: (
   'careLevel',
 ];
 
-const setGameObj = (gameStatus: GameStatus) => {
-  // TODO: level should be passed as parameter
-  const { level } = calculateLevel(gameStatus.gameLevel);
+const setGameObj = (gameStatus: GameStatus, level: number) => {
   for (const key of characteristicKeys) {
     if (key !== 'money' && gameStatus[key] > level * 100)
       gameStatus[key] = level * 100;
@@ -113,7 +111,7 @@ export const applyMenuCharacteristic = (
   // enlarge game level
   gameObj.gameLevel += XPNeeded * 0.1;
 
-  setGameObj(gameObj);
+  setGameObj(gameObj, level);
 };
 
 function parseMenuCharacteristic(
@@ -206,8 +204,9 @@ export const applyQuizVariantItem = (
 
     newGameObj[key] += applyNumber;
   }
-  newGameObj.gameLevel += calculateLevel(newGameObj.gameLevel).XPNeeded * 0.25;
-  setGameObj(newGameObj);
+  const { XPNeeded, level } = calculateLevel(newGameObj.gameLevel);
+  newGameObj.gameLevel += XPNeeded * 0.25;
+  setGameObj(newGameObj, level);
 };
 
 /**

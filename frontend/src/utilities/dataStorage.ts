@@ -174,7 +174,6 @@ export const newGameObj: GameStatus = {
   isDead: false,
 };
 
-// FIXME: use provider
 let subscriber: (() => void) | null = null;
 
 export const subscribe = (newSubscriber: () => void): void => {
