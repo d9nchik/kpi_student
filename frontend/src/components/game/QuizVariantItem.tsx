@@ -18,6 +18,13 @@ const QuizVariantItem: FunctionComponent<IProps> = ({
 }: IProps) => {
   return (
     <button
+      title={`Probability of success: ${successProbability}
+      Success characteristics: ${JSON.stringify(
+        successCharacteristics,
+        null,
+        2
+      )}
+      Lose characteristics: ${JSON.stringify(loseCharacteristics, null, 2)}`}
       onClick={() =>
         applyQuizVariantItem(
           successProbability,
