@@ -83,21 +83,21 @@ const AnswerVariant: FunctionComponent<IProps> = ({
       </label>
       <h4>Requirements</h4>
       <AddCharacteristic
-        {...requirements}
+        characteristic={{ ...requirements }}
         setCharacteristic={characteristic =>
           sendCharacteristic(characteristic, 'requirements')
         }
       />
       <h4>Success Characteristic</h4>
       <AddCharacteristic
-        {...successCharacteristics}
+        characteristic={{ ...successCharacteristics }}
         setCharacteristic={characteristic =>
           sendCharacteristic(characteristic, 'successCharacteristics')
         }
       />
       <h4>Lose Characteristic</h4>
       <AddCharacteristic
-        {...loseCharacteristics}
+        characteristic={{ ...loseCharacteristics }}
         setCharacteristic={characteristic =>
           sendCharacteristic(characteristic, 'loseCharacteristics')
         }

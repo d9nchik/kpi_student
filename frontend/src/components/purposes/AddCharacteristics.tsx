@@ -1,29 +1,18 @@
 import React, { FunctionComponent } from 'react';
 import { Characteristic, Range } from '../../utilities/dataStorage';
+import { characteristicKeys } from '../../utilities/tools';
 
 import ChangeRange from './ChangeRange';
 
-interface IProps extends Characteristic {
+interface IProps {
+  characteristic: Characteristic;
   setCharacteristic: (characteristic: Characteristic) => void;
 }
 
 const AddCharacteristic: FunctionComponent<IProps> = ({
-  heartsPoint,
-  satietyLevel,
-  mentalStrength,
-  money,
-  educationLevel,
-  careLevel,
+  characteristic,
   setCharacteristic,
 }: IProps) => {
-  const characteristic: Characteristic = {
-    heartsPoint,
-    satietyLevel,
-    mentalStrength,
-    money,
-    educationLevel,
-    careLevel,
-  };
   const sendCharacteristicUp = (
     nameOfField:
       | 'heartsPoint'
@@ -37,41 +26,28 @@ const AddCharacteristic: FunctionComponent<IProps> = ({
     characteristic[nameOfField] = range;
     setCharacteristic(characteristic);
   };
+
+  const nameDict = {
+    heartsPoint: 'Hearts Point',
+    satietyLevel: 'Satiety Level',
+    mentalStrength: 'Mental Strength',
+    money: 'Money',
+    educationLevel: 'Education Level',
+    careLevel: 'Care Level',
+  };
+
   return (
     <div>
-      <ChangeRange
-        {...heartsPoint}
-        name="Hearts Point"
-        setRange={range => {
-          sendCharacteristicUp('heartsPoint', range);
-          console.log(range);
-        }}
-      />
-      <ChangeRange
-        {...satietyLevel}
-        name="Satiety Level"
-        setRange={range => sendCharacteristicUp('satietyLevel', range)}
-      />
-      <ChangeRange
-        name="Mental Strength"
-        {...mentalStrength}
-        setRange={range => sendCharacteristicUp('mentalStrength', range)}
-      />
-      <ChangeRange
-        name="Money"
-        {...money}
-        setRange={range => sendCharacteristicUp('money', range)}
-      />
-      <ChangeRange
-        name="Education Level"
-        {...educationLevel}
-        setRange={range => sendCharacteristicUp('educationLevel', range)}
-      />
-      <ChangeRange
-        name="Care Level"
-        {...careLevel}
-        setRange={range => sendCharacteristicUp('careLevel', range)}
-      />
+      {characteristicKeys.map(key => (
+        <ChangeRange
+          {...characteristic[key]}
+          name={nameDict[key]}
+          setRange={range => {
+            sendCharacteristicUp(key, range);
+          }}
+          key={key}
+        />
+      ))}
     </div>
   );
 };
