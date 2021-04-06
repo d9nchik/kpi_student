@@ -58,7 +58,7 @@ export function getMenus(): Categories {
   return quizzesWithType;
 }
 
-const characteristicKeys: (
+export const characteristicKeys: (
   | 'heartsPoint'
   | 'satietyLevel'
   | 'mentalStrength'

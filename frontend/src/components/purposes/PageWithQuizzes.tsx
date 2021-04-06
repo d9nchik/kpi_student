@@ -6,6 +6,7 @@ import Vote from './Vote';
 const PageWithQuizzes: FunctionComponent = () => {
   const [page, setPage] = useState(0);
   const quizzes = getQuizzes(page);
+
   return (
     <div>
       <ul>
@@ -35,6 +36,7 @@ const PageWithQuizzes: FunctionComponent = () => {
       {page !== 0 && (
         <button onClick={() => setPage(page - 1)}>Previous</button>
       )}
+      <Link to="/purposes/add">Add quiz</Link>
     </div>
   );
 };
