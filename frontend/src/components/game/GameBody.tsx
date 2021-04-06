@@ -3,7 +3,7 @@ import { GameStatus, getDayInUniversity } from '../../utilities/dataStorage';
 import { useHistory } from 'react-router-dom';
 
 import GameMenu from './GameMenu';
-
+import './GameBode.css';
 interface IProps {
   gameStatus: GameStatus;
 }
@@ -37,11 +37,12 @@ const GameBody: FunctionComponent<IProps> = ({ gameStatus }: IProps) => {
         gameStatus={gameStatus}
         closeMenu={() => setOpenedMenuName('')}
       />
-
-      <button onClick={() => setOpenedMenuName('Универ')}>Универ</button>
-      <button onClick={() => setOpenedMenuName('Работа')}>Работа</button>
-      <button onClick={() => setOpenedMenuName('Общага')}>Общага</button>
-      <button onClick={() => setOpenedMenuName('Отдых')}>Отдых</button>
+      <div className={'grid2'}>
+        <button onClick={() => setOpenedMenuName('Универ')}>Универ</button>
+        <button onClick={() => setOpenedMenuName('Работа')}>Работа</button>
+        <button onClick={() => setOpenedMenuName('Общага')}>Общага</button>
+        <button onClick={() => setOpenedMenuName('Отдых')}>Отдых</button>
+      </div>
     </div>
   );
 };

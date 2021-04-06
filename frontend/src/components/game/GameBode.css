@@ -1,0 +1,25 @@
+.grid2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 10px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: #333533;
+  padding-bottom: 15px;
+  padding-top: 15px;
+  justify-items: center;
+}
+.grid2 button {
+  background: #ff8500;
+  border-radius: 20px;
+  height: 60px;
+  width: 600px;
+  font-family: Montserrat, serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 29px;
+  color: white;
+  text-transform: uppercase;
+}
