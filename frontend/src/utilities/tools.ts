@@ -159,8 +159,10 @@ export const getQuizWithSpecifiedRequirements = (
     })
     .filter(({ answerVariants }) => answerVariants.length >= 2);
 
-  //FIXME: number of answerVariants should be less than 5
-  return getRandomObj(availableQuizzes);
+  const chosenObj = getRandomObj(availableQuizzes);
+  chosenObj.answerVariants = chosenObj.answerVariants.slice(0, 4);
+
+  return chosenObj;
 };
 
 export function getRandomObj<T>(objects: T[]): T {
