@@ -5,10 +5,12 @@ import {
   subscribe,
   unsubscribe,
 } from '../../utilities/dataStorage';
+import { calculateLevel } from '../../utilities/tools';
 
 import RegisterGame from './RegisterGame';
 import GameHeader from './GameHeader';
 import GameBody from './GameBody';
+import GameQuiz from './GameQuiz';
 
 const Game: FunctionComponent = () => {
   const [gameObj, setGameObj] = useState(getGameObj());
@@ -28,10 +30,16 @@ const Game: FunctionComponent = () => {
     );
   }
 
+  const { currentXP, XPNeeded } = calculateLevel(gameObj.gameLevel);
+
   return (
     <div>
       <GameHeader {...gameObj} />
-      <GameBody characterName={gameObj.characterName} />
+      {currentXP / XPNeeded < 0.1 ? (
+        <GameQuiz gameStatus={gameObj} />
+      ) : (
+        <GameBody characterName={gameObj.characterName} />
+      )}
     </div>
   );
 };
