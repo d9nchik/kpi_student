@@ -1,4 +1,5 @@
 import React, { FunctionComponent } from 'react';
+import { GameStatus } from '../../utilities/dataStorage';
 import { getMenus } from '../../utilities/tools';
 
 import MenuItem from './MenuItem';
@@ -13,11 +14,13 @@ interface IProps {
     | 'Общага'
     | 'Отдых';
   closeMenu: () => void;
+  gameStatus: GameStatus;
 }
 
 const GameMenu: FunctionComponent<IProps> = ({
   menuName,
   closeMenu,
+  gameStatus,
 }: IProps) => {
   if (!menuName) {
     return <div />;
@@ -30,7 +33,7 @@ const GameMenu: FunctionComponent<IProps> = ({
       <h2>{menuName}</h2>
       <button onClick={closeMenu}>Close menu</button>
       {currentMenu.map(item => (
-        <MenuItem {...item} key={JSON.stringify(item)} />
+        <MenuItem item={item} gameObj={gameStatus} key={JSON.stringify(item)} />
       ))}
     </div>
   );

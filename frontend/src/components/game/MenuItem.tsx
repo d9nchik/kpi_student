@@ -8,8 +8,17 @@ import FastFood from './images/fast-food.png';
 import Thought from './images/thought.png';
 import Shelving from './images/shelving.png';
 import Household from './images/household.png';
+import { GameStatus } from '../../utilities/dataStorage';
 
-const MenuItem: FunctionComponent<Item> = ({ name, characteristics }: Item) => {
+interface IProps {
+  item: Item;
+  gameObj: GameStatus;
+}
+
+const MenuItem: FunctionComponent<IProps> = ({
+  item: { name, characteristics },
+  gameObj,
+}: IProps) => {
   const {
     heartsPoint,
     satietyLevel,
@@ -19,7 +28,7 @@ const MenuItem: FunctionComponent<Item> = ({ name, characteristics }: Item) => {
     mentalStrength,
   } = characteristics;
   return (
-    <div onClick={() => applyMenuCharacteristic(characteristics)}>
+    <div onClick={() => applyMenuCharacteristic(characteristics, gameObj)}>
       <h3>{name}</h3>
       {heartsPoint && (
         <span>

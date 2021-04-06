@@ -30,7 +30,7 @@ const Game: FunctionComponent = () => {
       {currentXP / XPNeeded < 0.1 ? (
         <GameQuiz gameStatus={gameObj} />
       ) : (
-        <GameBody characterName={gameObj.characterName} />
+        <GameBody gameStatus={gameObj} />
       )}
     </div>
   );

@@ -1,14 +1,14 @@
 import React, { FunctionComponent, useState } from 'react';
-import { getDayInUniversity } from '../../utilities/dataStorage';
+import { GameStatus, getDayInUniversity } from '../../utilities/dataStorage';
 import { useHistory } from 'react-router-dom';
 
 import GameMenu from './GameMenu';
 
 interface IProps {
-  characterName: string;
+  gameStatus: GameStatus;
 }
 
-const GameBody: FunctionComponent<IProps> = ({ characterName }: IProps) => {
+const GameBody: FunctionComponent<IProps> = ({ gameStatus }: IProps) => {
   const daysInUniversity = getDayInUniversity();
   const history = useHistory();
   const [openedMenuName, setOpenedMenuName] = useState<
@@ -19,7 +19,7 @@ const GameBody: FunctionComponent<IProps> = ({ characterName }: IProps) => {
     <div>
       <div>
         <span>Имя:</span>
-        {characterName}
+        {gameStatus.characterName}
       </div>
       <div>
         <span>В универе:</span>
@@ -34,6 +34,7 @@ const GameBody: FunctionComponent<IProps> = ({ characterName }: IProps) => {
 
       <GameMenu
         menuName={openedMenuName}
+        gameStatus={gameStatus}
         closeMenu={() => setOpenedMenuName('')}
       />
 

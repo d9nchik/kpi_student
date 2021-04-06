@@ -85,33 +85,29 @@ const setGameObj = (gameStatus: GameStatus, level: number) => {
 };
 
 export const applyMenuCharacteristic = (
-  menuCharacteristic: Characteristic
+  menuCharacteristic: Characteristic,
+  gameObj: GameStatus
 ): void => {
-  //FIXME: object should be passed as parameter
-  const gameObj = getGameObj();
-  if (!gameObj) {
-    return;
-  }
-
-  const { level, XPNeeded } = calculateLevel(gameObj.gameLevel);
+  const newGameObj = { ...gameObj };
+  const { level, XPNeeded } = calculateLevel(newGameObj.gameLevel);
 
   // check if operation is valid
   for (const key of characteristicKeys) {
     const characteristicValue = menuCharacteristic[key];
     if (characteristicValue) {
       const number = parseMenuCharacteristic(characteristicValue, level);
-      if (gameObj[key] < -number) {
+      if (newGameObj[key] < -number) {
         return;
       }
 
-      gameObj[key] += number;
+      newGameObj[key] += number;
     }
   }
 
   // enlarge game level
-  gameObj.gameLevel += XPNeeded * 0.1;
+  newGameObj.gameLevel += XPNeeded * 0.1;
 
-  setGameObj(gameObj, level);
+  setGameObj(newGameObj, level);
 };
 
 function parseMenuCharacteristic(
