@@ -76,23 +76,26 @@ const characteristicKeys: (
 ];
 
 const setGameObj = (gameStatus: GameStatus) => {
+  // TODO: level should be passed as parameter
   const { level } = calculateLevel(gameStatus.gameLevel);
   for (const key of characteristicKeys) {
     if (key !== 'money' && gameStatus[key] > level * 100)
       gameStatus[key] = level * 100;
   }
+  // TODO: add ability to kill
   setGameStatus(gameStatus);
 };
 
 export const applyMenuCharacteristic = (
   menuCharacteristic: Characteristic
 ): void => {
+  //FIXME: object should be passed as parameter
   const gameObj = getGameObj();
   if (!gameObj) {
     return;
   }
 
-  const { level } = calculateLevel(gameObj.gameLevel);
+  const { level, XPNeeded } = calculateLevel(gameObj.gameLevel);
 
   // check if operation is valid
   for (const key of characteristicKeys) {
@@ -106,7 +109,10 @@ export const applyMenuCharacteristic = (
       gameObj[key] += number;
     }
   }
-  //FIXME: game level should be enlarged
+
+  // enlarge game level
+  gameObj.gameLevel += XPNeeded * 0.1;
+
   setGameObj(gameObj);
 };
 
@@ -153,6 +159,7 @@ export const getQuizWithSpecifiedRequirements = (
     })
     .filter(({ answerVariants }) => answerVariants.length >= 2);
 
+  //FIXME: number of answerVariants should be less than 5
   return getRandomObj(availableQuizzes);
 };
 
@@ -197,6 +204,7 @@ export const applyQuizVariantItem = (
 
     newGameObj[key] += applyNumber;
   }
+  newGameObj.gameLevel += calculateLevel(newGameObj.gameLevel).XPNeeded * 0.25;
   setGameObj(newGameObj);
 };
 
@@ -209,3 +217,5 @@ export const applyQuizVariantItem = (
 export function randomRangeValue(min: number, max: number): number {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+
+// TODO: add every second enlarge experience
