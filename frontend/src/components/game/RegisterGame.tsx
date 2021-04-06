@@ -1,17 +1,14 @@
 import React, { FunctionComponent, useState } from 'react';
+import { newGame } from '../../utilities/dataStorage';
 
-interface IProps {
-  makeNewGame: (nameOfCharacter: string) => void;
-}
-
-const RegisterGame: FunctionComponent<IProps> = ({ makeNewGame }: IProps) => {
+const RegisterGame: FunctionComponent = () => {
   const [name, setName] = useState('');
 
   return (
     <form
       onSubmit={e => {
         e.preventDefault();
-        makeNewGame(name);
+        newGame(name);
       }}
     >
       <label>

@@ -1,7 +1,6 @@
 import React, { FunctionComponent, useState, useEffect } from 'react';
 import {
   getGameObj,
-  newGame,
   subscribe,
   unsubscribe,
 } from '../../utilities/dataStorage';
@@ -20,14 +19,7 @@ const Game: FunctionComponent = () => {
   });
 
   if (!gameObj) {
-    return (
-      <RegisterGame
-        makeNewGame={characterName => {
-          newGame(characterName);
-          setGameObj(getGameObj);
-        }}
-      />
-    );
+    return <RegisterGame />;
   }
 
   const { currentXP, XPNeeded } = calculateLevel(gameObj.gameLevel);
