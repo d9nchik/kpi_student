@@ -1,5 +1,4 @@
 import {
-  getGameObj,
   setGameObj as setGameStatus,
   QuizWithOnlyBody,
   getAllQuizzes,
@@ -79,8 +78,16 @@ const setGameObj = (gameStatus: GameStatus, level: number) => {
   for (const key of characteristicKeys) {
     if (key !== 'money' && gameStatus[key] > level * 100)
       gameStatus[key] = level * 100;
+    if (
+      (key === 'money' && gameStatus[key] < -5000) ||
+      (key !== 'money' && gameStatus[key] < 0)
+    ) {
+      gameStatus.isDead = true;
+      setGameStatus(gameStatus);
+      return;
+    }
   }
-  // TODO: add ability to kill
+
   setGameStatus(gameStatus);
 };
 

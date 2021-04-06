@@ -185,7 +185,6 @@ export const unsubscribe = (): void => {
 };
 
 export const setGameObj = (gameStatus: GameStatus): void => {
-  // TODO: add ability to kill
   (() => {
     if (gameStatus.isDead) {
       localStorage.removeItem(GAME_KEY);
