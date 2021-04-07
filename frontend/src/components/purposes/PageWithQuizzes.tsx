@@ -1,6 +1,11 @@
 import React, { FunctionComponent, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { getQuizzes, likePost, dislikePost } from '../../utilities/dataStorage';
+import {
+  getQuizzes,
+  likePost,
+  dislikePost,
+  isPostLiked,
+} from '../../utilities/dataStorage';
 import Vote from './Vote';
 
 const PageWithQuizzes: FunctionComponent = () => {
@@ -15,6 +20,7 @@ const PageWithQuizzes: FunctionComponent = () => {
             <li key={JSON.stringify(`${likes} ${id} ${quizName}`)}>
               <h3>{quizName}</h3>
               <Vote
+                isPostLiked={isPostLiked(id)}
                 onLike={() => likePost(id)}
                 onDislike={() => dislikePost(id)}
                 likes={likes}

@@ -133,21 +133,37 @@ export const removeComment = (quizID: string, commentID: string): boolean => {
   return true;
 };
 
+const likedPost: string[] = [];
+
+export const isPostLiked = (quizID: string): boolean => {
+  return likedPost.includes(quizID);
+};
+
 export const likePost = (quizID: string): boolean => {
+  if (isPostLiked(quizID)) {
+    return false;
+  }
+
   const quizWithCommentsObj = getQuizWithComment(quizID);
   if (!quizWithCommentsObj) {
     return false;
   }
   quizWithCommentsObj.likes++;
+  likedPost.push(quizID);
   return true;
 };
 
 export const dislikePost = (quizID: string): boolean => {
+  if (!isPostLiked(quizID)) {
+    return false;
+  }
+
   const quizWithCommentsObj = getQuizWithComment(quizID);
   if (!quizWithCommentsObj) {
     return false;
   }
   quizWithCommentsObj.likes--;
+  likedPost.splice(likedPost.indexOf(quizID), 1);
   return true;
 };
 

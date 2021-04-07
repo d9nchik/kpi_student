@@ -2,35 +2,45 @@ import React, { FunctionComponent, useState } from 'react';
 
 interface IProps {
   likes: number;
-  onLike: () => void;
-  onDislike: () => void;
+  isPostLiked: boolean;
+  onLike: () => boolean;
+  onDislike: () => boolean;
 }
 
 const Vote: FunctionComponent<IProps> = ({
   likes,
   onLike,
   onDislike,
+  isPostLiked,
 }: IProps) => {
   const [ourLikes, setLikes] = useState(likes);
+  const [isLiked, setIsLiked] = useState(isPostLiked);
   return (
     <div>
       Likes: {ourLikes}
-      <button
-        onClick={() => {
-          onLike();
-          setLikes(ourLikes + 1);
-        }}
-      >
-        Like
-      </button>
-      <button
-        onClick={() => {
-          onDislike();
-          setLikes(ourLikes - 1);
-        }}
-      >
-        Dislike
-      </button>
+      {!isLiked ? (
+        <button
+          onClick={() => {
+            if (onLike()) {
+              setIsLiked(true);
+              setLikes(ourLikes + 1);
+            }
+          }}
+        >
+          Like
+        </button>
+      ) : (
+        <button
+          onClick={() => {
+            if (onDislike()) {
+              setIsLiked(false);
+              setLikes(ourLikes - 1);
+            }
+          }}
+        >
+          Dislike
+        </button>
+      )}
     </div>
   );
 };

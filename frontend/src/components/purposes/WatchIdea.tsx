@@ -1,6 +1,11 @@
 import React, { FunctionComponent } from 'react';
 import { useParams, Redirect, useLocation } from 'react-router-dom';
-import { getQuiz, likePost, dislikePost } from '../../utilities/dataStorage';
+import {
+  getQuiz,
+  likePost,
+  dislikePost,
+  isPostLiked,
+} from '../../utilities/dataStorage';
 import defaultImage from '../../logo.svg';
 
 import Vote from './Vote';
@@ -53,6 +58,7 @@ const WatchIdea: FunctionComponent = () => {
       Author: {author.displayName}
       <br />
       <Vote
+        isPostLiked={isPostLiked(id)}
         onLike={() => likePost(id)}
         onDislike={() => dislikePost(id)}
         likes={likes}

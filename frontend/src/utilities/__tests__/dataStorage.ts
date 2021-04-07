@@ -114,12 +114,14 @@ it('test removeComment', () => {
   expect(firstComment.content).toBe('I hate this idea');
 });
 
-//FIXME: like should work only once
 it('test likePost', () => {
   let firstQuiz = getQuizzes()[0];
   expect(firstQuiz.likes).toBe(1);
   expect(likePost('23h1231iu2gbdbqjh324')).toBeFalsy();
   expect(likePost(firstQuiz.id)).toBeTruthy();
+  firstQuiz = getQuizzes()[0];
+  expect(firstQuiz.likes).toBe(2);
+  expect(likePost(firstQuiz.id)).toBeFalsy();
   firstQuiz = getQuizzes()[0];
   expect(firstQuiz.likes).toBe(2);
 });
@@ -129,6 +131,9 @@ it('test dislikePost', () => {
   expect(firstQuiz.likes).toBe(2);
   expect(dislikePost('48394j843hhfr8h483534')).toBeFalsy();
   expect(dislikePost(firstQuiz.id)).toBeTruthy();
+  firstQuiz = getQuizzes()[0];
+  expect(firstQuiz.likes).toBe(1);
+  expect(dislikePost(firstQuiz.id)).toBeFalsy();
   firstQuiz = getQuizzes()[0];
   expect(firstQuiz.likes).toBe(1);
 });
