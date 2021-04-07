@@ -3,6 +3,7 @@ import {
   getGameObj,
   subscribe,
   unsubscribe,
+  setGameObj as setGameStatus,
 } from '../../utilities/dataStorage';
 import { calculateLevel } from '../../utilities/tools';
 
@@ -16,6 +17,18 @@ const Game: FunctionComponent = () => {
   useEffect(() => {
     subscribe(() => setGameObj(getGameObj()));
     return unsubscribe;
+  });
+
+  useEffect(() => {
+    const intervalID = setInterval(() => {
+      if (!gameObj) {
+        return;
+      }
+
+      gameObj.gameLevel += 100;
+      setGameStatus(gameObj);
+    }, 1000 * 300);
+    return () => clearInterval(intervalID);
   });
 
   if (!gameObj) {
