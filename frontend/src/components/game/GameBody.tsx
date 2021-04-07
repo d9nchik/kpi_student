@@ -4,6 +4,9 @@ import { useHistory } from 'react-router-dom';
 
 import GameMenu from './GameMenu';
 import './GameBode.css';
+import Books from './images/books.png';
+import Shop from './images/shop.png';
+import Info from './images/information.png';
 interface IProps {
   gameStatus: GameStatus;
 }
@@ -15,31 +18,29 @@ const GameBody: FunctionComponent<IProps> = ({ gameStatus }: IProps) => {
     '' | 'Библиотека' | 'Магазин' | 'Универ' | 'Работа' | 'Общага' | 'Отдых'
   >('');
 
-  const daysInUniversityString = `${daysInUniversity} ${
-    daysInUniversity === 1
-      ? 'день'
-      : daysInUniversity <= 4 && daysInUniversity > 1
-      ? 'дня'
-      : 'дней'
-  }`;
-
   return (
     <div>
-      <div>
-        <span>Имя:</span>
-        {gameStatus.characterName}
+      <div id={'nameAndTime'}>
+        <div>
+          <span>Имя:</span>
+          {gameStatus.characterName}
+        </div>
+        <div>
+          <span>В универе:</span>
+          {daysInUniversity} дня
+        </div>
       </div>
-      <div>
-        <span>В универе:</span>
-        {daysInUniversityString}
+      <div id={'rightMenu'}>
+        <button onClick={() => setOpenedMenuName('Библиотека')}>
+          <img id={'books'} src={Books} alt="Библиотека" />
+        </button>
+        <button onClick={() => setOpenedMenuName('Магазин')}>
+          <img id={'shop'} src={Shop} alt="Магазин" />
+        </button>
+        <button onClick={() => history.push('/purposes')}>
+          <img id={'info'} src={Info} alt="Quizzes" />
+        </button>
       </div>
-
-      <button onClick={() => setOpenedMenuName('Библиотека')}>
-        Библиотека
-      </button>
-      <button onClick={() => setOpenedMenuName('Магазин')}>Магазин</button>
-      <button onClick={() => history.push('/purposes')}>Quizzes</button>
-
       <GameMenu
         menuName={openedMenuName}
         gameStatus={gameStatus}
