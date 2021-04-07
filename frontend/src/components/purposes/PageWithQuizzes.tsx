@@ -7,14 +7,15 @@ import {
   isPostLiked,
 } from '../../utilities/dataStorage';
 import Vote from './Vote';
+import './PageWithQuizzes.css';
 
 const PageWithQuizzes: FunctionComponent = () => {
   const [page, setPage] = useState(0);
   const quizzes = getQuizzes(page);
 
   return (
-    <div>
-      <ul>
+    <div id={'ListProp'}>
+      <ul id={'ListQuizzes'}>
         {quizzes.map(({ likes, id, quizName, commentsCount }) => {
           return (
             <li key={JSON.stringify(`${likes} ${id} ${quizName}`)}>
@@ -30,19 +31,24 @@ const PageWithQuizzes: FunctionComponent = () => {
           );
         })}
       </ul>
-      {quizzes.length === 10 && (
-        <button
-          onClick={() => {
-            setPage(page + 1);
-          }}
-        >
-          Next page
-        </button>
-      )}
-      {page !== 0 && (
-        <button onClick={() => setPage(page - 1)}>Previous</button>
-      )}
-      <Link to="/purposes/add">Add quiz</Link>
+      <div id={'prevNext'}>
+        {quizzes.length === 10 && (
+          <button
+            onClick={() => {
+              setPage(page + 1);
+            }}
+          >
+            Next page
+          </button>
+        )}
+        {page !== 0 && (
+          <button onClick={() => setPage(page - 1)}>Previous</button>
+        )}
+      </div>
+
+      <Link id={'addProp'} to="/purposes/add">
+        Add quiz
+      </Link>
     </div>
   );
 };
