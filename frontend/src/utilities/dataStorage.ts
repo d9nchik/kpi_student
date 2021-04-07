@@ -4,6 +4,7 @@ const dataWithTypes = data as QuizWithComment[];
 
 const DEFAULT_IMAGE_URL = '../logo.svg';
 const GAME_KEY = 'GAME_OBJ';
+const DATE_OF_REGISTRATION_KEY = 'DATE_OF_REGISTRATION';
 const author = { uid: '098123', displayName: 'test-admin' };
 
 export interface Range {
@@ -219,5 +220,25 @@ function getQuizWithComment(quizID: string) {
   return dataWithTypes.find(({ id }) => quizID === id);
 }
 
-//FIXME: should not be const
-export const getDayInUniversity = (): number => 5;
+const date_of_registration: Date = (() => {
+  const localStorageItem = localStorage.getItem(DATE_OF_REGISTRATION_KEY);
+  if (!localStorageItem) {
+    const date = new Date();
+    localStorage.setItem(DATE_OF_REGISTRATION_KEY, JSON.stringify(date));
+    return date;
+  }
+
+  return new Date(JSON.parse(localStorageItem));
+})();
+
+function differenceBetweenTwoDatesInDays(
+  firstDate: Date,
+  secondDate: Date
+): number {
+  return Math.floor(
+    (firstDate.getTime() - secondDate.getTime()) / (1000 * 3600 * 24)
+  );
+}
+
+export const getDayInUniversity = (): number =>
+  differenceBetweenTwoDatesInDays(new Date(), date_of_registration) + 1;
