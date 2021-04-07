@@ -15,6 +15,14 @@ const GameBody: FunctionComponent<IProps> = ({ gameStatus }: IProps) => {
     '' | 'Библиотека' | 'Магазин' | 'Универ' | 'Работа' | 'Общага' | 'Отдых'
   >('');
 
+  const daysInUniversityString = `${daysInUniversity} ${
+    daysInUniversity === 1
+      ? 'день'
+      : daysInUniversity <= 4 && daysInUniversity > 1
+      ? 'дня'
+      : 'дней'
+  }`;
+
   return (
     <div>
       <div>
@@ -23,7 +31,7 @@ const GameBody: FunctionComponent<IProps> = ({ gameStatus }: IProps) => {
       </div>
       <div>
         <span>В универе:</span>
-        {daysInUniversity} дня
+        {daysInUniversityString}
       </div>
 
       <button onClick={() => setOpenedMenuName('Библиотека')}>
