@@ -29,9 +29,13 @@ export const firestore = firebase.firestore();
 export const auth = firebase.auth();
 export const storage = firebase.storage();
 
-const provider = new firebase.auth.GoogleAuthProvider();
 firebase.auth().useDeviceLanguage();
+
+const googleProvider = new firebase.auth.GoogleAuthProvider();
 export const signInWithGoogle = (): Promise<firebase.auth.UserCredential> =>
-  auth.signInWithPopup(provider);
+  auth.signInWithPopup(googleProvider);
+const githubProvider = new firebase.auth.GithubAuthProvider();
+export const signInWithGitHub = (): Promise<firebase.auth.UserCredential> =>
+  auth.signInWithPopup(githubProvider);
 
 export default firebase;

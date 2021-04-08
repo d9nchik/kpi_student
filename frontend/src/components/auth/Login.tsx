@@ -61,10 +61,11 @@ const Login: FunctionComponent = () => {
       <div id={'imgLogo'}>
         <p
           onClick={async () => {
-            if (await loginWithGoogle()) {
+            const result = await loginWithGoogle();
+            if (!result) {
               goToMainPage();
             } else {
-              setMessage('Problems with login via GOOGLE');
+              setMessage(result);
             }
           }}
         >
@@ -72,11 +73,12 @@ const Login: FunctionComponent = () => {
         </p>
 
         <p
-          onClick={() => {
-            if (loginWithGithub()) {
+          onClick={async () => {
+            const result = await loginWithGithub();
+            if (!result) {
               goToMainPage();
             } else {
-              setMessage('Problems with login via GitHub');
+              setMessage(result);
             }
           }}
         >

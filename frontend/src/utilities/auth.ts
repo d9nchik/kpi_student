@@ -1,4 +1,4 @@
-import { auth, signInWithGoogle } from '../firebase';
+import { auth, signInWithGitHub, signInWithGoogle } from '../firebase';
 
 export const LOCAL_STORAGE_EMAIL_KEY = 'email-credentials';
 export const LOCAL_STORAGE_IS_AUTHENTICATED = 'isAuthenticated';
@@ -19,19 +19,22 @@ export const loginWithEmail = (email: string, password: string): boolean => {
   return false;
 };
 
-function loginWithServiceProvider(): boolean {
-  localStorage.setItem(LOCAL_STORAGE_IS_AUTHENTICATED, 'true');
-  return true;
-}
+export const loginWithGithub = async (): Promise<string | null> => {
+  try {
+    await signInWithGitHub();
+    return null;
+  } catch (error) {
+    console.error(error);
+    return error.message;
+  }
+};
 
-export { loginWithServiceProvider as loginWithGithub };
-
-export const loginWithGoogle = async (): Promise<boolean> => {
+export const loginWithGoogle = async (): Promise<string | null> => {
   try {
     await signInWithGoogle();
-    return true;
-  } catch (e) {
-    return false;
+    return null;
+  } catch (error) {
+    return error.message;
   }
 };
 
@@ -40,23 +43,13 @@ export const logout = async (): Promise<void> => await auth.signOut();
 export const registerEmail = async (
   email: string,
   password: string
-): Promise<boolean> => {
+): Promise<string | null> => {
   try {
     await auth.createUserWithEmailAndPassword(email, password);
-    return true;
+    return null;
   } catch (error) {
-    return false;
+    return error.message;
   }
-
-  // const credentials = localStorage.getItem(LOCAL_STORAGE_EMAIL_KEY);
-  // const emailPairs = credentials ? JSON.parse(credentials) : {};
-  // if (emailPairs[email]) {
-  //   return false;
-  // }
-  // emailPairs[email] = password;
-  // localStorage.setItem(LOCAL_STORAGE_EMAIL_KEY, JSON.stringify(emailPairs));
-  // localStorage.setItem(LOCAL_STORAGE_IS_AUTHENTICATED, 'true');
-  // return true;
 };
 
 export const sendPasswordResetEmail = (email: string): boolean => {
