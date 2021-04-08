@@ -17,16 +17,19 @@ const Register: FunctionComponent = () => {
         <Redirect to={{ pathname: '/', state: { from: '/register' } }} />
       )}
       <form
-        onSubmit={event => {
+        onSubmit={async event => {
           event.preventDefault();
           if (password !== retypedPassword) {
             setMessage('Password not matches retyped password');
             setPassword('');
             setRetypedPassword('');
-          } else if (registerEmail(email, password)) {
+            return;
+          }
+          const result = await registerEmail(email, password);
+          if (!result) {
             history.push('/');
           } else {
-            setMessage('user with this email exists');
+            setMessage(result);
           }
         }}
       >

@@ -25,12 +25,13 @@ const Login: FunctionComponent = () => {
       <h2>Login Page</h2>
       <h3>{message}</h3>
       <form
-        onSubmit={event => {
+        onSubmit={async event => {
           event.preventDefault();
-          if (!loginWithEmail(email, password)) {
-            setMessage('Check your email and password');
-          } else {
+          const result = await loginWithEmail(email, password);
+          if (!result) {
             goToMainPage();
+          } else {
+            setMessage(result);
           }
         }}
       >

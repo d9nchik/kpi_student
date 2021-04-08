@@ -1,7 +1,9 @@
 import React, { FunctionComponent, useState } from 'react';
 import { isAuthenticated, sendPasswordResetEmail } from '../../utilities/auth';
 import { Redirect, useHistory } from 'react-router-dom';
+
 import './ResetPassword.css';
+
 const ResetPassword: FunctionComponent = () => {
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
@@ -16,12 +18,13 @@ const ResetPassword: FunctionComponent = () => {
       )}
 
       <form
-        onSubmit={e => {
+        onSubmit={async e => {
           e.preventDefault();
-          if (sendPasswordResetEmail(email)) {
+          const result = await sendPasswordResetEmail(email);
+          if (!result) {
             history.push('/');
           } else {
-            setMessage('Check your email');
+            setMessage(result);
           }
         }}
       >
