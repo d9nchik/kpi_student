@@ -10,6 +10,8 @@ import 'firebase/analytics';
 import 'firebase/auth';
 import 'firebase/firestore';
 import 'firebase/storage';
+// Add the Performance Monitoring library
+import 'firebase/performance';
 
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
@@ -29,6 +31,7 @@ export const firestore = firebase.firestore();
 export const auth = firebase.auth();
 export const storage = firebase.storage();
 export const analytics = firebase.analytics();
+export const performance = firebase.performance();
 
 analytics.setAnalyticsCollectionEnabled(true);
 
