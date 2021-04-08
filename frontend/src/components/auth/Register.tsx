@@ -34,7 +34,7 @@ const Register: FunctionComponent = () => {
         }}
       >
         <label>
-          E-mail
+          E-mail (we will send confirmation link)
           <input
             name="email"
             type="email"

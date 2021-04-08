@@ -22,7 +22,7 @@ const ResetPassword: FunctionComponent = () => {
           e.preventDefault();
           const result = await sendPasswordResetEmail(email);
           if (!result) {
-            history.push('/');
+            history.push('/login');
           } else {
             setMessage(result);
           }
