@@ -1,11 +1,13 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, lazy, Suspense } from 'react';
 import './App.css';
-import Authentication from './components/auth/Authentication';
 import AuthenticatedRouter from './components/AuthenticatedRouter';
 import { Switch, BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
-import PurposeAndVote from './components/purposes/PurposeAndVote';
-import Game from './components/game/Game';
+const Authentication = lazy(() => import('./components/auth/Authentication'));
+const Game = lazy(() => import('./components/game/Game'));
+const PurposeAndVote = lazy(
+  () => import('./components/purposes/PurposeAndVote')
+);
 
 const App: FunctionComponent = () => {
   return (
@@ -14,14 +16,16 @@ const App: FunctionComponent = () => {
         <Link to="/">
           <h1>Welcome to game KPI Student!</h1>
         </Link>
-        <Authentication />
-        <AuthenticatedRouter>
-          <Switch>
-            <Route exact path="/" component={Game} />
-            <Route path="/main" render={() => <div>main page</div>} />
-            <Route path="/purposes" component={PurposeAndVote} />
-          </Switch>
-        </AuthenticatedRouter>
+        <Suspense fallback={<h2>Loading</h2>}>
+          <Authentication />
+          <AuthenticatedRouter>
+            <Switch>
+              <Route exact path="/" component={Game} />
+              <Route path="/main" render={() => <div>main page</div>} />
+              <Route path="/purposes" component={PurposeAndVote} />
+            </Switch>
+          </AuthenticatedRouter>
+        </Suspense>
       </Router>
     </div>
   );
