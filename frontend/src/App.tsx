@@ -1,5 +1,6 @@
 import React, { FunctionComponent, lazy, Suspense } from 'react';
 import './App.css';
+import './normalize.css';
 import AuthenticatedRouter from './components/AuthenticatedRouter';
 import { Switch, BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
