@@ -73,11 +73,11 @@ let user: firebase.User | null = (() => {
 auth.onAuthStateChanged(newUser => {
   if (newUser && !newUser.emailVerified) {
     newUser.sendEmailVerification();
+    logout();
     return;
   }
   user = newUser;
   localStorage.setItem(LOCALSTORAGE_AUTHORIZED_USER, JSON.stringify(user));
-  console.log(user);
 });
 
 export const isAuthenticated = (): boolean => !!user;
