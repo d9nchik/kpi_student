@@ -29,6 +29,11 @@
 #ListQuizzes li h3 {
   margin-right: 140px;
 }
+
+#ListQuizzes li a {
+  color: white;
+}
+
 #addProp {
   margin-bottom: 20px;
   color: white;
