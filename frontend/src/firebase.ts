@@ -28,6 +28,9 @@ firebase.initializeApp(firebaseConfig);
 export const firestore = firebase.firestore();
 export const auth = firebase.auth();
 export const storage = firebase.storage();
+export const analytics = firebase.analytics();
+
+analytics.setAnalyticsCollectionEnabled(true);
 
 firebase.auth().useDeviceLanguage();
 
