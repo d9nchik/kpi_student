@@ -1,7 +1,8 @@
 import React, { FunctionComponent } from 'react';
 import { GameStatus } from '../../utilities/dataStorage';
 import { calculateLevel } from '../../utilities/tools';
-import { Link } from 'react-router-dom';
+import { logout } from '../../utilities/auth';
+import { useHistory } from 'react-router-dom';
 
 import Money from './images/money.png';
 import HealthCare from './images/health-care.png';
@@ -11,24 +12,32 @@ import Shelving from './images/shelving.png';
 import Household from './images/household.png';
 import Avatar from './images/avatar.jpg';
 import './GameHeader.css';
+
 const GameHeader: FunctionComponent<GameStatus> = ({
   satietyLevel,
   heartsPoint,
   careLevel,
-  characterName,
   mentalStrength,
   money,
   gameLevel,
   educationLevel,
 }: GameStatus) => {
   const { XPNeeded, currentXP, level } = calculateLevel(gameLevel);
+  const history = useHistory();
+
   return (
     <header>
       <div className="grid">
         <div className="span-row-2">
-          <Link to="/logout">
-            <img id={'avatar'} src={Avatar} alt="avatar" />
-          </Link>
+          <img
+            id={'avatar'}
+            src={Avatar}
+            alt="avatar"
+            onClick={async () => {
+              await logout();
+              history.push('/login');
+            }}
+          />
         </div>
         <div>
           <img

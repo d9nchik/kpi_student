@@ -60,8 +60,8 @@ const Login: FunctionComponent = () => {
       </div>
       <div id={'imgLogo'}>
         <p
-          onClick={() => {
-            if (loginWithGoogle()) {
+          onClick={async () => {
+            if (await loginWithGoogle()) {
               goToMainPage();
             } else {
               setMessage('Problems with login via GOOGLE');
