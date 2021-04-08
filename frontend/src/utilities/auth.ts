@@ -55,7 +55,7 @@ export const sendPasswordResetEmail = async (
   email: string
 ): Promise<string | null> => {
   try {
-    auth.sendPasswordResetEmail(email);
+    await auth.sendPasswordResetEmail(email);
     return null;
   } catch (error) {
     return error.message;
