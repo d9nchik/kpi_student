@@ -221,3 +221,22 @@ export const applyQuizVariantItem = (
 export function randomRangeValue(min: number, max: number): number {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+
+export function getStringifiedDays(dayNumber: number): string {
+  const preLastDigit = (dayNumber % 100) / 10;
+
+  if (preLastDigit === 1) {
+    return 'дней';
+  }
+
+  switch (dayNumber % 10) {
+    case 1:
+      return 'день';
+    case 2:
+    case 3:
+    case 4:
+      return 'дня';
+    default:
+      return 'дней';
+  }
+}

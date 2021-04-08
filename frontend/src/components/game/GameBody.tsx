@@ -1,12 +1,16 @@
 import React, { FunctionComponent, useState } from 'react';
 import { GameStatus, getDayInUniversity } from '../../utilities/dataStorage';
+import { getStringifiedDays } from '../../utilities/tools';
 import { useHistory } from 'react-router-dom';
 
 import GameMenu from './GameMenu';
-import './GameBode.css';
+
 import Books from './images/books.png';
 import Shop from './images/shop.png';
 import Info from './images/information.png';
+
+import './GameBode.css';
+
 interface IProps {
   gameStatus: GameStatus;
 }
@@ -22,12 +26,12 @@ const GameBody: FunctionComponent<IProps> = ({ gameStatus }: IProps) => {
     <div>
       <div id={'nameAndTime'}>
         <div>
-          <span>Имя:</span>
+          <span>Имя: </span>
           {gameStatus.characterName}
         </div>
         <div>
-          <span>В универе:</span>
-          {daysInUniversity} дня
+          <span>В универе: </span>
+          {`${daysInUniversity} ${getStringifiedDays(daysInUniversity)}`}
         </div>
       </div>
       <div id={'rightMenu'}>

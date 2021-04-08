@@ -67,7 +67,7 @@
 
 #nameAndTime {
   position: fixed;
-  width: 170px;
+  width: 220px;
   height: 80px;
   display: flex;
   flex-direction: column;
@@ -89,6 +89,6 @@
   padding-top: 10px;
   margin-top: 3%;
   height: 20px;
-  width: 150px;
+  width: 90%;
   border-radius: 5px;
 }
