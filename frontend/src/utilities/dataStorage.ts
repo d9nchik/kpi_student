@@ -1,7 +1,7 @@
 import data from './quizzes.json';
 import { getUser } from './auth';
 import firebase from 'firebase';
-import { storage, firestore as db } from '../firebase';
+import { storage, firestore as db, auth } from '../firebase';
 
 const dataWithTypes = data as QuizWithComment[];
 
@@ -209,19 +209,14 @@ export const setGameObj = async (gameStatus: GameStatus): Promise<void> => {
     return;
   }
 
-  await (async () => {
-    const checkedGameStatus = gameStatus.isDead ? null : gameStatus;
-    try {
-      await db
-        .collection('users')
-        .doc(user.uid)
-        .update({ gameStatus: checkedGameStatus });
-    } catch (error) {
-      console.error(error);
-    }
-  })();
-  if (subscriber) {
-    subscriber();
+  const checkedGameStatus = gameStatus.isDead ? null : gameStatus;
+  try {
+    await db
+      .collection('users')
+      .doc(user.uid)
+      .update({ gameStatus: checkedGameStatus });
+  } catch (error) {
+    console.error(error);
   }
 };
 
@@ -253,29 +248,52 @@ export const initializeUser = async (): Promise<boolean> => {
   }
 };
 
-export const getGameObj = async (): Promise<GameStatus | null> => {
+interface UserStatus {
+  displayName?: string;
+  email: string;
+  photoURL?: string;
+  registrationDate: firebase.firestore.Timestamp;
+  gameStatus: GameStatus | null;
+  likedPurposes: string[];
+}
+
+let unsubscribeFromDataChange: null | (() => void) = null;
+let userData: undefined | UserStatus | null = null;
+
+auth.onAuthStateChanged(user => {
+  if (!user) {
+    if (unsubscribeFromDataChange) unsubscribeFromDataChange();
+    return;
+  }
+
+  unsubscribeFromDataChange = db
+    .collection('users')
+    .doc(user.uid)
+    .onSnapshot(doc => {
+      userData = doc.data() as UserStatus;
+
+      if (subscriber) {
+        subscriber();
+      }
+    });
+});
+
+export const getGameObj = async (): Promise<GameStatus | null | undefined> => {
   const user = getUser();
   if (!user) {
     return null;
   }
 
-  try {
-    const doc = await db.collection('users').doc(user.uid).get();
-
-    if (!doc.exists) {
-      await initializeUser();
-      return null;
-    }
-
-    const data = doc.data();
-    if (!data) {
-      return null;
-    }
-    return data.gameStatus;
-  } catch (error) {
-    console.error(`Error getting document: ${error}`);
-    return null;
+  if (userData === null) {
+    return undefined;
   }
+
+  if (userData) {
+    return userData.gameStatus;
+  }
+
+  await initializeUser();
+  return null;
 };
 
 function generateRandomID(): string {
