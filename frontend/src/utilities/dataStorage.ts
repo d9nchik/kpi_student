@@ -5,8 +5,6 @@ import { storage, firestore as db, auth } from '../firebase';
 
 const dataWithTypes = data as QuizWithComment[];
 
-const DEFAULT_IMAGE_URL = '../logo.svg';
-
 export interface Range {
   minValue?: number;
   maxValue?: number;
@@ -41,8 +39,8 @@ export interface QuizWithOnlyBody {
   imageURL?: string;
 }
 
-interface Quiz extends QuizWithOnlyBody {
-  uid: string;
+export interface Quiz extends QuizWithOnlyBody {
+  id: string;
   author: User;
   likes: number;
   commentsCount: number;
@@ -51,13 +49,33 @@ interface Quiz extends QuizWithOnlyBody {
 
 export const getAllQuizzes = (): Quiz[] => dataWithTypes;
 
-export const getQuizzes = (pageNumber = 0): Quiz[] => {
-  const startingQuiz = pageNumber * 10;
-  return getAllQuizzes()
-    .slice(startingQuiz, startingQuiz + 10)
-    .map(item => {
-      return { ...item, imageURL: DEFAULT_IMAGE_URL };
-    });
+export const getQuizzes = async (startAfter?: string): Promise<Quiz[]> => {
+  try {
+    if (!startAfter) {
+      const first = await db
+        .collection('quizzes')
+        .orderBy('quizName')
+        .limit(10)
+        .get();
+      return first.docs.map(maper) as Quiz[];
+    }
+    const nextParts = await db
+      .collection('quizzes')
+      .orderBy('quizName')
+      .startAfter(startAfter)
+      .limit(10)
+      .get();
+    return nextParts.docs.map(maper) as Quiz[];
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
+
+  function maper(
+    doc: firebase.firestore.QueryDocumentSnapshot<firebase.firestore.DocumentData>
+  ) {
+    return { ...doc.data(), id: doc.id };
+  }
 };
 
 export const getQuiz = (quizID: string): Quiz | undefined => {
@@ -141,9 +159,7 @@ export const addComment = (quizID: string, content: string): boolean => {
 };
 
 export const removeQuiz = (quizID: string): boolean => {
-  const quizWithCommentsID = dataWithTypes.findIndex(
-    ({ uid }) => quizID === uid
-  );
+  const quizWithCommentsID = dataWithTypes.findIndex(({ id }) => quizID === id);
   if (quizWithCommentsID === -1) {
     return false;
   }
@@ -333,7 +349,7 @@ function generateRandomID(): string {
 }
 
 function getQuizWithComment(quizID: string) {
-  return dataWithTypes.find(({ uid }) => quizID === uid);
+  return dataWithTypes.find(({ id }) => quizID === id);
 }
 
 const getDateOfRegistration = (): Date => {
