@@ -78,8 +78,9 @@ export const getQuizzes = async (startAfter?: string): Promise<Quiz[]> => {
   }
 };
 
-export const getQuiz = (quizID: string): Quiz | undefined => {
-  return getQuizWithComment(quizID);
+export const getQuiz = async (quizID: string): Promise<Quiz | undefined> => {
+  const doc = await db.collection('quizzes').doc(quizID).get();
+  return doc.data() as Quiz | undefined;
 };
 
 export interface Comment {

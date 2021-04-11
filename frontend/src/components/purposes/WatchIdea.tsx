@@ -1,10 +1,11 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useState, useEffect } from 'react';
 import { useParams, Redirect, useLocation } from 'react-router-dom';
 import {
   getQuiz,
   likePost,
   dislikePost,
   isPostLiked,
+  Quiz,
 } from '../../utilities/dataStorage';
 import defaultImage from '../../logo.svg';
 
@@ -19,7 +20,18 @@ interface ParamTypes {
 const WatchIdea: FunctionComponent = () => {
   const { id } = useParams<ParamTypes>();
   const location = useLocation();
-  const quiz = getQuiz(id);
+  const [quiz, setQuiz] = useState<Quiz | null | undefined>(null);
+
+  useEffect(() => {
+    if (quiz === null) {
+      (async () => setQuiz(await getQuiz(id)))();
+    }
+  });
+
+  if (quiz === null) {
+    return <div>Loading...</div>;
+  }
+
   if (!quiz) {
     return (
       <Redirect to={{ pathname: '/purposes', state: { from: location } }} />

@@ -51,6 +51,9 @@ const PageWithQuizzes: FunctionComponent = () => {
           </button>
         )}
       </div>
+      <Link id={'addProp'} to="/purposes/add">
+        Add quiz
+      </Link>
     </div>
   );
 };
