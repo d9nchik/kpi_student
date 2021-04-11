@@ -278,3 +278,11 @@ export const uploadImage = async (image: File): Promise<string> => {
     return '';
   }
 };
+
+export const getUserAvatar = (): string | null => {
+  const user = getUser();
+  if (!user) {
+    return null;
+  }
+  return user.photoURL;
+};

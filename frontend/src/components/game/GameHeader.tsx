@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import { GameStatus } from '../../utilities/dataStorage';
+import { GameStatus, getUserAvatar } from '../../utilities/dataStorage';
 import { calculateLevel } from '../../utilities/tools';
 import { logout } from '../../utilities/auth';
 import { useHistory } from 'react-router-dom';
@@ -31,7 +31,7 @@ const GameHeader: FunctionComponent<GameStatus> = ({
         <div className="span-row-2">
           <img
             id={'avatar'}
-            src={Avatar}
+            src={getUserAvatar() || Avatar}
             alt="avatar"
             onClick={async () => {
               await logout();
