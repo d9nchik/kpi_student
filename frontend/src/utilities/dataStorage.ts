@@ -57,7 +57,7 @@ export const getQuizzes = async (startAfter?: string): Promise<Quiz[]> => {
         .orderBy('quizName')
         .limit(10)
         .get();
-      return first.docs.map(maper) as Quiz[];
+      return first.docs.map(mapper) as Quiz[];
     }
     const nextParts = await db
       .collection('quizzes')
@@ -65,13 +65,13 @@ export const getQuizzes = async (startAfter?: string): Promise<Quiz[]> => {
       .startAfter(startAfter)
       .limit(10)
       .get();
-    return nextParts.docs.map(maper) as Quiz[];
+    return nextParts.docs.map(mapper) as Quiz[];
   } catch (error) {
     console.error(error);
     return [];
   }
 
-  function maper(
+  function mapper(
     doc: firebase.firestore.QueryDocumentSnapshot<firebase.firestore.DocumentData>
   ) {
     return { ...doc.data(), id: doc.id };
@@ -93,9 +93,13 @@ interface QuizWithComment extends Quiz {
   comments: Comment[];
 }
 
-export const getCommentsOfQuiz = (quizID: string): Comment[] => {
-  const quizWithCommentsObj = getQuizWithComment(quizID);
-  return quizWithCommentsObj ? quizWithCommentsObj.comments : [];
+export const getCommentsOfQuiz = async (quizID: string): Promise<Comment[]> => {
+  const documents = await db
+    .collection('quizzes')
+    .doc(quizID)
+    .collection('comments')
+    .get();
+  return documents.docs.map(doc => doc.data()) as Comment[];
 };
 
 const ifExistOrUndefined = <T>(value: T | null): T | undefined => {
