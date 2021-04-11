@@ -1,11 +1,11 @@
 import data from './quizzes.json';
 import { getUser } from './auth';
-import { storage } from '../firebase';
+import firebase from 'firebase';
+import { storage, firestore as db } from '../firebase';
 
 const dataWithTypes = data as QuizWithComment[];
 
 const DEFAULT_IMAGE_URL = '../logo.svg';
-const GAME_KEY = 'GAME_OBJ';
 const DATE_OF_REGISTRATION_KEY = 'DATE_OF_REGISTRATION';
 const author = { uid: '098123', displayName: 'test-admin' };
 
@@ -203,14 +203,22 @@ export const unsubscribe = (): void => {
   subscriber = null;
 };
 
-export const setGameObj = (gameStatus: GameStatus): void => {
-  (() => {
-    if (gameStatus.isDead) {
-      localStorage.removeItem(GAME_KEY);
-      return;
+export const setGameObj = async (gameStatus: GameStatus): Promise<void> => {
+  const user = getUser();
+  if (!user) {
+    return;
+  }
+
+  await (async () => {
+    const checkedGameStatus = gameStatus.isDead ? null : gameStatus;
+    try {
+      await db
+        .collection('users')
+        .doc(user.uid)
+        .update({ gameStatus: checkedGameStatus });
+    } catch (error) {
+      console.error(error);
     }
-    const stringifiedObj = JSON.stringify(gameStatus);
-    localStorage.setItem(GAME_KEY, stringifiedObj);
   })();
   if (subscriber) {
     subscriber();
@@ -222,12 +230,52 @@ export const newGame = (characterName: string): boolean => {
   return true;
 };
 
-export const getGameObj = (): GameStatus | null => {
-  const item = localStorage.getItem(GAME_KEY);
-  if (!item) {
+export const initializeUser = async (): Promise<boolean> => {
+  const user = getUser();
+  if (!user) {
+    return false;
+  }
+
+  try {
+    const { displayName, email, photoURL } = user;
+    await db.collection('users').doc(user.uid).set({
+      displayName,
+      email,
+      photoURL,
+      registrationDate: firebase.firestore.FieldValue.serverTimestamp(),
+      gameStatus: null,
+      likedPurposes: [],
+    });
+    return true;
+  } catch (error) {
+    console.error(`Error setting document: ${error}`);
+    return false;
+  }
+};
+
+export const getGameObj = async (): Promise<GameStatus | null> => {
+  const user = getUser();
+  if (!user) {
     return null;
   }
-  return JSON.parse(item);
+
+  try {
+    const doc = await db.collection('users').doc(user.uid).get();
+
+    if (!doc.exists) {
+      await initializeUser();
+      return null;
+    }
+
+    const data = doc.data();
+    if (!data) {
+      return null;
+    }
+    return data.gameStatus;
+  } catch (error) {
+    console.error(`Error getting document: ${error}`);
+    return null;
+  }
 };
 
 function generateRandomID(): string {

@@ -4,6 +4,7 @@ import {
   subscribe,
   unsubscribe,
   setGameObj as setGameStatus,
+  GameStatus,
 } from '../../utilities/dataStorage';
 import { calculateLevel } from '../../utilities/tools';
 
@@ -13,10 +14,17 @@ import GameBody from './GameBody';
 import GameQuiz from './GameQuiz';
 
 const Game: FunctionComponent = () => {
-  const [gameObj, setGameObj] = useState(getGameObj());
+  const [gameObj, setGameObj] = useState<GameStatus | null | undefined>();
   useEffect(() => {
-    subscribe(() => setGameObj(getGameObj()));
+    if (!gameObj) {
+      updateGameObj();
+    }
+    subscribe(updateGameObj);
     return unsubscribe;
+
+    async function updateGameObj() {
+      setGameObj(await getGameObj());
+    }
   });
 
   useEffect(() => {
@@ -30,6 +38,10 @@ const Game: FunctionComponent = () => {
     }, 1000 * 300);
     return () => clearInterval(intervalID);
   });
+
+  if (gameObj === undefined) {
+    return <div>Loading...</div>;
+  }
 
   if (!gameObj) {
     return <RegisterGame />;
