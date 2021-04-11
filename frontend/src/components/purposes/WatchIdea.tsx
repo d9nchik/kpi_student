@@ -25,12 +25,19 @@ const WatchIdea: FunctionComponent = () => {
       <Redirect to={{ pathname: '/purposes', state: { from: location } }} />
     );
   }
-  const { quizName, likes, commentsCount, answerVariants, author } = quiz;
+  const {
+    quizName,
+    likes,
+    commentsCount,
+    answerVariants,
+    author,
+    imageURL,
+  } = quiz;
 
   return (
     <div>
       <h2>{quizName}</h2>
-      <img alt={quizName} src={defaultImage} />
+      <img alt={quizName} src={imageURL || defaultImage} />
       <ul>
         {answerVariants?.map(
           ({

@@ -1,7 +1,8 @@
-import React, { FunctionComponent, useState } from 'react';
+import React, { FunctionComponent, useState, useRef } from 'react';
 import {
   addQuiz,
   AnswerVariant as AnswerVariantType,
+  uploadImage,
 } from '../../utilities/dataStorage';
 import { useHistory } from 'react-router-dom';
 
@@ -10,14 +11,22 @@ import AnswerVariants from './AnswerVariants';
 const AddQuiz: FunctionComponent = () => {
   const history = useHistory();
   const [quizName, setQuizName] = useState('');
-  const [imageFile, setImageFile] = useState('');
+  const imageFile = useRef<HTMLInputElement>(null);
   let answers: AnswerVariantType[] = [];
 
   return (
     <form
-      onSubmit={e => {
+      onSubmit={async e => {
+        let newLink = '';
         e.preventDefault();
-        addQuiz({ quizName, imageURL: imageFile, answerVariants: answers });
+        if (
+          imageFile.current &&
+          imageFile.current.files &&
+          imageFile.current.files[0]
+        ) {
+          newLink = await uploadImage(imageFile.current.files[0]);
+        }
+        addQuiz({ quizName, imageURL: newLink, answerVariants: answers });
         history.push('/purposes');
       }}
     >
@@ -35,9 +44,9 @@ const AddQuiz: FunctionComponent = () => {
         Image
         <input
           type="file"
-          value={imageFile}
           accept=".jpg, .jpeg, .png"
-          onChange={e => setImageFile(e.target.value)}
+          ref={imageFile}
+          required
         />
       </label>
       <AnswerVariants

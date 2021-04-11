@@ -1,4 +1,6 @@
 import data from './quizzes.json';
+import { getUser } from './auth';
+import { storage } from '../firebase';
 
 const dataWithTypes = data as QuizWithComment[];
 
@@ -258,3 +260,21 @@ function differenceBetweenTwoDatesInDays(
 
 export const getDayInUniversity = (): number =>
   differenceBetweenTwoDatesInDays(new Date(), date_of_registration) + 1;
+
+export const uploadImage = async (image: File): Promise<string> => {
+  const user = getUser();
+  if (!user) {
+    return '';
+  }
+  try {
+    const response = await storage
+      .ref()
+      .child('game-quizzes-photos')
+      .child(user.uid)
+      .child(`${new Date().getTime()} ${image.name}`)
+      .put(image);
+    return await response.ref.getDownloadURL();
+  } catch (error) {
+    return '';
+  }
+};

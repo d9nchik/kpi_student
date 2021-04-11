@@ -81,3 +81,5 @@ auth.onAuthStateChanged(newUser => {
 });
 
 export const isAuthenticated = (): boolean => !!user;
+
+export const getUser = (): firebase.User | null => user;
