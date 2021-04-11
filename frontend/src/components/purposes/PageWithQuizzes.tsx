@@ -16,17 +16,17 @@ const PageWithQuizzes: FunctionComponent = () => {
   return (
     <div id={'ListProp'}>
       <ul id={'ListQuizzes'}>
-        {quizzes.map(({ likes, id, quizName, commentsCount }) => {
+        {quizzes.map(({ likes, uid, quizName, commentsCount }) => {
           return (
-            <li key={JSON.stringify(`${likes} ${id} ${quizName}`)}>
+            <li key={JSON.stringify(`${likes} ${uid} ${quizName}`)}>
               <h3>{quizName}</h3>
               <Vote
-                isPostLiked={isPostLiked(id)}
-                onLike={() => likePost(id)}
-                onDislike={() => dislikePost(id)}
+                isPostLiked={isPostLiked(uid)}
+                onLike={() => likePost(uid)}
+                onDislike={() => dislikePost(uid)}
                 likes={likes}
               />
-              <Link to={`/purposes/${id}`}>{commentsCount} comments</Link>
+              <Link to={`/purposes/${uid}`}>{commentsCount} comments</Link>
             </li>
           );
         })}

@@ -6,7 +6,6 @@ import { storage, firestore as db, auth } from '../firebase';
 const dataWithTypes = data as QuizWithComment[];
 
 const DEFAULT_IMAGE_URL = '../logo.svg';
-const author = { uid: '098123', displayName: 'test-admin' };
 
 export interface Range {
   minValue?: number;
@@ -43,7 +42,7 @@ export interface QuizWithOnlyBody {
 }
 
 interface Quiz extends QuizWithOnlyBody {
-  id: string;
+  uid: string;
   author: User;
   likes: number;
   commentsCount: number;
@@ -80,37 +79,71 @@ export const getCommentsOfQuiz = (quizID: string): Comment[] => {
   return quizWithCommentsObj ? quizWithCommentsObj.comments : [];
 };
 
-export const addQuiz = (quiz: QuizWithOnlyBody): boolean => {
-  const id = generateRandomID();
-  const quizWithBody: QuizWithComment = {
+const ifExistOrUndefined = <T>(value: T | null): T | undefined => {
+  if (value) {
+    return value;
+  }
+  return undefined;
+};
+
+export const addQuiz = async (quiz: QuizWithOnlyBody): Promise<boolean> => {
+  const user = getUser();
+
+  if (!user) {
+    return false;
+  }
+
+  const { uid, displayName, photoURL } = user;
+
+  const quizWithBody = {
     ...quiz,
-    id,
-    comments: [],
     likes: 0,
     commentsCount: 0,
-    imageURL: DEFAULT_IMAGE_URL,
-    author,
+    author: {
+      uid,
+      displayName: ifExistOrUndefined(displayName),
+      photoURL: ifExistOrUndefined(photoURL),
+    },
+    imageURL: '',
   };
   if (quiz.imageURL) {
     quizWithBody.imageURL = quiz.imageURL;
   }
-  dataWithTypes.push(quizWithBody);
+
+  await db.collection('quizzes').add(quizWithBody);
   return true;
 };
 
 export const addComment = (quizID: string, content: string): boolean => {
+  const user = getUser();
+  if (!user) {
+    return false;
+  }
+
+  const { uid, photoURL, displayName } = user;
+
   const quizWithCommentsObj = getQuizWithComment(quizID);
   if (!quizWithCommentsObj) {
     return false;
   }
   quizWithCommentsObj.commentsCount++;
   const id = generateRandomID();
-  quizWithCommentsObj.comments.push({ content, id, author });
+  quizWithCommentsObj.comments.push({
+    content,
+    id,
+    author: {
+      uid,
+      photoURL: ifExistOrUndefined(photoURL),
+      displayName: ifExistOrUndefined(displayName),
+    },
+  });
   return true;
 };
 
 export const removeQuiz = (quizID: string): boolean => {
-  const quizWithCommentsID = dataWithTypes.findIndex(({ id }) => quizID === id);
+  const quizWithCommentsID = dataWithTypes.findIndex(
+    ({ uid }) => quizID === uid
+  );
   if (quizWithCommentsID === -1) {
     return false;
   }
@@ -300,7 +333,7 @@ function generateRandomID(): string {
 }
 
 function getQuizWithComment(quizID: string) {
-  return dataWithTypes.find(({ id }) => quizID === id);
+  return dataWithTypes.find(({ uid }) => quizID === uid);
 }
 
 const getDateOfRegistration = (): Date => {

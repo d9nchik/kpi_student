@@ -1,6 +1,6 @@
 [
   {
-    "id": "zjdejwljwfwfnwtrjktbtww",
+    "uid": "zjdejwljwfwfnwtrjktbtww",
 
     "quizName": "Зачетная неделя",
 
@@ -108,7 +108,7 @@
   },
 
   {
-    "id": "zjdejwljwfwfnwtrjktbtwr",
+    "uid": "zjdejwljwfwfnwtrjktbtwr",
 
     "quizName": "День Первокурсника",
 
@@ -199,7 +199,7 @@
     "commentsCount": 1
   },
   {
-    "id": "zjdejwljwfwfnwtrjktbtwp",
+    "uid": "zjdejwljwfwfnwtrjktbtwp",
 
     "quizName": "Расчетка по МатАнализу",
 
@@ -309,7 +309,7 @@
     "commentsCount": 1
   },
   {
-    "id": "zjdejwljwfwfnwtrjktbtwb",
+    "uid": "zjdejwljwfwfnwtrjktbtwb",
 
     "quizName": "Пойти перекусить",
 
@@ -406,7 +406,7 @@
     "commentsCount": 1
   },
   {
-    "id": "zjdejwljwfwfnwtrjktbtxz",
+    "uid": "zjdejwljwfwfnwtrjktbtxz",
 
     "quizName": "Плавка",
 
