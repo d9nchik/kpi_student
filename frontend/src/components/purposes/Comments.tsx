@@ -16,9 +16,10 @@ interface IProps {
 const Comments: FunctionComponent<IProps> = ({ id, commentsCount }: IProps) => {
   const [comments, setComments] = useState<CommentType[] | null>(null);
   const [count, setCount] = useState(commentsCount);
-  const comment = (content: string) => {
-    addComment(id, content);
+  const comment = async (content: string) => {
+    await addComment(id, content);
     setCount(count + 1);
+    setComments(await getCommentsOfQuiz(id));
   };
 
   useEffect(() => {

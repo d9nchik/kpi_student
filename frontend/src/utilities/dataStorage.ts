@@ -137,56 +137,65 @@ export const addQuiz = async (quiz: QuizWithOnlyBody): Promise<boolean> => {
   return true;
 };
 
-export const addComment = (quizID: string, content: string): boolean => {
+export const addComment = async (
+  quizID: string,
+  content: string
+): Promise<boolean> => {
   const user = getUser();
   if (!user) {
     return false;
   }
 
   const { uid, photoURL, displayName } = user;
+  try {
+    await db
+      .collection('quizzes')
+      .doc(quizID)
+      .update({ commentsCount: firebase.firestore.FieldValue.increment(1) });
 
-  const quizWithCommentsObj = getQuizWithComment(quizID);
-  if (!quizWithCommentsObj) {
+    await db
+      .collection('quizzes')
+      .doc(quizID)
+      .collection('comments')
+      .add({
+        content,
+        author: {
+          uid,
+          photoURL: ifExistOrUndefined(photoURL),
+          displayName: ifExistOrUndefined(displayName),
+        },
+      });
+    return true;
+  } catch (error) {
+    console.error(error);
     return false;
   }
-  quizWithCommentsObj.commentsCount++;
-  const id = generateRandomID();
-  quizWithCommentsObj.comments.push({
-    content,
-    id,
-    author: {
-      uid,
-      photoURL: ifExistOrUndefined(photoURL),
-      displayName: ifExistOrUndefined(displayName),
-    },
-  });
-  return true;
 };
 
-export const removeQuiz = (quizID: string): boolean => {
-  const quizWithCommentsID = dataWithTypes.findIndex(({ id }) => quizID === id);
-  if (quizWithCommentsID === -1) {
-    return false;
-  }
-  dataWithTypes.splice(quizWithCommentsID, 1);
-  return true;
-};
+// export const removeQuiz = (quizID: string): boolean => {
+//   const quizWithCommentsID = dataWithTypes.findIndex(({ id }) => quizID === id);
+//   if (quizWithCommentsID === -1) {
+//     return false;
+//   }
+//   dataWithTypes.splice(quizWithCommentsID, 1);
+//   return true;
+// };
 
-export const removeComment = (quizID: string, commentID: string): boolean => {
-  const quizWithCommentsObj = getQuizWithComment(quizID);
-  if (!quizWithCommentsObj) {
-    return false;
-  }
-  const commentsObj = quizWithCommentsObj.comments;
-  const indexOfComment = commentsObj.findIndex(({ id }) => commentID === id);
-  if (indexOfComment === -1) {
-    return false;
-  }
+// export const removeComment = (quizID: string, commentID: string): boolean => {
+//   const quizWithCommentsObj = getQuizWithComment(quizID);
+//   if (!quizWithCommentsObj) {
+//     return false;
+//   }
+//   const commentsObj = quizWithCommentsObj.comments;
+//   const indexOfComment = commentsObj.findIndex(({ id }) => commentID === id);
+//   if (indexOfComment === -1) {
+//     return false;
+//   }
 
-  quizWithCommentsObj.commentsCount--;
-  commentsObj.splice(indexOfComment, 1);
-  return true;
-};
+//   quizWithCommentsObj.commentsCount--;
+//   commentsObj.splice(indexOfComment, 1);
+//   return true;
+// };
 
 const likedPost: string[] = [];
 
@@ -209,16 +218,16 @@ export const likePost = (quizID: string): boolean => {
 };
 
 export const dislikePost = (quizID: string): boolean => {
-  if (!isPostLiked(quizID)) {
-    return false;
-  }
+  // if (!isPostLiked(quizID)) {
+  //   return false;
+  // }
 
-  const quizWithCommentsObj = getQuizWithComment(quizID);
-  if (!quizWithCommentsObj) {
-    return false;
-  }
-  quizWithCommentsObj.likes--;
-  likedPost.splice(likedPost.indexOf(quizID), 1);
+  // const quizWithCommentsObj = getQuizWithComment(quizID);
+  // if (!quizWithCommentsObj) {
+  //   return false;
+  // }
+  // quizWithCommentsObj.likes--;
+  // likedPost.splice(likedPost.indexOf(quizID), 1);
   return true;
 };
 
@@ -348,10 +357,6 @@ export const getGameObj = async (): Promise<GameStatus | null | undefined> => {
   await initializeUser();
   return null;
 };
-
-function generateRandomID(): string {
-  return String(Date.now());
-}
 
 function getQuizWithComment(quizID: string) {
   return dataWithTypes.find(({ id }) => quizID === id);
