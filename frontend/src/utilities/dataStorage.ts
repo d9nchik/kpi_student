@@ -6,7 +6,6 @@ import { storage, firestore as db, auth } from '../firebase';
 const dataWithTypes = data as QuizWithComment[];
 
 const DEFAULT_IMAGE_URL = '../logo.svg';
-const DATE_OF_REGISTRATION_KEY = 'DATE_OF_REGISTRATION';
 const author = { uid: '098123', displayName: 'test-admin' };
 
 export interface Range {
@@ -304,16 +303,13 @@ function getQuizWithComment(quizID: string) {
   return dataWithTypes.find(({ id }) => quizID === id);
 }
 
-const date_of_registration: Date = (() => {
-  const localStorageItem = localStorage.getItem(DATE_OF_REGISTRATION_KEY);
-  if (!localStorageItem) {
-    const date = new Date();
-    localStorage.setItem(DATE_OF_REGISTRATION_KEY, JSON.stringify(date));
-    return date;
+const getDateOfRegistration = (): Date => {
+  if (!userData) {
+    return new Date();
   }
 
-  return new Date(JSON.parse(localStorageItem));
-})();
+  return userData.registrationDate.toDate();
+};
 
 function differenceBetweenTwoDatesInDays(
   firstDate: Date,
@@ -325,7 +321,7 @@ function differenceBetweenTwoDatesInDays(
 }
 
 export const getDayInUniversity = (): number =>
-  differenceBetweenTwoDatesInDays(new Date(), date_of_registration) + 1;
+  differenceBetweenTwoDatesInDays(new Date(), getDateOfRegistration()) + 1;
 
 export const uploadImage = async (image: File): Promise<string> => {
   const user = getUser();
