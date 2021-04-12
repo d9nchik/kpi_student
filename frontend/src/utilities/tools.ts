@@ -4,6 +4,7 @@ import {
   getAllLikedQuizzes,
   GameStatus,
   Characteristic as CharacteristicRange,
+  getDateOfRegistration,
 } from './dataStorage';
 import quizzes from './menu.json';
 
@@ -265,3 +266,15 @@ export function getStringifiedDays(dayNumber: number): string {
       return 'дней';
   }
 }
+
+function differenceBetweenTwoDatesInDays(
+  firstDate: Date,
+  secondDate: Date
+): number {
+  return Math.floor(
+    (firstDate.getTime() - secondDate.getTime()) / (1000 * 3600 * 24)
+  );
+}
+
+export const getDayInUniversity = (): number =>
+  differenceBetweenTwoDatesInDays(new Date(), getDateOfRegistration()) + 1;

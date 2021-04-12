@@ -372,25 +372,13 @@ export const getGameObj = async (): Promise<GameStatus | null | undefined> => {
   return null;
 };
 
-const getDateOfRegistration = (): Date => {
+export const getDateOfRegistration = (): Date => {
   if (!userData) {
     return new Date();
   }
 
   return userData.registrationDate.toDate();
 };
-
-function differenceBetweenTwoDatesInDays(
-  firstDate: Date,
-  secondDate: Date
-): number {
-  return Math.floor(
-    (firstDate.getTime() - secondDate.getTime()) / (1000 * 3600 * 24)
-  );
-}
-
-export const getDayInUniversity = (): number =>
-  differenceBetweenTwoDatesInDays(new Date(), getDateOfRegistration()) + 1;
 
 export const uploadImage = async (image: File): Promise<string> => {
   const user = getUser();
