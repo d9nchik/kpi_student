@@ -7,6 +7,7 @@ import {
 
 import Comment from './Comment';
 import AddComment from './AddComment';
+import Loading from '../Loading';
 
 interface IProps {
   id: string;
@@ -29,7 +30,7 @@ const Comments: FunctionComponent<IProps> = ({ id, commentsCount }: IProps) => {
   });
 
   if (!comments) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
 
   return (

@@ -3,6 +3,7 @@ import { GameStatus, QuizWithOnlyBody } from '../../utilities/dataStorage';
 import { getQuizWithSpecifiedRequirements } from '../../utilities/tools';
 
 import QuizVariantItem from './QuizVariantItem';
+import Loading from '../Loading';
 
 import Muha from './images/muha.jpg';
 
@@ -21,8 +22,7 @@ const GameQuiz: FunctionComponent<IProps> = ({ gameStatus }: IProps) => {
   });
 
   if (!quiz) {
-    // TODO: separate component
-    return <div>Loading...</div>;
+    return <Loading />;
   }
 
   const { quizName, answerVariants, imageURL } = quiz;

@@ -12,6 +12,7 @@ import RegisterGame from './RegisterGame';
 import GameHeader from './GameHeader';
 import GameBody from './GameBody';
 import GameQuiz from './GameQuiz';
+import Loading from '../Loading';
 
 const Game: FunctionComponent = () => {
   const [gameObj, setGameObj] = useState<GameStatus | null | undefined>();
@@ -40,7 +41,7 @@ const Game: FunctionComponent = () => {
   });
 
   if (gameObj === undefined) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
 
   if (!gameObj) {

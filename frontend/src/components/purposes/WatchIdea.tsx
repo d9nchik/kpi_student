@@ -12,6 +12,7 @@ import defaultImage from '../../logo.svg';
 import Vote from './Vote';
 import Comments from './Comments';
 import WatchCharacteristics from './WatchCharacteristics';
+import Loading from '../Loading';
 
 interface ParamTypes {
   id: string;
@@ -29,7 +30,7 @@ const WatchIdea: FunctionComponent = () => {
   });
 
   if (quiz === null) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
 
   if (!quiz) {
