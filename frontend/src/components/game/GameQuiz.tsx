@@ -1,5 +1,5 @@
-import React, { FunctionComponent } from 'react';
-import { GameStatus } from '../../utilities/dataStorage';
+import React, { FunctionComponent, useState, useEffect } from 'react';
+import { GameStatus, QuizWithOnlyBody } from '../../utilities/dataStorage';
 import { getQuizWithSpecifiedRequirements } from '../../utilities/tools';
 
 import QuizVariantItem from './QuizVariantItem';
@@ -11,13 +11,25 @@ interface IProps {
 }
 
 const GameQuiz: FunctionComponent<IProps> = ({ gameStatus }: IProps) => {
-  const { quizName, answerVariants } = getQuizWithSpecifiedRequirements(
-    gameStatus
-  );
+  const [quiz, setQuiz] = useState<QuizWithOnlyBody | null>(null);
+
+  useEffect(() => {
+    if (!quiz) {
+      (async () =>
+        setQuiz(await getQuizWithSpecifiedRequirements(gameStatus)))();
+    }
+  });
+
+  if (!quiz) {
+    // TODO: separate component
+    return <div>Loading...</div>;
+  }
+
+  const { quizName, answerVariants, imageURL } = quiz;
   return (
     <div>
       <h2>{quizName}</h2>
-      <img src={Muha} alt="quiz" />
+      <img src={imageURL || Muha} alt="quiz" />
       <div>
         {answerVariants.map(answerVariant => (
           <QuizVariantItem

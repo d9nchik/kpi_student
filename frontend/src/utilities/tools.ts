@@ -1,7 +1,7 @@
 import {
   setGameObj as setGameStatus,
   QuizWithOnlyBody,
-  getAllQuizzes,
+  getAllLikedQuizzes,
   GameStatus,
   Characteristic as CharacteristicRange,
 } from './dataStorage';
@@ -131,40 +131,65 @@ function parseMenuCharacteristic(
   return numberPart * level;
 }
 
-export const getQuizWithSpecifiedRequirements = (
+export const getQuizWithSpecifiedRequirements = async (
   gameStatus: GameStatus
-): QuizWithOnlyBody => {
-  const availableQuizzes = getAllQuizzes()
-    .map(quiz => {
-      const availableAnswers = quiz.answerVariants.filter(
-        ({ requirements }) => {
-          for (const key of characteristicKeys) {
-            const range = requirements[key];
-            if (!range || (!range.minValue && !range.maxValue)) {
-              continue;
-            }
+): Promise<QuizWithOnlyBody> => {
+  try {
+    const availableQuizzes = (await getAllLikedQuizzes())
+      .map(quiz => filterAnswerVariants(quiz, gameStatus))
+      .filter(answerVariantsNotLessThan2);
 
-            if (
-              (range.maxValue && range.maxValue < gameStatus[key]) ||
-              (range.minValue && range.minValue > gameStatus[key])
-            ) {
-              return false;
-            }
-          }
-          return true;
-        }
-      );
-      const copy = { ...quiz };
-      copy.answerVariants = availableAnswers;
-      return copy;
-    })
-    .filter(({ answerVariants }) => answerVariants.length >= 2);
+    const chosenObj = getRandomObj(availableQuizzes);
+    chosenObj.answerVariants = chosenObj.answerVariants.slice(0, 4);
 
-  const chosenObj = getRandomObj(availableQuizzes);
-  chosenObj.answerVariants = chosenObj.answerVariants.slice(0, 4);
-
-  return chosenObj;
+    return chosenObj;
+  } catch (error) {
+    console.error(error);
+    return {
+      quizName: 'Oops, no Quiz!',
+      answerVariants: [
+        {
+          name: 'Okay',
+          requirements: {},
+          successCharacteristics: {},
+          loseCharacteristics: {},
+          successProbability: 1,
+        },
+      ],
+    };
+  }
 };
+
+function filterAnswerVariants(
+  quiz: QuizWithOnlyBody,
+  gameStatus: GameStatus
+): QuizWithOnlyBody {
+  const availableAnswers = quiz.answerVariants.filter(({ requirements }) => {
+    for (const key of characteristicKeys) {
+      const range = requirements[key];
+      if (!range || (!range.minValue && !range.maxValue)) {
+        continue;
+      }
+
+      if (
+        (range.maxValue && range.maxValue < gameStatus[key]) ||
+        (range.minValue && range.minValue > gameStatus[key])
+      ) {
+        return false;
+      }
+    }
+    return true;
+  });
+  const copy = { ...quiz };
+  copy.answerVariants = availableAnswers;
+  return copy;
+}
+
+function answerVariantsNotLessThan2({
+  answerVariants,
+}: QuizWithOnlyBody): boolean {
+  return answerVariants.length >= 2;
+}
 
 export function getRandomObj<T>(objects: T[]): T {
   const index = Math.floor(Math.random() * objects.length);

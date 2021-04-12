@@ -1,9 +1,6 @@
-import data from './quizzes.json';
 import { getUser } from './auth';
 import firebase from 'firebase';
 import { storage, firestore as db, auth } from '../firebase';
-
-const dataWithTypes = data as QuizWithComment[];
 
 export interface Range {
   minValue?: number;
@@ -47,7 +44,15 @@ export interface Quiz extends QuizWithOnlyBody {
   imageURL: string;
 }
 
-export const getAllQuizzes = (): Quiz[] => dataWithTypes;
+export const getAllLikedQuizzes = async (): Promise<Quiz[]> => {
+  try {
+    const data = await db.collection('quizzes').where('likes', '>=', 10).get();
+    return data.docs.map(mapperDocsWithId) as Quiz[];
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
+};
 
 export const getQuizzes = async (pageNumber = 1): Promise<Quiz[]> => {
   try {
@@ -56,19 +61,18 @@ export const getQuizzes = async (pageNumber = 1): Promise<Quiz[]> => {
       .orderBy('quizName')
       .limit(10 * pageNumber)
       .get();
-    return first.docs.map(mapper) as Quiz[];
+    return first.docs.map(mapperDocsWithId) as Quiz[];
   } catch (error) {
     console.error(error);
     return [];
   }
-
-  function mapper(
-    doc: firebase.firestore.QueryDocumentSnapshot<firebase.firestore.DocumentData>
-  ) {
-    return { ...doc.data(), id: doc.id };
-  }
 };
 
+function mapperDocsWithId(
+  doc: firebase.firestore.QueryDocumentSnapshot<firebase.firestore.DocumentData>
+) {
+  return { ...doc.data(), id: doc.id };
+}
 export const getQuiz = async (quizID: string): Promise<Quiz | undefined> => {
   const doc = await db.collection('quizzes').doc(quizID).get();
   return doc.data() as Quiz | undefined;
@@ -78,10 +82,6 @@ export interface Comment {
   id: string;
   content: string;
   author: User;
-}
-
-interface QuizWithComment extends Quiz {
-  comments: Comment[];
 }
 
 export const getCommentsOfQuiz = async (quizID: string): Promise<Comment[]> => {
