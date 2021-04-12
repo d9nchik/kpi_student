@@ -6,45 +6,56 @@ import {
   dislikePost,
   isPostLiked,
   Quiz,
+  subscribe,
+  unsubscribe,
 } from '../../utilities/dataStorage';
 import Vote from './Vote';
+
 import './PageWithQuizzes.css';
 
 const PageWithQuizzes: FunctionComponent = () => {
+  const [isUserDataLoaded, setUserDataLoaded] = useState(false);
+  const [pageNumber, setPageNumber] = useState(1);
   const [quizzes, setQuizzes] = useState<Quiz[]>([]);
 
   useEffect(() => {
     if (quizzes.length === 0) {
-      (async () => setQuizzes(await getQuizzes()))();
+      (async () => setQuizzes(await getQuizzes(pageNumber)))();
+    }
+  });
+
+  useEffect(() => {
+    if (!isUserDataLoaded) {
+      subscribe(() => setUserDataLoaded(true));
+      return unsubscribe;
     }
   });
 
   return (
     <div id={'ListProp'}>
       <ul id={'ListQuizzes'}>
-        {quizzes.map(({ likes, id: uid, quizName, commentsCount }) => {
+        {quizzes.map(({ likes, id, quizName, commentsCount }) => {
+          const isLiked = isPostLiked(id);
           return (
-            <li key={JSON.stringify(`${likes} ${uid} ${quizName}`)}>
+            <li key={JSON.stringify(`${likes} ${id} ${quizName} ${isLiked}`)}>
               <h3>{quizName}</h3>
               <Vote
-                isPostLiked={isPostLiked(uid)}
-                onLike={() => likePost(uid)}
-                onDislike={() => dislikePost(uid)}
+                isPostLiked={isLiked}
+                onLike={() => likePost(id)}
+                onDislike={() => dislikePost(id)}
                 likes={likes}
               />
-              <Link to={`/purposes/${uid}`}>{commentsCount} comments</Link>
+              <Link to={`/purposes/${id}`}>{commentsCount} comments</Link>
             </li>
           );
         })}
       </ul>
       <div id={'prevNext'}>
-        {quizzes.length === 10 && (
+        {quizzes.length > 0 && quizzes.length % 10 === 0 && (
           <button
             onClick={async () => {
-              setQuizzes([
-                ...quizzes,
-                ...(await getQuizzes(quizzes[quizzes.length - 1].quizName)),
-              ]);
+              setPageNumber(pageNumber + 1);
+              setQuizzes([...(await getQuizzes(pageNumber))]);
             }}
           >
             More

@@ -3,8 +3,8 @@ import React, { FunctionComponent, useState } from 'react';
 interface IProps {
   likes: number;
   isPostLiked: boolean;
-  onLike: () => boolean;
-  onDislike: () => boolean;
+  onLike: () => Promise<boolean>;
+  onDislike: () => Promise<boolean>;
 }
 
 const Vote: FunctionComponent<IProps> = ({
@@ -20,7 +20,7 @@ const Vote: FunctionComponent<IProps> = ({
       Likes: {ourLikes}
       {!isLiked ? (
         <button
-          onClick={() => {
+          onClick={async () => {
             if (onLike()) {
               setIsLiked(true);
               setLikes(ourLikes + 1);
@@ -31,7 +31,7 @@ const Vote: FunctionComponent<IProps> = ({
         </button>
       ) : (
         <button
-          onClick={() => {
+          onClick={async () => {
             if (onDislike()) {
               setIsLiked(false);
               setLikes(ourLikes - 1);

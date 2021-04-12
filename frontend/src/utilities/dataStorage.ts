@@ -49,23 +49,14 @@ export interface Quiz extends QuizWithOnlyBody {
 
 export const getAllQuizzes = (): Quiz[] => dataWithTypes;
 
-export const getQuizzes = async (startAfter?: string): Promise<Quiz[]> => {
+export const getQuizzes = async (pageNumber = 1): Promise<Quiz[]> => {
   try {
-    if (!startAfter) {
-      const first = await db
-        .collection('quizzes')
-        .orderBy('quizName')
-        .limit(10)
-        .get();
-      return first.docs.map(mapper) as Quiz[];
-    }
-    const nextParts = await db
+    const first = await db
       .collection('quizzes')
       .orderBy('quizName')
-      .startAfter(startAfter)
-      .limit(10)
+      .limit(10 * pageNumber)
       .get();
-    return nextParts.docs.map(mapper) as Quiz[];
+    return first.docs.map(mapper) as Quiz[];
   } catch (error) {
     console.error(error);
     return [];
@@ -197,40 +188,6 @@ export const addComment = async (
 //   return true;
 // };
 
-const likedPost: string[] = [];
-
-export const isPostLiked = (quizID: string): boolean => {
-  return likedPost.includes(quizID);
-};
-
-export const likePost = (quizID: string): boolean => {
-  if (isPostLiked(quizID)) {
-    return false;
-  }
-
-  const quizWithCommentsObj = getQuizWithComment(quizID);
-  if (!quizWithCommentsObj) {
-    return false;
-  }
-  quizWithCommentsObj.likes++;
-  likedPost.push(quizID);
-  return true;
-};
-
-export const dislikePost = (quizID: string): boolean => {
-  // if (!isPostLiked(quizID)) {
-  //   return false;
-  // }
-
-  // const quizWithCommentsObj = getQuizWithComment(quizID);
-  // if (!quizWithCommentsObj) {
-  //   return false;
-  // }
-  // quizWithCommentsObj.likes--;
-  // likedPost.splice(likedPost.indexOf(quizID), 1);
-  return true;
-};
-
 export interface GameStatus {
   gameLevel: number;
   characterName: string;
@@ -340,6 +297,63 @@ auth.onAuthStateChanged(user => {
     });
 });
 
+export const isPostLiked = (quizID: string): boolean => {
+  if (!userData) {
+    return false;
+  }
+
+  return userData.likedPurposes.includes(quizID);
+};
+
+export const likePost = async (quizID: string): Promise<boolean> => {
+  const user = getUser();
+
+  if (!user || isPostLiked(quizID)) {
+    return false;
+  }
+
+  try {
+    await db
+      .collection('quizzes')
+      .doc(quizID)
+      .update({ likes: firebase.firestore.FieldValue.increment(1) });
+    await db
+      .collection('users')
+      .doc(user.uid)
+      .update({
+        likedPurposes: firebase.firestore.FieldValue.arrayUnion(quizID),
+      });
+    return true;
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
+};
+
+export const dislikePost = async (quizID: string): Promise<boolean> => {
+  const user = getUser();
+  if (!user || !isPostLiked(quizID)) {
+    return false;
+  }
+
+  try {
+    await db
+      .collection('quizzes')
+      .doc(quizID)
+      .update({ likes: firebase.firestore.FieldValue.increment(-1) });
+    await db
+      .collection('users')
+      .doc(user.uid)
+      .update({
+        likedPurposes: firebase.firestore.FieldValue.arrayRemove(quizID),
+      });
+    return true;
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
+};
+
 export const getGameObj = async (): Promise<GameStatus | null | undefined> => {
   const user = getUser();
   if (!user) {
@@ -357,10 +371,6 @@ export const getGameObj = async (): Promise<GameStatus | null | undefined> => {
   await initializeUser();
   return null;
 };
-
-function getQuizWithComment(quizID: string) {
-  return dataWithTypes.find(({ id }) => quizID === id);
-}
 
 const getDateOfRegistration = (): Date => {
   if (!userData) {
