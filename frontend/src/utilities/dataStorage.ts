@@ -36,12 +36,15 @@ export interface QuizWithOnlyBody {
   imageURL?: string;
 }
 
-export interface Quiz extends QuizWithOnlyBody {
-  id: string;
+export interface QuizWithoutID extends QuizWithOnlyBody {
   author: User;
   likes: number;
   commentsCount: number;
   imageURL: string;
+}
+
+export interface Quiz extends QuizWithoutID {
+  id: string;
 }
 
 export const getAllLikedQuizzes = async (): Promise<Quiz[]> => {
@@ -78,27 +81,27 @@ export const getQuiz = async (quizID: string): Promise<Quiz | undefined> => {
   return doc.data() as Quiz | undefined;
 };
 
-export interface Comment {
-  id: string;
+export interface CommentWithoutID {
   content: string;
   author: User;
 }
 
-export const getCommentsOfQuiz = async (quizID: string): Promise<Comment[]> => {
-  const documents = await db
+export interface Comment extends CommentWithoutID {
+  id: string;
+}
+
+export const subscribeOnCommentsOfQuiz = (
+  quizID: string,
+  callBackFunction: (comments: Comment[]) => void
+): (() => void) =>
+  db
     .collection('quizzes')
     .doc(quizID)
     .collection('comments')
-    .get();
-  return documents.docs.map(doc => doc.data()) as Comment[];
-};
-
-const ifExistOrUndefined = <T>(value: T | null): T | undefined => {
-  if (value) {
-    return value;
-  }
-  return undefined;
-};
+    .onSnapshot(async doc => {
+      const data = (await doc.docs.map(mapperDocsWithId)) as Comment[];
+      callBackFunction(data);
+    });
 
 export const addQuiz = async (quiz: QuizWithOnlyBody): Promise<boolean> => {
   const user = getUser();
@@ -109,17 +112,24 @@ export const addQuiz = async (quiz: QuizWithOnlyBody): Promise<boolean> => {
 
   const { uid, displayName, photoURL } = user;
 
-  const quizWithBody = {
+  const quizWithBody: QuizWithoutID = {
     ...quiz,
     likes: 0,
     commentsCount: 0,
     author: {
       uid,
-      displayName: ifExistOrUndefined(displayName),
-      photoURL: ifExistOrUndefined(photoURL),
     },
     imageURL: '',
   };
+
+  if (displayName) {
+    quizWithBody.author.displayName = displayName;
+  }
+
+  if (photoURL) {
+    quizWithBody.author.photoURL = photoURL;
+  }
+
   if (quiz.imageURL) {
     quizWithBody.imageURL = quiz.imageURL;
   }
@@ -143,19 +153,24 @@ export const addComment = async (
       .collection('quizzes')
       .doc(quizID)
       .update({ commentsCount: firebase.firestore.FieldValue.increment(1) });
+    const commentWithoutID: CommentWithoutID = {
+      content,
+      author: { uid },
+    };
+
+    if (photoURL) {
+      commentWithoutID.author.photoURL = photoURL;
+    }
+
+    if (displayName) {
+      commentWithoutID.author.displayName = displayName;
+    }
 
     await db
       .collection('quizzes')
       .doc(quizID)
       .collection('comments')
-      .add({
-        content,
-        author: {
-          uid,
-          photoURL: ifExistOrUndefined(photoURL),
-          displayName: ifExistOrUndefined(displayName),
-        },
-      });
+      .add(commentWithoutID);
     return true;
   } catch (error) {
     console.error(error);

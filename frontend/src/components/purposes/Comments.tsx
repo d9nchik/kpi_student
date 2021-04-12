@@ -1,6 +1,6 @@
 import React, { FunctionComponent, useState, useEffect } from 'react';
 import {
-  getCommentsOfQuiz,
+  subscribeOnCommentsOfQuiz,
   addComment,
   Comment as CommentType,
 } from '../../utilities/dataStorage';
@@ -17,17 +17,12 @@ interface IProps {
 const Comments: FunctionComponent<IProps> = ({ id, commentsCount }: IProps) => {
   const [comments, setComments] = useState<CommentType[] | null>(null);
   const [count, setCount] = useState(commentsCount);
-  const comment = async (content: string) => {
-    await addComment(id, content);
+  const comment = (content: string) => {
+    addComment(id, content);
     setCount(count + 1);
-    setComments(await getCommentsOfQuiz(id));
   };
 
-  useEffect(() => {
-    if (!comments) {
-      (async () => setComments(await getCommentsOfQuiz(id)))();
-    }
-  });
+  useEffect(() => subscribeOnCommentsOfQuiz(id, setComments), [id]);
 
   if (!comments) {
     return <Loading />;
