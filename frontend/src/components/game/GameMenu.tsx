@@ -3,7 +3,7 @@ import { GameStatus } from '../../utilities/dataStorage';
 import { getMenus } from '../../utilities/tools';
 
 import MenuItem from './MenuItem';
-
+import './GameMenu.css';
 interface IProps {
   menuName:
     | ''
@@ -29,12 +29,21 @@ const GameMenu: FunctionComponent<IProps> = ({
   const menus = getMenus();
   const currentMenu = menus[menuName];
   return (
-    <div>
-      <h2>{menuName}</h2>
-      <button onClick={closeMenu}>Close menu</button>
-      {currentMenu.map(item => (
-        <MenuItem item={item} gameObj={gameStatus} key={JSON.stringify(item)} />
-      ))}
+    <div id={'menuForTask'}>
+      <div id={'headerMenu'}>
+        <h2>{menuName}</h2>
+        <button onClick={closeMenu}>Close menu</button>
+      </div>
+
+      <div id={'tasks'}>
+        {currentMenu.map(item => (
+          <MenuItem
+            item={item}
+            gameObj={gameStatus}
+            key={JSON.stringify(item)}
+          />
+        ))}
+      </div>
     </div>
   );
 };
