@@ -45,7 +45,7 @@ const PageWithQuizzes: FunctionComponent = () => {
                 onDislike={() => dislikePost(id)}
                 likes={likes}
               />
-              <Link to={`/purposes/${id}`}>{commentsCount} comments</Link>
+              <Link id={'comments'} to={`/purposes/${id}`}></Link>
             </li>
           );
         })}
