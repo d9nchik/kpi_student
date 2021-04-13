@@ -5,7 +5,7 @@ import {
 } from '../../utilities/dataStorage';
 
 import AddCharacteristic from './AddCharacteristics';
-
+import './AnswerVariant.css';
 interface IProps extends Answer {
   setAnswer: (answer: Answer) => void;
 }
@@ -41,11 +41,12 @@ const AnswerVariant: FunctionComponent<IProps> = ({
     setAnswer(answer);
   };
   return (
-    <div>
+    <div id={'ansDiv'}>
       <h3>Variant</h3>
       <label>
         Answer name
         <input
+          id={'inputInfo'}
           type="text"
           value={privateName}
           onChange={e => {
@@ -65,6 +66,7 @@ const AnswerVariant: FunctionComponent<IProps> = ({
       <label>
         Probability of success
         <input
+          id={'inputInfo'}
           type="number"
           value={privateSuccessProbability}
           onChange={e => {
