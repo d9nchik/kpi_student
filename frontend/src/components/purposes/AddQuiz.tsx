@@ -5,7 +5,7 @@ import {
   uploadImage,
 } from '../../utilities/dataStorage';
 import { useHistory } from 'react-router-dom';
-
+import './AddQuiz.css';
 import AnswerVariants from './AnswerVariants';
 
 const AddQuiz: FunctionComponent = () => {
@@ -16,6 +16,7 @@ const AddQuiz: FunctionComponent = () => {
 
   return (
     <form
+      id={'addQuizzes'}
       onSubmit={async e => {
         let newLink = '';
         e.preventDefault();
@@ -34,15 +35,17 @@ const AddQuiz: FunctionComponent = () => {
       <label>
         Quiz Name
         <input
+          id={'nameQuiz'}
           type="text"
           value={quizName}
           onChange={e => setQuizName(e.target.value)}
           required
         />
       </label>
-      <label>
+      <label id={'importImg'}>
         Image
         <input
+          id={'inputImport'}
           type="file"
           accept=".jpg, .jpeg, .png"
           ref={imageFile}
@@ -54,7 +57,7 @@ const AddQuiz: FunctionComponent = () => {
           answers = answ;
         }}
       />
-      <input type="submit" value="Add quiz" />
+      <input id={'addQuizButton'} type="submit" value="Add quiz" />
     </form>
   );
 };
