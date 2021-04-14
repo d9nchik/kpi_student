@@ -43,7 +43,11 @@ const GameHeader: FunctionComponent<GameStatus> = ({
           <img
             src={HealthCare}
             alt="health care"
-            style={{ background: 'brown', width: '45px', borderRadius: '5px' }}
+            style={{
+              background: '#e71d36',
+              width: '45px',
+              borderRadius: '5px',
+            }}
           />
           <progress
             max={100 * level}
@@ -61,7 +65,7 @@ const GameHeader: FunctionComponent<GameStatus> = ({
             src={FastFood}
             alt="fast food"
             style={{
-              background: 'brown',
+              background: '#ff9f1c',
               width: '45px',
               borderRadius: '5px',
             }}
@@ -81,7 +85,11 @@ const GameHeader: FunctionComponent<GameStatus> = ({
           <img
             src={Thought}
             alt="thought"
-            style={{ background: 'brown', width: '45px', borderRadius: '5px' }}
+            style={{
+              background: '#007f5f',
+              width: '45px',
+              borderRadius: '5px',
+            }}
           />
           <progress
             max={100 * level}
@@ -104,7 +112,11 @@ const GameHeader: FunctionComponent<GameStatus> = ({
           <img
             src={Money}
             alt="money"
-            style={{ background: 'brown', width: '45px', borderRadius: '5px' }}
+            style={{
+              background: '#55a630',
+              width: '45px',
+              borderRadius: '5px',
+            }}
           />
           <span>{money}₴</span>
         </div>
@@ -118,7 +130,11 @@ const GameHeader: FunctionComponent<GameStatus> = ({
           <img
             src={Shelving}
             alt="shelving"
-            style={{ background: 'brown', width: '45px', borderRadius: '5px' }}
+            style={{
+              background: '#55a630',
+              width: '45px',
+              borderRadius: '5px',
+            }}
           />
           <span>{Math.floor(educationLevel / level)}%</span>
         </div>
@@ -132,7 +148,11 @@ const GameHeader: FunctionComponent<GameStatus> = ({
           <img
             src={Household}
             alt="household"
-            style={{ background: 'brown', width: '45px', borderRadius: '5px' }}
+            style={{
+              background: '#55a630',
+              width: '45px',
+              borderRadius: '5px',
+            }}
           />
           <span>{Math.floor(careLevel / level)}%</span>
         </div>
