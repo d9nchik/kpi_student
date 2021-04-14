@@ -176,7 +176,56 @@
       }
     }
   ],
-  "Библиотека": [],
+  "Библиотека": [
+    {
+      "name": "Прийти позаниматься",
+      "characteristics": {
+        "educationLevel": "+30%",
+        "mentalStrength": "-10%",
+        "satietyLevel": "-20%"
+      }
+    },
+    {
+      "name": "Взять почитать книги",
+      "characteristics": {
+        "educationLevel": "+30%",
+        "mentalStrength": "-5%",
+        "satietyLevel": "-10%"
+      }
+    },
+    {
+      "name": "Посидеть на лекции в Белке",
+      "characteristics": {
+        "educationLevel": "+10%",
+        "mentalStrength": "-10%",
+        "satietyLevel": "-20%"
+      }
+    },
+    {
+      "name": "Переночевать с книгами",
+      "characteristics": {
+        "educationLevel": "+70%",
+        "mentalStrength": "-40%",
+        "satietyLevel": "-60%"
+      }
+    },
+    {
+      "name": "Обговорить проблемы с лабораторной с старшекурсниками",
+      "characteristics": {
+        "educationLevel": "+10%",
+        "mentalStrength": "-5%",
+        "satietyLevel": "-5%"
+      }
+    },
+    {
+      "name": "Обложиться книгами и начать делать рассчетку",
+      "characteristics": {
+        "educationLevel": "+30%",
+        "mentalStrength": "-10%",
+        "satietyLevel": "-10%"
+      }
+    }
+  ],
   "Магазин": [
     {
       "name": "Пойти купить продукты для просмотра фильма",
