@@ -23,6 +23,7 @@
   line-height: 29px;
   color: white;
   text-transform: uppercase;
+  cursor: pointer;
 }
 
 #rightMenu {
@@ -40,6 +41,7 @@
   margin-right: 10px;
   border-radius: 20px;
   margin-top: 10px;
+  cursor: pointer;
 }
 
 #rightMenu button:hover {

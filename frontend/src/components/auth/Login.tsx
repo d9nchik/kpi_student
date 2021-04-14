@@ -7,8 +7,8 @@ import {
   loginWithGoogle,
 } from '../../utilities/auth';
 
-import GitHub from './GitHub.png';
-import Google from './google.png';
+import GitHub from './img/GitHub.png';
+import Google from './img/google.png';
 import './Login.css';
 
 const Login: FunctionComponent = () => {

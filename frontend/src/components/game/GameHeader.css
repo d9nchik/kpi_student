@@ -22,6 +22,7 @@ header #avatar {
   object-fit: cover;
   height: 120px;
   display: flex;
+  cursor: pointer;
 }
 .span-col-4 progress {
   width: 98vw;
