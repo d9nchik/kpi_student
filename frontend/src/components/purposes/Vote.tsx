@@ -1,5 +1,10 @@
 import React, { FunctionComponent, useState } from 'react';
 
+import Like from './img/like.png';
+import Dislike from './img/dislike.png';
+
+import './Votes.css';
+
 interface IProps {
   likes: number;
   isPostLiked: boolean;
@@ -16,7 +21,7 @@ const Vote: FunctionComponent<IProps> = ({
   const [ourLikes, setLikes] = useState(likes);
   const [isLiked, setIsLiked] = useState(isPostLiked);
   return (
-    <div>
+    <div className="votes">
       Likes: {ourLikes}
       {!isLiked ? (
         <button
@@ -27,7 +32,7 @@ const Vote: FunctionComponent<IProps> = ({
             }
           }}
         >
-          Like
+          <img src={Like} alt="like" />
         </button>
       ) : (
         <button
@@ -38,7 +43,7 @@ const Vote: FunctionComponent<IProps> = ({
             }
           }}
         >
-          Dislike
+          <img src={Dislike} alt="dislike" />
         </button>
       )}
     </div>
