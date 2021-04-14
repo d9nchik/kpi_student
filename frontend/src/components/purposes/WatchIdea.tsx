@@ -14,6 +14,8 @@ import Comments from './Comments';
 import WatchCharacteristics from './WatchCharacteristics';
 import Loading from '../Loading';
 
+import './WatchIdea.css';
+
 interface ParamTypes {
   id: string;
 }
@@ -48,7 +50,7 @@ const WatchIdea: FunctionComponent = () => {
   } = quiz;
 
   return (
-    <div>
+    <div className="watch-idea">
       <h2>{quizName}</h2>
       <img alt={quizName} src={imageURL || defaultImage} />
       <ul>
