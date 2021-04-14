@@ -4,7 +4,6 @@ import { getMenus } from '../../utilities/tools';
 import CloseMenu from './images/closeMenu.png';
 import MenuItem from './MenuItem';
 import './GameMenu.css';
-import GitHub from '../auth/GitHub.png';
 interface IProps {
   menuName:
     | ''
