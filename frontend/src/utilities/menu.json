@@ -131,7 +131,51 @@
       }
     }
   ],
-  "Отдых": [],
+  "Отдых": [
+    {
+      "name": "Пойти поспать",
+      "characteristics": {
+        "mentalStrength": "+30%",
+        "careLevel": "+40%"
+      }
+    },
+    {
+      "name": "Пойти в душ",
+      "characteristics": {
+        "mentalStrength": "+10%",
+        "careLevel": "+20%"
+      }
+    },
+    {
+      "name": "Посмотреть фильм",
+      "characteristics": {
+        "mentalStrength": "+5%",
+        "careLevel": "+10%"
+      }
+    },
+    {
+      "name": "Пойти прогуляться в парке КПИ",
+      "characteristics": {
+        "mentalStrength": "+25%",
+        "careLevel": "-10%"
+      }
+    },
+    {
+      "name": "Пойти перекусить",
+      "characteristics": {
+        "mentalStrength": "+10%",
+        "satietyLevel": "+40%"
+      }
+    },
+    {
+      "name": "Залипнуть в ТикТоке",
+      "characteristics": {
+        "educationLevel": "-10%",
+        "mentalStrength": "+10%",
+        "satietyLevel": "+40%"
+      }
+    }
+  ],
   "Библиотека": [],
   "Магазин": [
     {
