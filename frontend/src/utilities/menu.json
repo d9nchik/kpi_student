@@ -47,5 +47,53 @@
   "Работа": [],
   "Отдых": [],
   "Библиотека": [],
-  "Магазин": []
+  "Магазин": [
+    {
+      "name": "Пойти купить продукты для просмотра фильма",
+      "characteristics": {
+        "money": -150,
+        "satietyLevel": "+15%"
+      }
+    },
+    {
+      "name": "Пойти бутылочку для релакса",
+      "characteristics": {
+        "money": -30,
+        "satietyLevel": "+3%",
+        "mentalStrength": "+30%"
+      }
+    },
+    {
+      "name": "Пойти купить 5 пачек доширака",
+      "characteristics": {
+        "money": -50,
+        "satietyLevel": "+70%",
+        "mentalStrength": "-30%"
+      }
+    },
+    {
+      "name": "Пойти купить моющие средства для уборки",
+      "characteristics": {
+        "money": -200,
+        "careLevel": "+70%",
+        "mentalStrength": "-10%"
+      }
+    },
+    {
+      "name": "Пойти купить все по уходу за собой",
+      "characteristics": {
+        "money": -300,
+        "careLevel": "+90%",
+        "mentalStrength": "-5%"
+      }
+    },
+    {
+      "name": "Пойти купить все для пати в общаге",
+      "characteristics": {
+        "money": -500,
+        "careLevel": "+5%",
+        "mentalStrength": "+50%"
+      }
+    }
+  ]
 }
