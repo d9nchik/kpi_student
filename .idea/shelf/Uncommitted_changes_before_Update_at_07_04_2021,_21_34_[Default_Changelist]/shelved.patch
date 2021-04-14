@@ -1,0 +1,188 @@
+Index: frontend/src/components/game/GameBode.css
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>.grid2 {\n  display: grid;\n  grid-template-columns: repeat(2, 1fr);\n  grid-gap: 10px;\n  position: fixed;\n  bottom: 0;\n  width: 100%;\n  background: #333533;\n  padding-bottom: 15px;\n  padding-top: 15px;\n  justify-items: center;\n}\n.grid2 button {\n  background: #ff8500;\n  border-radius: 20px;\n  height: 60px;\n  width: 600px;\n  font-family: Montserrat, serif;\n  font-style: normal;\n  font-weight: 500;\n  font-size: 24px;\n  line-height: 29px;\n  color: white;\n  text-transform: uppercase;\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- frontend/src/components/game/GameBode.css	(revision 66837b3f5acc2b7f48e5bd518883b8931b9b660b)
++++ frontend/src/components/game/GameBode.css	(date 1617799999794)
+@@ -1,25 +1,94 @@
+ .grid2 {
+-  display: grid;
+-  grid-template-columns: repeat(2, 1fr);
+-  grid-gap: 10px;
+-  position: fixed;
+-  bottom: 0;
+-  width: 100%;
+-  background: #333533;
+-  padding-bottom: 15px;
+-  padding-top: 15px;
+-  justify-items: center;
++    display: grid;
++    grid-template-columns: repeat(2, 1fr);
++    grid-gap: 10px;
++    position: fixed;
++    bottom: 0;
++    width: 100%;
++    background: #333533;
++    padding-bottom: 15px;
++    padding-top: 15px;
++    justify-items: center;
+ }
++
+ .grid2 button {
+-  background: #ff8500;
+-  border-radius: 20px;
+-  height: 60px;
+-  width: 600px;
+-  font-family: Montserrat, serif;
+-  font-style: normal;
+-  font-weight: 500;
+-  font-size: 24px;
+-  line-height: 29px;
+-  color: white;
+-  text-transform: uppercase;
++    background: #ff8500;
++    border-radius: 20px;
++    height: 60px;
++    width: 600px;
++    font-family: Montserrat, serif;
++    font-style: normal;
++    font-weight: 500;
++    font-size: 24px;
++    line-height: 29px;
++    color: white;
++    text-transform: uppercase;
+ }
++
++#rightMenu {
++    display: flex;
++    flex-direction: column;
++    position: fixed;
++    top: 35%;
++    right: 0;
++}
++
++#rightMenu button {
++    width: 90px;
++    height: 90px;
++    background-color: transparent;
++    margin-right: 10px;
++    border-radius: 20px;
++    margin-top: 10px;
++}
++
++#rightMenu button:hover {
++    background: #ffffff;
++}
++
++#root h1 {
++    display: none;
++}
++
++#shop {
++    width: 40px;
++    height: 40px;
++}
++
++#books {
++    width: 40px;
++    height: 40px;
++}
++
++#info {
++    width: 40px;
++    height: 40px;
++}
++
++#nameAndTime {
++    position: fixed;
++    width: 170px;
++    height: 80px;
++    display: flex;
++    flex-direction: column;
++    align-items: center;
++    margin-top: 10px;
++    margin-right: 10px;
++    right: 0;
++    border-radius: 10px;
++    background-color: #333533;
++    font-family: Montserrat,serif;
++    font-style: normal;
++    font-weight: 500;
++    font-size: 20px;
++    line-height: 15px;
++    color: black;
++}
++#nameAndTime div{
++    background-color: white;
++    padding-top: 10px;
++    margin-top: 3%;
++    height: 20px;
++    width: 150px;
++    border-radius: 5px;
++}
+\ No newline at end of file
+Index: frontend/src/components/game/GameBody.tsx
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import React, { FunctionComponent, useState } from 'react';\nimport { GameStatus, getDayInUniversity } from '../../utilities/dataStorage';\nimport { useHistory } from 'react-router-dom';\n\nimport GameMenu from './GameMenu';\nimport './GameBode.css';\ninterface IProps {\n  gameStatus: GameStatus;\n}\n\nconst GameBody: FunctionComponent<IProps> = ({ gameStatus }: IProps) => {\n  const daysInUniversity = getDayInUniversity();\n  const history = useHistory();\n  const [openedMenuName, setOpenedMenuName] = useState<\n    '' | 'Библиотека' | 'Магазин' | 'Универ' | 'Работа' | 'Общага' | 'Отдых'\n  >('');\n\n  return (\n    <div>\n      <div>\n        <span>Имя:</span>\n        {gameStatus.characterName}\n      </div>\n      <div>\n        <span>В универе:</span>\n        {daysInUniversity} дня\n      </div>\n\n      <button onClick={() => setOpenedMenuName('Библиотека')}>\n        Библиотека\n      </button>\n      <button onClick={() => setOpenedMenuName('Магазин')}>Магазин</button>\n      <button onClick={() => history.push('/purposes')}>Quizzes</button>\n\n      <GameMenu\n        menuName={openedMenuName}\n        gameStatus={gameStatus}\n        closeMenu={() => setOpenedMenuName('')}\n      />\n      <div className={'grid2'}>\n        <button onClick={() => setOpenedMenuName('Универ')}>Универ</button>\n        <button onClick={() => setOpenedMenuName('Работа')}>Работа</button>\n        <button onClick={() => setOpenedMenuName('Общага')}>Общага</button>\n        <button onClick={() => setOpenedMenuName('Отдых')}>Отдых</button>\n      </div>\n    </div>\n  );\n};\n\nexport default GameBody;\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- frontend/src/components/game/GameBody.tsx	(revision 66837b3f5acc2b7f48e5bd518883b8931b9b660b)
++++ frontend/src/components/game/GameBody.tsx	(date 1617799040724)
+@@ -4,6 +4,10 @@
+ 
+ import GameMenu from './GameMenu';
+ import './GameBode.css';
++import Shop from './images/shop.png';
++import Books from './images/books.png';
++import Info from './images/information.png';
++
+ interface IProps {
+   gameStatus: GameStatus;
+ }
+@@ -17,21 +21,27 @@
+ 
+   return (
+     <div>
+-      <div>
+-        <span>Имя:</span>
+-        {gameStatus.characterName}
+-      </div>
+-      <div>
+-        <span>В универе:</span>
+-        {daysInUniversity} дня
++      <div id={'nameAndTime'}>
++        <div>
++          <span>Имя:</span>
++          {gameStatus.characterName}
++        </div>
++        <div>
++          <span>В универе:</span>
++          {daysInUniversity} дня
++        </div>
+       </div>
+-
+-      <button onClick={() => setOpenedMenuName('Библиотека')}>
+-        Библиотека
+-      </button>
+-      <button onClick={() => setOpenedMenuName('Магазин')}>Магазин</button>
+-      <button onClick={() => history.push('/purposes')}>Quizzes</button>
+-
++      <div id={'rightMenu'}>
++        <button onClick={() => setOpenedMenuName('Библиотека')}>
++          <img id={'books'} src={Books} alt="Библиотека" />
++        </button>
++        <button onClick={() => setOpenedMenuName('Магазин')}>
++          <img id={'shop'} src={Shop} alt="Магазин" />
++        </button>
++        <button onClick={() => history.push('/purposes')}>
++          <img id={'info'} src={Info} alt="Quizzes" />
++        </button>
++      </div>
+       <GameMenu
+         menuName={openedMenuName}
+         gameStatus={gameStatus}

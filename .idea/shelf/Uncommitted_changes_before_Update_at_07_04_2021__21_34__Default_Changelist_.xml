@@ -1,0 +1,19 @@
+<changelist name="Uncommitted_changes_before_Update_at_07_04_2021,_21_34_[Default_Changelist]" date="1617820502562" recycled="true" deleted="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_07_04_2021,_21_34_[Default_Changelist]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Update at 07.04.2021, 21:34 [Default Changelist]" />
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="frontend/src/components/game/images/books.png" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_07_04_2021,_21_34_[Default_Changelist]/books.png" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="frontend/src/components/game/images/information.png" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_07_04_2021,_21_34_[Default_Changelist]/information.png" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="frontend/src/components/game/images/shop.png" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_07_04_2021,_21_34_[Default_Changelist]/shop.png" />
+  </binary>
+</changelist>

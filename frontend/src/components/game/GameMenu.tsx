@@ -1,9 +1,10 @@
 import React, { FunctionComponent } from 'react';
 import { GameStatus } from '../../utilities/dataStorage';
 import { getMenus } from '../../utilities/tools';
-
+import CloseMenu from './images/closeMenu.png';
 import MenuItem from './MenuItem';
 import './GameMenu.css';
+import GitHub from '../auth/GitHub.png';
 interface IProps {
   menuName:
     | ''
@@ -32,7 +33,9 @@ const GameMenu: FunctionComponent<IProps> = ({
     <div id={'menuForTask'}>
       <div id={'headerMenu'}>
         <h2>{menuName}</h2>
-        <button onClick={closeMenu}>Close menu</button>
+        <button onClick={closeMenu}>
+          <img src={CloseMenu} alt="Close" />
+        </button>
       </div>
 
       <div id={'tasks'}>

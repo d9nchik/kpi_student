@@ -9,6 +9,7 @@ import Thought from './images/thought.png';
 import Shelving from './images/shelving.png';
 import Household from './images/household.png';
 import { GameStatus } from '../../utilities/dataStorage';
+import './MenuItem.css';
 
 import './MenuItem.css';
 
@@ -31,7 +32,7 @@ const MenuItem: FunctionComponent<IProps> = ({
   } = characteristics;
   return (
     <div
-      className="menuItem"
+      id={'taskN'}
       onClick={() => applyMenuCharacteristic(characteristics, gameObj)}
     >
       <h3>{name}</h3>

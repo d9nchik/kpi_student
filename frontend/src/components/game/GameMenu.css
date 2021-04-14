@@ -2,7 +2,27 @@
   display: flex;
   flex-direction: row;
 }
+#headerMenu button {
+  margin-left: 350px;
+  margin-top: auto;
+  margin-bottom: auto;
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+#headerMenu button img {
+  height: 30px;
+  width: 30px;
+}
 #menuForTask {
+  font-family: Montserrat, serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 15px;
+  letter-spacing: 0em;
   margin-top: 10px;
   display: flex;
   flex-direction: column;
@@ -15,6 +35,7 @@
   padding-bottom: 20px;
   margin-left: auto;
   margin-right: auto;
+  color: white;
 }
 #tasks {
   width: 500px;

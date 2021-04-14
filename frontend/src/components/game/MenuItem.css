@@ -1,11 +1,3 @@
-.menuItem {
-  color: white;
-  display: flex;
-  justify-content: space-between;
-  width: 90%;
-}
-
-.menuItem h3,
-.menuItem img {
-  cursor: pointer;
+div#taskN img {
+  border-radius: 5px;
 }
