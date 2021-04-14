@@ -17,7 +17,6 @@
   margin-right: auto;
 }
 #tasks {
-  overflow: scroll;
   width: 500px;
   margin-left: 30px;
 }
