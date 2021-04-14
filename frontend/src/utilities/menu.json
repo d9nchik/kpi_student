@@ -87,7 +87,50 @@
       }
     }
   ],
-  "Работа": [],
+  "Работа": [
+    {
+      "name": "Пойти работать дворником",
+      "characteristics": {
+        "money": 3000,
+        "mentalStrength": "-30%"
+      }
+    },
+    {
+      "name": "Пойти работать в колл центр",
+      "characteristics": {
+        "money": 7000,
+        "mentalStrength": "-50%"
+      }
+    },
+    {
+      "name": "Пойти летом на подработку в универ",
+      "characteristics": {
+        "money": 2000,
+        "mentalStrength": "-20%"
+      }
+    },
+    {
+      "name": "Пойти работать программистом",
+      "characteristics": {
+        "money": 15000,
+        "mentalStrength": "-80%"
+      }
+    },
+    {
+      "name": "Сделать пару задач на Вертолетике",
+      "characteristics": {
+        "money": 500,
+        "mentalStrength": "-5%"
+      }
+    },
+    {
+      "name": "Пойти на миттинг",
+      "characteristics": {
+        "money": 500,
+        "mentalStrength": "-10%"
+      }
+    }
+  ],
   "Отдых": [],
   "Библиотека": [],
   "Магазин": [
