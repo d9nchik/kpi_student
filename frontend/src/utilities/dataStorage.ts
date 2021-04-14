@@ -1,6 +1,5 @@
 import { getUser } from './auth';
-import firebase from 'firebase';
-import { storage, firestore as db, auth } from '../firebase';
+import firebase, { storage, firestore as db, auth } from '../firebase';
 
 export interface Range {
   minValue?: number;
