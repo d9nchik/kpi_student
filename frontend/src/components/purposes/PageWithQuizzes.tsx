@@ -39,7 +39,10 @@ const PageWithQuizzes: FunctionComponent = () => {
         {quizzes.map(({ likes, id, quizName, commentsCount }) => {
           const isLiked = isPostLiked(id);
           return (
-            <li key={JSON.stringify(`${likes} ${id} ${quizName} ${isLiked}`)}>
+            <li
+              key={JSON.stringify(`${likes} ${id} ${quizName} ${isLiked}`)}
+              className="quizPreview"
+            >
               <h3>{quizName}</h3>
               <Vote
                 isPostLiked={isLiked}
@@ -48,6 +51,7 @@ const PageWithQuizzes: FunctionComponent = () => {
                 likes={likes}
               />
               <Link className={'comments'} to={`/purposes/${id}`}>
+                {commentsCount}
                 <img src={Comment} alt="comment" />
               </Link>
             </li>

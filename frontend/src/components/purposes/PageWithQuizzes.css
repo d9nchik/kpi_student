@@ -62,5 +62,11 @@
 }
 
 .comments img {
-  width: 25px;
+  height: 25px;
+}
+
+.quizPreview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

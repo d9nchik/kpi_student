@@ -24,27 +24,27 @@ const Vote: FunctionComponent<IProps> = ({
     <div className="votes">
       Likes: {ourLikes}
       {!isLiked ? (
-        <button
+        <img
           onClick={async () => {
             if (onLike()) {
               setIsLiked(true);
               setLikes(ourLikes + 1);
             }
           }}
-        >
-          <img src={Like} alt="like" />
-        </button>
+          src={Dislike}
+          alt="like"
+        />
       ) : (
-        <button
+        <img
           onClick={async () => {
             if (onDislike()) {
               setIsLiked(false);
               setLikes(ourLikes - 1);
             }
           }}
-        >
-          <img src={Dislike} alt="dislike" />
-        </button>
+          src={Like}
+          alt="dislike"
+        />
       )}
     </div>
   );
