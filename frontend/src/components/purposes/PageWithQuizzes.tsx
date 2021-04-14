@@ -11,6 +11,8 @@ import {
 } from '../../utilities/dataStorage';
 import Vote from './Vote';
 
+import Comment from './img/comments.png';
+
 import './PageWithQuizzes.css';
 
 const PageWithQuizzes: FunctionComponent = () => {
@@ -45,7 +47,9 @@ const PageWithQuizzes: FunctionComponent = () => {
                 onDislike={() => dislikePost(id)}
                 likes={likes}
               />
-              <Link id={'comments'} to={`/purposes/${id}`}></Link>
+              <Link className={'comments'} to={`/purposes/${id}`}>
+                <img src={Comment} alt="comment" />
+              </Link>
             </li>
           );
         })}
