@@ -145,11 +145,6 @@ export const getQuizWithSpecifiedRequirements = async (
   return (await answer.json()) as QuizWithOnlyBody;
 };
 
-export function getRandomObj<T>(objects: T[]): T {
-  const index = Math.floor(Math.random() * objects.length);
-  return objects[index];
-}
-
 export const applyQuizVariantItem = (
   successProbability: number,
   successCharacteristics: CharacteristicRange,
