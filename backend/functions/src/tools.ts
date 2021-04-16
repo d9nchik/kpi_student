@@ -82,7 +82,7 @@ export const getAllLikedQuizzes = async (): Promise<Quiz[]> => {
     const data = await db.collection('quizzes').where('likes', '>=', 10).get();
     return data.docs.map(mapperDocsWithId);
   } catch (error) {
-    console.error(error);
+    functions.logger.error(error);
     return [];
   }
 };
@@ -105,7 +105,7 @@ export const getQuizWithSpecifiedRequirements = async (
 
     return chosenObj;
   } catch (error) {
-    console.error(error);
+    functions.logger.error(error);
     return {
       quizName: 'Oops, no Quiz!',
       answerVariants: [
