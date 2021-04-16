@@ -47,12 +47,12 @@ export interface MenuItem {
 }
 
 interface Categories {
-  Общага: MenuItem[];
-  Универ: MenuItem[];
-  Работа: MenuItem[];
-  Отдых: MenuItem[];
-  Библиотека: MenuItem[];
-  Магазин: MenuItem[];
+  hostel: MenuItem[];
+  university: MenuItem[];
+  work: MenuItem[];
+  relax: MenuItem[];
+  library: MenuItem[];
+  shop: MenuItem[];
 }
 
 export function getMenus(): Categories {

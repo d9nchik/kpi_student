@@ -19,7 +19,7 @@ const GameBody: FunctionComponent<IProps> = ({ gameStatus }: IProps) => {
   const daysInUniversity = getDayInUniversity();
   const history = useHistory();
   const [openedMenuName, setOpenedMenuName] = useState<
-    '' | 'Библиотека' | 'Магазин' | 'Универ' | 'Работа' | 'Общага' | 'Отдых'
+    '' | 'library' | 'shop' | 'university' | 'work' | 'hostel' | 'relax'
   >('');
 
   return (
@@ -35,10 +35,10 @@ const GameBody: FunctionComponent<IProps> = ({ gameStatus }: IProps) => {
         </div>
       </div>
       <div id={'rightMenu'}>
-        <button onClick={() => setOpenedMenuName('Библиотека')}>
+        <button onClick={() => setOpenedMenuName('library')}>
           <img id={'books'} src={Books} alt="Библиотека" />
         </button>
-        <button onClick={() => setOpenedMenuName('Магазин')}>
+        <button onClick={() => setOpenedMenuName('shop')}>
           <img id={'shop'} src={Shop} alt="Магазин" />
         </button>
         <button onClick={() => history.push('/purposes')}>
@@ -51,10 +51,10 @@ const GameBody: FunctionComponent<IProps> = ({ gameStatus }: IProps) => {
         closeMenu={() => setOpenedMenuName('')}
       />
       <div className={'grid2'}>
-        <button onClick={() => setOpenedMenuName('Универ')}>Универ</button>
-        <button onClick={() => setOpenedMenuName('Работа')}>Работа</button>
-        <button onClick={() => setOpenedMenuName('Общага')}>Общага</button>
-        <button onClick={() => setOpenedMenuName('Отдых')}>Отдых</button>
+        <button onClick={() => setOpenedMenuName('university')}>Универ</button>
+        <button onClick={() => setOpenedMenuName('work')}>Работа</button>
+        <button onClick={() => setOpenedMenuName('hostel')}>Общага</button>
+        <button onClick={() => setOpenedMenuName('relax')}>Отдых</button>
       </div>
     </div>
   );

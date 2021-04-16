@@ -7,15 +7,24 @@ import './GameMenu.css';
 interface IProps {
   menuName:
     | ''
-    | 'Библиотека'
-    | 'Магазин'
-    | 'Универ'
-    | 'Работа'
-    | 'Общага'
-    | 'Отдых';
+    | 'library'
+    | 'shop'
+    | 'university'
+    | 'work'
+    | 'hostel'
+    | 'relax';
   closeMenu: () => void;
   gameStatus: GameStatus;
 }
+
+const translationOfMenuNames = {
+  library: 'Библиотека',
+  shop: 'Магазин',
+  university: 'Универ',
+  work: 'Работа',
+  hostel: 'Общага',
+  relax: 'Отдых',
+};
 
 const GameMenu: FunctionComponent<IProps> = ({
   menuName,
@@ -31,7 +40,7 @@ const GameMenu: FunctionComponent<IProps> = ({
   return (
     <div id={'menuForTask'}>
       <div id={'headerMenu'}>
-        <h2>{menuName}</h2>
+        <h2>{translationOfMenuNames[menuName]}</h2>
         <button onClick={closeMenu}>
           <img src={CloseMenu} alt="Close" />
         </button>
