@@ -46,16 +46,6 @@ export interface Quiz extends QuizWithoutID {
   id: string;
 }
 
-export const getAllLikedQuizzes = async (): Promise<Quiz[]> => {
-  try {
-    const data = await db.collection('quizzes').where('likes', '>=', 10).get();
-    return data.docs.map(mapperDocsWithId) as Quiz[];
-  } catch (error) {
-    console.error(error);
-    return [];
-  }
-};
-
 export const getQuizzes = async (pageNumber = 1): Promise<Quiz[]> => {
   try {
     const first = await db
