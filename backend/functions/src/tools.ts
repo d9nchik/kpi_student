@@ -77,6 +77,23 @@ export const characteristicKeys: (
   'careLevel',
 ];
 
+interface UserStatus {
+  displayName?: string;
+  email: string;
+  photoURL?: string;
+  registrationDate: admin.firestore.Timestamp;
+  gameStatus: GameStatus | null;
+  likedPurposes: string[];
+}
+
+export const getUserObj = async (uid: string): Promise<UserStatus | null> => {
+  const userObj = await db.collection('users').doc(uid).get();
+  if (!userObj.exists) {
+    return null;
+  }
+  return userObj.data() as UserStatus;
+};
+
 export const getAllLikedQuizzes = async (): Promise<Quiz[]> => {
   try {
     const data = await db.collection('quizzes').where('likes', '>=', 10).get();

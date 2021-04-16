@@ -6,6 +6,7 @@ import {
   getDateOfRegistration,
 } from './dataStorage';
 import quizzes from './menu.json';
+import { getUser } from './auth';
 
 const quizzesWithType = quizzes as Categories;
 
@@ -131,15 +132,18 @@ function parseMenuCharacteristic(
   return numberPart * level;
 }
 
-export const getQuizWithSpecifiedRequirements = async (
-  gameStatus: GameStatus
-): Promise<QuizWithOnlyBody> => {
+export const getQuizWithSpecifiedRequirements = async (): Promise<QuizWithOnlyBody> => {
+  const user = getUser();
+  if (!user) {
+    return { quizName: 'Empty', answerVariants: [] };
+  }
+  console.log(JSON.stringify({ data: { uid: user.uid } }));
   const answer = await fetch(
     'https://europe-west3-kpi-student.cloudfunctions.net/getRandomQuiz',
     {
       method: 'POST',
-      // headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(gameStatus),
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ data: { uid: user.uid } }),
     }
   );
   return (await answer.json()) as QuizWithOnlyBody;

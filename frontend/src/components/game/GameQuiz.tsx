@@ -16,8 +16,7 @@ const GameQuiz: FunctionComponent<IProps> = ({ gameStatus }: IProps) => {
 
   useEffect(() => {
     if (!quiz) {
-      (async () =>
-        setQuiz(await getQuizWithSpecifiedRequirements(gameStatus)))();
+      (async () => setQuiz(await getQuizWithSpecifiedRequirements()))();
     }
   });
 
