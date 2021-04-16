@@ -1,5 +1,11 @@
 import * as functions from 'firebase-functions';
-import { getQuizWithSpecifiedRequirements, getUserObj } from './tools';
+import {
+  dislikePost,
+  getQuizWithSpecifiedRequirements,
+  getUserObj,
+  likePost,
+  UserStatus,
+} from './tools';
 
 export const getRandomQuiz = functions
   .region('europe-west3')
@@ -29,3 +35,23 @@ export const getRandomQuiz = functions
       res.sendStatus(200);
     }
   });
+
+export const onLikeChange = functions
+  .region('europe-west3')
+  .firestore.document('users/{userId}')
+  .onUpdate(change => {
+    const after = change.after.data() as UserStatus;
+    const before = change.before.data() as UserStatus;
+
+    const likesAfter = after.likedPurposes;
+    const likesBefore = before.likedPurposes;
+
+    likesBefore
+      .filter(likeBefore => !likesAfter.includes(likeBefore))
+      .forEach(dislikePost);
+    likesAfter
+      .filter(likeAfter => !likesBefore.includes(likeAfter))
+      .forEach(likePost);
+  });
+
+// TODO: write add comment

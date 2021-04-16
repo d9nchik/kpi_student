@@ -77,7 +77,7 @@ export const characteristicKeys: (
   'careLevel',
 ];
 
-interface UserStatus {
+export interface UserStatus {
   displayName?: string;
   email: string;
   photoURL?: string;
@@ -172,4 +172,16 @@ export const answerVariantsNotLessThan2 = ({
 export const getRandomObj = <T>(objects: T[]): T => {
   const index = Math.floor(Math.random() * objects.length);
   return objects[index];
+};
+
+export const dislikePost = (purposeID: string): void => {
+  db.collection('quizzes')
+    .doc(purposeID)
+    .update({ likes: admin.firestore.FieldValue.increment(-1) });
+};
+
+export const likePost = (purposeID: string): void => {
+  db.collection('quizzes')
+    .doc(purposeID)
+    .update({ likes: admin.firestore.FieldValue.increment(1) });
 };

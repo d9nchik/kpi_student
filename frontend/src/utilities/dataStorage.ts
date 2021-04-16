@@ -318,10 +318,6 @@ export const likePost = async (quizID: string): Promise<boolean> => {
 
   try {
     await db
-      .collection('quizzes')
-      .doc(quizID)
-      .update({ likes: firebase.firestore.FieldValue.increment(1) });
-    await db
       .collection('users')
       .doc(user.uid)
       .update({
@@ -341,10 +337,6 @@ export const dislikePost = async (quizID: string): Promise<boolean> => {
   }
 
   try {
-    await db
-      .collection('quizzes')
-      .doc(quizID)
-      .update({ likes: firebase.firestore.FieldValue.increment(-1) });
     await db
       .collection('users')
       .doc(user.uid)
