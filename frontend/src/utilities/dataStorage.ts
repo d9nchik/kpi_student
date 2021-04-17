@@ -127,6 +127,16 @@ export const addQuiz = async (quiz: QuizWithOnlyBody): Promise<boolean> => {
   return true;
 };
 
+export const removeQuiz = async (quizID: string): Promise<boolean> => {
+  try {
+    await db.collection('quizzes').doc(quizID).delete();
+    return true;
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
+};
+
 export const addComment = async (
   quizID: string,
   content: string
@@ -180,15 +190,6 @@ export const removeComment = async (
     return false;
   }
 };
-
-// export const removeQuiz = (quizID: string): boolean => {
-//   const quizWithCommentsID = dataWithTypes.findIndex(({ id }) => quizID === id);
-//   if (quizWithCommentsID === -1) {
-//     return false;
-//   }
-//   dataWithTypes.splice(quizWithCommentsID, 1);
-//   return true;
-// };
 
 export interface GameStatus {
   gameLevel: number;
