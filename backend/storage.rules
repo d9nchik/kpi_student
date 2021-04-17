@@ -1,7 +1,7 @@
 rules_version = '2';
 service firebase.storage {
   match /b/{bucket}/o {
-    match /game-quizzes-photos/{userID} {
+    match /game-quizzes-photos/{userID}/{imageID} {
       allow read: if request.auth != null
       						&& request.auth.token.email_verified;
       allow create: if request.auth !=null
