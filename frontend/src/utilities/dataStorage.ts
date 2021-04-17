@@ -163,28 +163,30 @@ export const addComment = async (
   }
 };
 
+export const removeComment = async (
+  quizID: string,
+  commentID: string
+): Promise<boolean> => {
+  try {
+    await db
+      .collection('quizzes')
+      .doc(quizID)
+      .collection('comments')
+      .doc(commentID)
+      .delete();
+    return true;
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
+};
+
 // export const removeQuiz = (quizID: string): boolean => {
 //   const quizWithCommentsID = dataWithTypes.findIndex(({ id }) => quizID === id);
 //   if (quizWithCommentsID === -1) {
 //     return false;
 //   }
 //   dataWithTypes.splice(quizWithCommentsID, 1);
-//   return true;
-// };
-
-// export const removeComment = (quizID: string, commentID: string): boolean => {
-//   const quizWithCommentsObj = getQuizWithComment(quizID);
-//   if (!quizWithCommentsObj) {
-//     return false;
-//   }
-//   const commentsObj = quizWithCommentsObj.comments;
-//   const indexOfComment = commentsObj.findIndex(({ id }) => commentID === id);
-//   if (indexOfComment === -1) {
-//     return false;
-//   }
-
-//   quizWithCommentsObj.commentsCount--;
-//   commentsObj.splice(indexOfComment, 1);
 //   return true;
 // };
 
