@@ -185,3 +185,15 @@ export const likePost = (purposeID: string): void => {
     .doc(purposeID)
     .update({ likes: admin.firestore.FieldValue.increment(1) });
 };
+
+export const decrementPostCount = (purposeID: string): void => {
+  db.collection('quizzes')
+    .doc(purposeID)
+    .update({ commentsCount: admin.firestore.FieldValue.increment(-1) });
+};
+
+export const incrementPostCount = (purposeID: string): void => {
+  db.collection('quizzes')
+    .doc(purposeID)
+    .update({ commentsCount: admin.firestore.FieldValue.increment(1) });
+};

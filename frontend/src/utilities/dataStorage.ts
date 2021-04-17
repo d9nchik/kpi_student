@@ -138,10 +138,6 @@ export const addComment = async (
 
   const { uid, photoURL, displayName } = user;
   try {
-    await db
-      .collection('quizzes')
-      .doc(quizID)
-      .update({ commentsCount: firebase.firestore.FieldValue.increment(1) });
     const commentWithoutID: CommentWithoutID = {
       content,
       author: { uid },

@@ -1,8 +1,10 @@
 import * as functions from 'firebase-functions';
 import {
+  decrementPostCount,
   dislikePost,
   getQuizWithSpecifiedRequirements,
   getUserObj,
+  incrementPostCount,
   likePost,
   UserStatus,
 } from './tools';
@@ -54,4 +56,18 @@ export const onLikeChange = functions
       .forEach(likePost);
   });
 
-// TODO: write add comment
+export const onAddComment = functions
+  .region('europe-west3')
+  .firestore.document('quizzes/{purposeID}/comments/{commentId}')
+  .onCreate((_, context) => {
+    const purposeID = context.params['purposeID'] as string;
+    incrementPostCount(purposeID);
+  });
+
+export const onRemoveComment = functions
+  .region('europe-west3')
+  .firestore.document('quizzes/{purposeID}/comments/{commentId}')
+  .onDelete((_, context) => {
+    const purposeID = context.params['purposeID'] as string;
+    decrementPostCount(purposeID);
+  });
