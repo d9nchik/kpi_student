@@ -37,3 +37,19 @@ header #avatar {
   font-size: 3vh;
   line-height: 12px;
 }
+#level {
+  margin-left: 10px;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 21px;
+  line-height: 21px;
+  color: #3a86ff;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffbe0b;
+  width: 50px;
+  height: 30px;
+  border-radius: 12px;
+}

@@ -35,7 +35,7 @@ const MenuItem: FunctionComponent<IProps> = ({
       onClick={() => applyMenuCharacteristic(characteristics, gameObj)}
     >
       <h3>{name}</h3>
-      <div>
+      <div id={'charBlock'}>
         {heartsPoint && (
           <span>
             <img

@@ -10,8 +10,9 @@ import FastFood from './images/fast-food.png';
 import Thought from './images/thought.png';
 import Shelving from './images/shelving.png';
 import Household from './images/household.png';
-import Avatar from './images/avatar.jpg';
+import Avatar from './images/star.png';
 import './GameHeader.css';
+import Star from './images/star.png';
 
 const GameHeader: FunctionComponent<GameStatus> = ({
   satietyLevel,
@@ -157,7 +158,19 @@ const GameHeader: FunctionComponent<GameStatus> = ({
           <span>{Math.floor(careLevel / level)}%</span>
         </div>
         <div className="span-col-4">
-          *{level} <progress max={XPNeeded} value={currentXP} />
+          <div id={'level'}>
+            <div id={'star'}>
+              <img
+                src={Star}
+                alt="star"
+                style={{
+                  width: '20px',
+                }}
+              />
+            </div>
+            {level}
+          </div>{' '}
+          <progress max={XPNeeded} value={currentXP} />
         </div>
       </div>
     </header>
