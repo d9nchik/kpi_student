@@ -50,6 +50,7 @@ const PageWithQuizzes: FunctionComponent = () => {
                 onDislike={() => dislikePost(id)}
                 likes={likes}
               />
+
               <Link className={'comments'} to={`/purposes/${id}`}>
                 {commentsCount}
                 <img src={Comment} alt="comment" />
