@@ -1,5 +1,6 @@
 import { getUser } from './auth';
 import firebase, { storage, firestore as db, auth } from '../firebase';
+import { characteristicKeys } from './tools';
 
 export interface Range {
   minValue?: number;
@@ -110,6 +111,9 @@ export const addQuiz = async (quiz: QuizWithOnlyBody): Promise<boolean> => {
     },
     imageURL: '',
   };
+  quizWithBody.answerVariants = quizWithBody.answerVariants.map(
+    mapAnswerVarianToWithoutUndefined
+  );
 
   if (displayName) {
     quizWithBody.author.displayName = displayName;
@@ -126,6 +130,56 @@ export const addQuiz = async (quiz: QuizWithOnlyBody): Promise<boolean> => {
   await db.collection('quizzes').add(quizWithBody);
   return true;
 };
+
+export function mapAnswerVarianToWithoutUndefined({
+  loseCharacteristics,
+  requirements,
+  successCharacteristics,
+  name,
+  successProbability,
+}: AnswerVariant): AnswerVariant {
+  const newLoseCharacteristics: Characteristic = {};
+  const newSuccessCharacteristics: Characteristic = {};
+  const newRequirements: Characteristic = {};
+
+  for (const key of characteristicKeys) {
+    const loseCharacteristic = loseCharacteristics[key];
+    if (loseCharacteristic) {
+      newLoseCharacteristics[key] = removeUndefinedFromRange(
+        loseCharacteristic
+      );
+    }
+    const requirementCharacteristic = requirements[key];
+    if (requirementCharacteristic) {
+      newSuccessCharacteristics[key] = removeUndefinedFromRange(
+        requirementCharacteristic
+      );
+    }
+    const successCharacteristic = successCharacteristics[key];
+    if (successCharacteristic) {
+      newRequirements[key] = removeUndefinedFromRange(successCharacteristic);
+    }
+  }
+
+  return {
+    name,
+    successProbability,
+    loseCharacteristics: newLoseCharacteristics,
+    successCharacteristics: newSuccessCharacteristics,
+    requirements: newRequirements,
+  };
+}
+
+export function removeUndefinedFromRange({ minValue, maxValue }: Range): Range {
+  const newRange: Range = {};
+  if (minValue) {
+    newRange.minValue = minValue;
+  }
+  if (maxValue) {
+    newRange.maxValue = maxValue;
+  }
+  return newRange;
+}
 
 export const removeQuiz = async (quizID: string): Promise<boolean> => {
   try {
@@ -400,3 +454,5 @@ export const getUserAvatar = (): string | null => {
   }
   return user.photoURL;
 };
+
+// TODO: give ability to remove quizzes and comments + add avatar on comment
