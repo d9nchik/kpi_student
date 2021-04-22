@@ -44,21 +44,14 @@ interface GameStatus {
   isDead: boolean;
 }
 
-const characteristicKeys: (
-  | 'heartsPoint'
-  | 'satietyLevel'
-  | 'mentalStrength'
-  | 'money'
-  | 'educationLevel'
-  | 'careLevel'
-)[] = [
+const characteristicKeys = [
   'heartsPoint',
   'satietyLevel',
   'mentalStrength',
   'money',
   'educationLevel',
   'careLevel',
-];
+] as const;
 
 export interface UserStatus {
   displayName?: string;

@@ -59,21 +59,14 @@ export function getMenus(): Categories {
   return quizzesWithType;
 }
 
-export const characteristicKeys: (
-  | 'heartsPoint'
-  | 'satietyLevel'
-  | 'mentalStrength'
-  | 'money'
-  | 'educationLevel'
-  | 'careLevel'
-)[] = [
+export const characteristicKeys = [
   'heartsPoint',
   'satietyLevel',
   'mentalStrength',
   'money',
   'educationLevel',
   'careLevel',
-];
+] as const;
 
 const setGameObj = (gameStatus: GameStatus, level: number) => {
   for (const key of characteristicKeys) {
