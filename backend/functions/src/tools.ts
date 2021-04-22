@@ -4,18 +4,12 @@ import * as functions from 'firebase-functions';
 admin.initializeApp(functions.config().firebase);
 const db = admin.firestore();
 
-interface User {
-  uid: string;
-  displayName?: string;
-  photoURL?: string;
-}
-
-export interface Range {
+interface Range {
   minValue?: number;
   maxValue?: number;
 }
 
-export interface Characteristic {
+interface Characteristic {
   heartsPoint?: Range;
   satietyLevel?: Range;
   mentalStrength?: Range;
@@ -24,7 +18,7 @@ export interface Characteristic {
   careLevel?: Range;
 }
 
-export interface AnswerVariant {
+interface AnswerVariant {
   name: string;
   requirements: Characteristic;
   successProbability: number;
@@ -32,20 +26,13 @@ export interface AnswerVariant {
   loseCharacteristics: Characteristic;
 }
 
-export interface QuizWithOnlyBody {
+interface QuizWithOnlyBody {
   quizName: string;
   answerVariants: AnswerVariant[];
   imageURL?: string;
 }
 
-export interface QuizWithoutID extends QuizWithOnlyBody {
-  author: User;
-  likes: number;
-  commentsCount: number;
-  imageURL: string;
-}
-
-export interface GameStatus {
+interface GameStatus {
   gameLevel: number;
   characterName: string;
   heartsPoint: number;
@@ -57,11 +44,7 @@ export interface GameStatus {
   isDead: boolean;
 }
 
-export interface Quiz extends QuizWithoutID {
-  id: string;
-}
-
-export const characteristicKeys: (
+const characteristicKeys: (
   | 'heartsPoint'
   | 'satietyLevel'
   | 'mentalStrength'
@@ -94,19 +77,14 @@ export const getUserObj = async (uid: string): Promise<UserStatus | null> => {
   return userObj.data() as UserStatus;
 };
 
-export const getAllLikedQuizzes = async (): Promise<Quiz[]> => {
+export const getAllLikedQuizzes = async (): Promise<QuizWithOnlyBody[]> => {
   try {
     const data = await db.collection('quizzes').where('likes', '>=', 10).get();
-    return data.docs.map(mapperDocsWithId);
+    return data.docs.map(doc => doc.data() as QuizWithOnlyBody);
   } catch (error) {
     functions.logger.error(error);
     return [];
   }
-};
-export const mapperDocsWithId = (
-  doc: admin.firestore.QueryDocumentSnapshot<admin.firestore.DocumentData>
-): Quiz => {
-  return { ...doc.data(), id: doc.id } as Quiz;
 };
 
 export const getQuizWithSpecifiedRequirements = async (
