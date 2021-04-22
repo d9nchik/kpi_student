@@ -1,6 +1,6 @@
 import React, { FunctionComponent, ReactChild, ReactChildren } from 'react';
 
-import { isAuthenticated } from '../utilities/auth';
+import { isAuthenticated } from '../data/auth';
 
 import { Redirect, Route } from 'react-router-dom';
 

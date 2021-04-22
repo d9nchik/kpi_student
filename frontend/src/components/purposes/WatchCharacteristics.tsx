@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import { Characteristic, Range } from '../../utilities/dataStorage';
+import { Characteristic, Range } from '../../data/dataStorage';
 interface IProps extends Range {
   name: string;
 }

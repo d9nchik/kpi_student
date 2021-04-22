@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useState } from 'react';
-import { Range } from '../../utilities/dataStorage';
+import { Range } from '../../data/dataStorage';
 
 interface IProps extends Range {
   setRange: (range: Range) => void;

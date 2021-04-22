@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useState } from 'react';
-import { newGame } from '../../utilities/dataStorage';
+import { newGame } from '../../data/dataStorage';
 
 const RegisterGame: FunctionComponent = () => {
   const [name, setName] = useState('');

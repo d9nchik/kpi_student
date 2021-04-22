@@ -8,7 +8,7 @@ import {
   Quiz,
   subscribe,
   unsubscribe,
-} from '../../utilities/dataStorage';
+} from '../../data/dataStorage';
 import Vote from './Vote';
 
 import Comment from './img/comments.png';

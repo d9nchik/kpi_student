@@ -5,7 +5,7 @@ import {
   loginWithEmail,
   loginWithGithub,
   loginWithGoogle,
-} from '../../utilities/auth';
+} from '../../data/auth';
 
 import GitHub from './img/GitHub.png';
 import Google from './img/google.png';

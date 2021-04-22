@@ -3,7 +3,7 @@ import {
   subscribeOnCommentsOfQuiz,
   addComment,
   Comment as CommentType,
-} from '../../utilities/dataStorage';
+} from '../../data/dataStorage';
 
 import Comment from './Comment';
 import AddComment from './AddComment';

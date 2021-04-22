@@ -5,8 +5,8 @@ import {
   unsubscribe,
   setGameObj as setGameStatus,
   GameStatus,
-} from '../../utilities/dataStorage';
-import { calculateLevel } from '../../utilities/tools';
+} from '../../data/dataStorage';
+import { calculateLevel } from '../../data/tools';
 
 import RegisterGame from './RegisterGame';
 import GameHeader from './GameHeader';

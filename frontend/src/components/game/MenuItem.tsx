@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react';
-import { MenuItem as Item } from '../../utilities/tools';
-import { applyMenuCharacteristic } from '../../utilities/tools';
+import { MenuItem as Item } from '../../data/tools';
+import { applyMenuCharacteristic } from '../../data/tools';
 
 import Money from './images/money.png';
 import HealthCare from './images/health-care.png';
@@ -8,7 +8,7 @@ import FastFood from './images/fast-food.png';
 import Thought from './images/thought.png';
 import Shelving from './images/shelving.png';
 import Household from './images/household.png';
-import { GameStatus } from '../../utilities/dataStorage';
+import { GameStatus } from '../../data/dataStorage';
 
 import './MenuItem.css';
 

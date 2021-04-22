@@ -2,7 +2,7 @@ import React, { FunctionComponent, useState } from 'react';
 import {
   AnswerVariant as Answer,
   Characteristic,
-} from '../../utilities/dataStorage';
+} from '../../data/dataStorage';
 
 import AddCharacteristic from './AddCharacteristics';
 import './AnswerVariant.css';

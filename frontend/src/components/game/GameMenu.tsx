@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react';
-import { GameStatus } from '../../utilities/dataStorage';
-import { getMenus } from '../../utilities/tools';
+import { GameStatus } from '../../data/dataStorage';
+import { getMenus } from '../../data/tools';
 import CloseMenu from './images/closeMenu.png';
 import MenuItem from './MenuItem';
 import './GameMenu.css';

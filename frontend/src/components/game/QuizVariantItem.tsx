@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react';
-import { AnswerVariant, GameStatus } from '../../utilities/dataStorage';
-import { applyQuizVariantItem } from '../../utilities/tools';
+import { AnswerVariant, GameStatus } from '../../data/dataStorage';
+import { applyQuizVariantItem } from '../../data/tools';
 
 interface IProps {
   answerVariant: AnswerVariant;

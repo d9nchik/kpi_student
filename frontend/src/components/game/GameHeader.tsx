@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react';
-import { GameStatus, getUserAvatar } from '../../utilities/dataStorage';
-import { calculateLevel } from '../../utilities/tools';
-import { logout } from '../../utilities/auth';
+import { GameStatus, getUserAvatar } from '../../data/dataStorage';
+import { calculateLevel } from '../../data/tools';
+import { logout } from '../../data/auth';
 import { useHistory } from 'react-router-dom';
 
 import Money from './images/money.png';

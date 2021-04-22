@@ -1,6 +1,6 @@
 import React, { FunctionComponent, useState, useEffect } from 'react';
-import { GameStatus, QuizWithOnlyBody } from '../../utilities/dataStorage';
-import { getQuizWithSpecifiedRequirements } from '../../utilities/tools';
+import { GameStatus, QuizWithOnlyBody } from '../../data/dataStorage';
+import { getQuizWithSpecifiedRequirements } from '../../data/tools';
 
 import QuizVariantItem from './QuizVariantItem';
 import Loading from '../Loading';

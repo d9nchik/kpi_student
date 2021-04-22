@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useState } from 'react';
-import { AnswerVariant as AnswerVariantInterface } from '../../utilities/dataStorage';
+import { AnswerVariant as AnswerVariantInterface } from '../../data/dataStorage';
 
 import AnswerVariant from './AnswerVariant';
 

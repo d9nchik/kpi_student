@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react';
-import { Characteristic, Range } from '../../utilities/dataStorage';
-import { characteristicKeys } from '../../utilities/tools';
+import { Characteristic, Range } from '../../data/dataStorage';
+import { characteristicKeys } from '../../data/tools';
 
 import ChangeRange from './ChangeRange';
 

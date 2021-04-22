@@ -3,7 +3,7 @@ import {
   addQuiz,
   AnswerVariant as AnswerVariantType,
   uploadImage,
-} from '../../utilities/dataStorage';
+} from '../../data/dataStorage';
 import { useHistory } from 'react-router-dom';
 import './AddQuiz.css';
 import AnswerVariants from './AnswerVariants';

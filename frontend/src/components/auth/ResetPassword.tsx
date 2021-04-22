@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useState } from 'react';
-import { isAuthenticated, sendPasswordResetEmail } from '../../utilities/auth';
+import { isAuthenticated, sendPasswordResetEmail } from '../../data/auth';
 import { Redirect, useHistory } from 'react-router-dom';
 
 import './ResetPassword.css';

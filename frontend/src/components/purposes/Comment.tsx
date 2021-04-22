@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import { Comment as IProps } from '../../utilities/dataStorage';
+import { Comment as IProps } from '../../data/dataStorage';
 
 const Comment: FunctionComponent<IProps> = ({
   id,

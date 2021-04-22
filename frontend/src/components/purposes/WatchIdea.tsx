@@ -6,7 +6,7 @@ import {
   dislikePost,
   isPostLiked,
   Quiz,
-} from '../../utilities/dataStorage';
+} from '../../data/dataStorage';
 import defaultImage from '../../logo.svg';
 
 import Vote from './Vote';

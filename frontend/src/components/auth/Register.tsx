@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useState } from 'react';
-import { isAuthenticated, registerEmail } from '../../utilities/auth';
+import { isAuthenticated, registerEmail } from '../../data/auth';
 import { Redirect, useHistory, Link } from 'react-router-dom';
 import './Register.css';
 const Register: FunctionComponent = () => {

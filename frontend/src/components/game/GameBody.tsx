@@ -1,6 +1,6 @@
 import React, { FunctionComponent, useState } from 'react';
-import { GameStatus } from '../../utilities/dataStorage';
-import { getStringifiedDays, getDayInUniversity } from '../../utilities/tools';
+import { GameStatus } from '../../data/dataStorage';
+import { getStringifiedDays, getDayInUniversity } from '../../data/tools';
 import { useHistory } from 'react-router-dom';
 
 import GameMenu from './GameMenu';
