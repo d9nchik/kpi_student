@@ -9,8 +9,10 @@ import {
   UserStatus,
 } from './tools';
 
+const REGION = 'europe-west3';
+
 export const getRandomQuiz = functions
-  .region('europe-west3')
+  .region(REGION)
   .https.onRequest(async (req, res) => {
     res.header('Access-Control-Allow-Origin', '*'); // update to match the domain you will make the request from
     res.header(
@@ -39,7 +41,7 @@ export const getRandomQuiz = functions
   });
 
 export const onLikeChange = functions
-  .region('europe-west3')
+  .region(REGION)
   .firestore.document('users/{userId}')
   .onUpdate(change => {
     const after = change.after.data() as UserStatus;
@@ -57,7 +59,7 @@ export const onLikeChange = functions
   });
 
 export const onAddComment = functions
-  .region('europe-west3')
+  .region(REGION)
   .firestore.document('quizzes/{purposeID}/comments/{commentId}')
   .onCreate((_, context) => {
     const purposeID = context.params['purposeID'] as string;
@@ -65,7 +67,7 @@ export const onAddComment = functions
   });
 
 export const onRemoveComment = functions
-  .region('europe-west3')
+  .region(REGION)
   .firestore.document('quizzes/{purposeID}/comments/{commentId}')
   .onDelete((_, context) => {
     const purposeID = context.params['purposeID'] as string;
