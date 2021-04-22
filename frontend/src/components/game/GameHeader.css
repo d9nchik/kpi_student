@@ -25,7 +25,7 @@ header #avatar {
   cursor: pointer;
 }
 .span-col-4 progress {
-  width: 98vw;
+  width: 95%;
   height: 3vh;
 }
 .grid span {
@@ -37,7 +37,7 @@ header #avatar {
   font-size: 3vh;
   line-height: 12px;
 }
-#level {
+#level-icon {
   margin-left: 10px;
   font-style: normal;
   font-weight: bold;
@@ -52,4 +52,8 @@ header #avatar {
   width: 50px;
   height: 30px;
   border-radius: 12px;
+}
+
+.level {
+  display: flex;
 }

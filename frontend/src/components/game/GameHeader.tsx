@@ -157,8 +157,8 @@ const GameHeader: FunctionComponent<GameStatus> = ({
           />
           <span>{Math.floor(careLevel / level)}%</span>
         </div>
-        <div className="span-col-4">
-          <div id={'level'}>
+        <div className="span-col-4 level">
+          <div id={'level-icon'}>
             <div id={'star'}>
               <img
                 src={Star}
