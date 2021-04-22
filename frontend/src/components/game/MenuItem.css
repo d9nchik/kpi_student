@@ -9,6 +9,7 @@
 
 .menuItem h3,
 .menuItem img {
+  width: 25px;
   cursor: pointer;
 }
 .menuItem h3 {

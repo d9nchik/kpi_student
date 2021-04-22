@@ -41,7 +41,7 @@ const MenuItem: FunctionComponent<IProps> = ({
             <img
               src={HealthCare}
               alt="health care"
-              style={{ background: 'brown', width: '25px' }}
+              style={{ background: '#e71d36' }}
             />
             {heartsPoint}
           </span>
@@ -51,18 +51,14 @@ const MenuItem: FunctionComponent<IProps> = ({
             <img
               src={FastFood}
               alt="fast food"
-              style={{ background: 'brown', width: '25px' }}
+              style={{ background: '#ff9f1c' }}
             />
             {satietyLevel}
           </span>
         )}
         {money && (
           <span>
-            <img
-              src={Money}
-              alt="money"
-              style={{ background: 'brown', width: '25px' }}
-            />
+            <img src={Money} alt="money" style={{ background: '#55a630' }} />
             {money}₴
           </span>
         )}
@@ -71,7 +67,7 @@ const MenuItem: FunctionComponent<IProps> = ({
             <img
               src={Shelving}
               alt="shelving"
-              style={{ background: 'brown', width: '25px' }}
+              style={{ background: '#55a630' }}
             />
             {educationLevel}
           </span>
@@ -81,7 +77,7 @@ const MenuItem: FunctionComponent<IProps> = ({
             <img
               src={Household}
               alt="household"
-              style={{ background: 'brown', width: '25px' }}
+              style={{ background: '#55a630' }}
             />
             {careLevel}
           </span>
@@ -91,7 +87,7 @@ const MenuItem: FunctionComponent<IProps> = ({
             <img
               src={Thought}
               alt="thought"
-              style={{ background: 'brown', width: '25px' }}
+              style={{ background: '#007f5f' }}
             />
             {mentalStrength}
           </span>
