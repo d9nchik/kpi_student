@@ -20,24 +20,23 @@ export const getRandomQuiz = functions
       'Origin, X-Requested-With, Content-Type, Accept'
     );
 
-    if (req.body && req.body.data && req.body.data.uid) {
-      functions.logger.log(`rawBody = ${String(req.rawBody)}`);
-
-      const uid = req.body.data.uid as string;
-      const userObj = await getUserObj(uid);
-      if (!userObj || !userObj.gameStatus) {
-        res.sendStatus(404);
-        functions.logger.warn(`Invalid uid: ${uid}`);
-        return;
-      }
-      const userQuiz = await getQuizWithSpecifiedRequirements(
-        userObj.gameStatus
-      );
-      res.json(userQuiz);
-    } else {
+    if (!req.body || !req.body.data || typeof req.body.data.uid !== 'string') {
       functions.logger.error('Missing body!');
       res.sendStatus(200);
+      return;
     }
+
+    functions.logger.log(`rawBody = ${String(req.rawBody)}`);
+
+    const uid: string = req.body.data.uid;
+    const userObj = await getUserObj(uid);
+    if (!userObj || !userObj.gameStatus) {
+      res.sendStatus(404);
+      functions.logger.warn(`Invalid uid: ${uid}`);
+      return;
+    }
+    const userQuiz = await getQuizWithSpecifiedRequirements(userObj.gameStatus);
+    res.json(userQuiz);
   });
 
 export const onLikeChange = functions
