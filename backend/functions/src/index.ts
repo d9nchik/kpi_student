@@ -20,7 +20,7 @@ export const getRandomQuiz = functions
       'Origin, X-Requested-With, Content-Type, Accept'
     );
 
-    try {
+    if (req.body && req.body.data && req.body.data.uid) {
       functions.logger.log(`rawBody = ${String(req.rawBody)}`);
 
       const uid = req.body.data.uid as string;
@@ -34,8 +34,8 @@ export const getRandomQuiz = functions
         userObj.gameStatus
       );
       res.json(userQuiz);
-    } catch (error) {
-      functions.logger.error(error);
+    } else {
+      functions.logger.error('Missing body!');
       res.sendStatus(200);
     }
   });

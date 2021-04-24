@@ -83,17 +83,8 @@ export const getAllLikedQuizzes = async (): Promise<QuizWithOnlyBody[]> => {
 export const getQuizWithSpecifiedRequirements = async (
   gameStatus: GameStatus
 ): Promise<QuizWithOnlyBody> => {
-  try {
-    const availableQuizzes = (await getAllLikedQuizzes())
-      .map(quiz => filterAnswerVariants(quiz, gameStatus))
-      .filter(answerVariantsNotLessThan2);
-
-    const chosenObj = getRandomObj(availableQuizzes);
-    chosenObj.answerVariants = chosenObj.answerVariants.slice(0, 4);
-
-    return chosenObj;
-  } catch (error) {
-    functions.logger.error(error);
+  const likedQuizzes = await getAllLikedQuizzes();
+  if (likedQuizzes.length === 0) {
     return {
       quizName: 'Oops, no Quiz!',
       answerVariants: [
@@ -107,6 +98,14 @@ export const getQuizWithSpecifiedRequirements = async (
       ],
     };
   }
+  const availableQuizzes = likedQuizzes
+    .map(quiz => filterAnswerVariants(quiz, gameStatus))
+    .filter(answerVariantsNotLessThan2);
+
+  const chosenObj = getRandomObj(availableQuizzes);
+  chosenObj.answerVariants = chosenObj.answerVariants.slice(0, 4);
+
+  return chosenObj;
 };
 
 export const filterAnswerVariants = (
