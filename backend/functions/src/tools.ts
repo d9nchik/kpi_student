@@ -26,7 +26,7 @@ interface AnswerVariant {
   loseCharacteristics: Characteristic;
 }
 
-interface QuizWithOnlyBody {
+interface Quiz {
   quizName: string;
   answerVariants: AnswerVariant[];
   imageURL?: string;
@@ -70,10 +70,10 @@ export const getUserObj = async (uid: string): Promise<UserStatus | null> => {
   return userObj.data() as UserStatus;
 };
 
-export const getAllLikedQuizzes = async (): Promise<QuizWithOnlyBody[]> => {
+export const getAllLikedQuizzes = async (): Promise<Quiz[]> => {
   try {
     const data = await db.collection('quizzes').where('likes', '>=', 10).get();
-    return data.docs.map(doc => doc.data() as QuizWithOnlyBody);
+    return data.docs.map(doc => doc.data() as Quiz);
   } catch (error) {
     functions.logger.error(error);
     return [];
@@ -82,7 +82,7 @@ export const getAllLikedQuizzes = async (): Promise<QuizWithOnlyBody[]> => {
 
 export const getQuizWithSpecifiedRequirements = async (
   gameStatus: GameStatus
-): Promise<QuizWithOnlyBody> => {
+): Promise<Quiz> => {
   const likedQuizzes = await getAllLikedQuizzes();
   if (likedQuizzes.length === 0) {
     return {
@@ -109,9 +109,9 @@ export const getQuizWithSpecifiedRequirements = async (
 };
 
 export const filterAnswerVariants = (
-  quiz: QuizWithOnlyBody,
+  quiz: Quiz,
   gameStatus: GameStatus
-): QuizWithOnlyBody => {
+): Quiz => {
   const availableAnswers = quiz.answerVariants.filter(({ requirements }) => {
     for (const key of characteristicKeys) {
       const range = requirements[key];
@@ -135,7 +135,7 @@ export const filterAnswerVariants = (
 
 export const answerVariantsNotLessThan2 = ({
   answerVariants,
-}: QuizWithOnlyBody): boolean => {
+}: Quiz): boolean => {
   return answerVariants.length >= 2;
 };
 
