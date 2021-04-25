@@ -1,6 +1,6 @@
 import React, { FunctionComponent, useState } from 'react';
 import { GameStatus } from '../../data/dataStorage';
-import { getStringifiedDays, getDayInUniversity } from '../../data/tools';
+import { getDayInUniversity } from '../../data/tools';
 import { useHistory } from 'react-router-dom';
 
 import GameMenu from './GameMenu';
@@ -31,7 +31,7 @@ const GameBody: FunctionComponent<IProps> = ({ gameStatus }: IProps) => {
         </div>
         <div>
           <span>В универе: </span>
-          {`${daysInUniversity} ${getStringifiedDays(daysInUniversity)}`}
+          {daysInUniversity}
         </div>
       </div>
       <div id={'rightMenu'}>

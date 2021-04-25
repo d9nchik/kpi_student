@@ -7,6 +7,8 @@ import {
 } from './dataStorage';
 import quizzes from './menu.json';
 import { getUser } from './auth';
+import moment from 'moment';
+import 'moment/locale/ru';
 
 const quizzesWithType = quizzes as Categories;
 
@@ -193,33 +195,11 @@ export function randomRangeValue(min: number, max: number): number {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-export function getStringifiedDays(dayNumber: number): string {
-  const preLastDigit = (dayNumber % 100) / 10;
+moment.locale(window.navigator.language);
 
-  if (preLastDigit === 1) {
-    return 'дней';
-  }
-
-  switch (dayNumber % 10) {
-    case 1:
-      return 'день';
-    case 2:
-    case 3:
-    case 4:
-      return 'дня';
-    default:
-      return 'дней';
-  }
-}
-
-function differenceBetweenTwoDatesInDays(
-  firstDate: Date,
-  secondDate: Date
-): number {
-  return Math.floor(
-    (firstDate.getTime() - secondDate.getTime()) / (1000 * 3600 * 24)
-  );
-}
-
-export const getDayInUniversity = (): number =>
-  differenceBetweenTwoDatesInDays(new Date(), getDateOfRegistration()) + 1;
+export const getDayInUniversity = (): string => {
+  const text = moment(getDateOfRegistration()).fromNow();
+  // let's remove 'ago'
+  const lastIndex = text.lastIndexOf(' ');
+  return text.slice(0, lastIndex);
+};
