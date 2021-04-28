@@ -1,0 +1,4 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+firebase --project='kpi-student' emulators:exec --only auth,firestore,functions 'npm test'

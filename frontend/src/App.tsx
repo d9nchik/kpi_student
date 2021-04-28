@@ -22,7 +22,6 @@ const App: FunctionComponent = () => {
           <AuthenticatedRouter>
             <Switch>
               <Route exact path="/" component={Game} />
-              <Route path="/main" render={() => <div>main page</div>} />
               <Route path="/purposes" component={PurposeAndVote} />
             </Switch>
           </AuthenticatedRouter>

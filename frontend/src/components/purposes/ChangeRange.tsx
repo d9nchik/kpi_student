@@ -46,7 +46,7 @@ const ChangeRange: FunctionComponent<IProps> = ({
             }
 
             minValue = newMinValue;
-            checkAndSetRange();
+            checkAndSetRange(setRange, maxValue, minValue);
           }}
         />
       </label>
@@ -66,7 +66,7 @@ const ChangeRange: FunctionComponent<IProps> = ({
               return;
             }
             maxValue = newMaxValue;
-            checkAndSetRange();
+            checkAndSetRange(setRange, maxValue, minValue);
           }}
         />
       </label>
@@ -79,16 +79,15 @@ const ChangeRange: FunctionComponent<IProps> = ({
       >{`Remove '${name}'`}</button>
     </div>
   );
-
-  function checkAndSetRange() {
-    if (
-      maxValue === undefined ||
-      minValue === undefined ||
-      minValue < maxValue
-    ) {
-      setRange({ minValue, maxValue });
-    }
-  }
 };
 
+export function checkAndSetRange(
+  setRange: (range: Range) => void,
+  maxValue?: number,
+  minValue?: number
+): void {
+  if (maxValue === undefined || minValue === undefined || minValue < maxValue) {
+    setRange({ minValue, maxValue });
+  }
+}
 export default ChangeRange;

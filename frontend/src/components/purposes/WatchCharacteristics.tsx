@@ -1,25 +1,6 @@
 import React, { FunctionComponent } from 'react';
-import { Characteristic, Range } from '../../data/dataStorage';
-interface IProps extends Range {
-  name: string;
-}
-
-const WatchCharacteristic: FunctionComponent<IProps> = ({
-  minValue,
-  maxValue,
-  name,
-}: IProps) => {
-  if (minValue && maxValue) {
-    return <li>{`${name} -> ${minValue} <-> ${maxValue}`}</li>;
-  }
-  if (minValue) {
-    return <li>{`${name} > ${minValue}`}</li>;
-  }
-  if (maxValue) {
-    return <li>{`${name} < ${maxValue}`}</li>;
-  }
-  return <div />;
-};
+import { Characteristic } from '../../data/dataStorage';
+import WatchCharacteristic from './WatchCharacterstic';
 
 const WatchCharacteristics: FunctionComponent<Characteristic> = ({
   heartsPoint,

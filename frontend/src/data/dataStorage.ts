@@ -153,13 +153,15 @@ export function mapAnswerVarianToWithoutUndefined({
     }
     const requirementCharacteristic = requirements[key];
     if (requirementCharacteristic) {
-      newSuccessCharacteristics[key] = removeUndefinedFromRange(
+      newRequirements[key] = removeUndefinedFromRange(
         requirementCharacteristic
       );
     }
     const successCharacteristic = successCharacteristics[key];
     if (successCharacteristic) {
-      newRequirements[key] = removeUndefinedFromRange(successCharacteristic);
+      newSuccessCharacteristics[key] = removeUndefinedFromRange(
+        successCharacteristic
+      );
     }
   }
 

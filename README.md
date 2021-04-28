@@ -93,6 +93,10 @@ Architecture as has been mentioned before is based on firebase services. [Look m
 
 ## Available Scripts
 
+### Before running any command (you just need to to do that procedure only once):
+
+### **`npm i && cd backend/functions && npm i && cd ../frontend && npm i && npm i -g firebase-tools`**
+
 In the project directory, you can run:
 
 ### `npm start`

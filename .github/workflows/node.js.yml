@@ -24,12 +24,14 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
+      - name: install firebase
+        run: npm i -g firebase-tools
       - run: cd frontend && npm ci
       - run: cd backend/functions && npm ci
       - run: npm ci
       # check if project can be build
       - run: cd frontend && npm run build
-      - run: npm test
+      - run: firebase --project='kpi-student' emulators:exec --only auth,firestore,functions 'npm test'
       - run: npm run lint "--max-warnings 0"
       - run: npm run check-format
     # that's it for CI
