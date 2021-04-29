@@ -7,8 +7,9 @@ import {
 } from './dataStorage';
 import quizzes from './menu.json';
 import { getUser } from './auth';
-import moment from 'moment';
-import 'moment/locale/ru';
+import daysjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
+import 'dayjs/locale/ru';
 
 const quizzesWithType = quizzes as Categories;
 
@@ -194,11 +195,11 @@ export const applyQuizVariantItem = (
 export function randomRangeValue(min: number, max: number): number {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
-
-moment.locale(window.navigator.language);
-
+// Why I replaced moment.js with days.js https://inventi.studio/en/blog/why-you-shouldnt-use-moment-js
+daysjs.locale(window.navigator.language);
+daysjs.extend(relativeTime);
 export const getDayInUniversity = (): string => {
-  const text = moment(getDateOfRegistration()).fromNow();
+  const text = daysjs(getDateOfRegistration()).fromNow();
   // let's remove 'ago'
   const lastIndex = text.lastIndexOf(' ');
   return text.slice(0, lastIndex);

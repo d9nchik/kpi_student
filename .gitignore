@@ -51,6 +51,9 @@ jspm_packages/
 # VSCode
 .vscode
 
+# build directory
+*/build/
+
 # TypeScript v1 declaration files
 typings/
 
