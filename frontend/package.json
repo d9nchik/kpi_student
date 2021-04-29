@@ -10,6 +10,7 @@
     "web-vitals": "^1.1.1"
   },
   "scripts": {
+    "analyze": "source-map-explorer 'build/static/js/*.js'  --html sme_result.html",
     "lint": "eslint \"src/**/*.{t,j}s{x,}\"",
     "lint:write": "eslint --debug src/ --fix",
     "start": "react-scripts start",
@@ -32,6 +33,7 @@
     ]
   },
   "devDependencies": {
+    "source-map-explorer": "^2.5.2",
     "@testing-library/jest-dom": "^5.11.10",
     "@testing-library/react": "^11.2.6",
     "@testing-library/user-event": "^12.1.10",
