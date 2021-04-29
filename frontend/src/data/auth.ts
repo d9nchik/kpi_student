@@ -57,9 +57,11 @@ export const isAuthenticated = (): boolean => !!user;
 
 export const getUser = (): firebase.User | null => user;
 
+type ErrorMessageOrNull = string | null;
+
 export async function executeAsyncFunctionIfErrReturnMessage(
   inputFunction: () => Promise<firebase.auth.UserCredential | void>
-): Promise<string | null> {
+): Promise<ErrorMessageOrNull> {
   try {
     await inputFunction();
     return null;
