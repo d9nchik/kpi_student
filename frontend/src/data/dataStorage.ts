@@ -93,7 +93,11 @@ export const subscribeOnCommentsOfQuiz = (
       callBackFunction(data);
     });
 
-export const addQuiz = async (quiz: QuizWithOnlyBody): Promise<boolean> => {
+export const addQuiz = async ({
+  quizName,
+  imageURL,
+  answerVariants,
+}: QuizWithOnlyBody): Promise<boolean> => {
   const user = getUser();
 
   if (!user) {
@@ -102,32 +106,30 @@ export const addQuiz = async (quiz: QuizWithOnlyBody): Promise<boolean> => {
 
   const { uid, displayName, photoURL } = user;
 
-  const quizWithBody: QuizWithoutID = {
-    ...quiz,
+  const quizNormalized: QuizWithoutID = {
+    quizName,
     likes: 0,
     commentsCount: 0,
     author: {
       uid,
     },
     imageURL: '',
+    answerVariants: answerVariants.map(mapAnswerVarianToWithoutUndefined),
   };
-  quizWithBody.answerVariants = quizWithBody.answerVariants.map(
-    mapAnswerVarianToWithoutUndefined
-  );
 
   if (displayName) {
-    quizWithBody.author.displayName = displayName;
+    quizNormalized.author.displayName = displayName;
   }
 
   if (photoURL) {
-    quizWithBody.author.photoURL = photoURL;
+    quizNormalized.author.photoURL = photoURL;
   }
 
-  if (quiz.imageURL) {
-    quizWithBody.imageURL = quiz.imageURL;
+  if (imageURL) {
+    quizNormalized.imageURL = imageURL;
   }
 
-  await db.collection('quizzes').add(quizWithBody);
+  await db.collection('quizzes').add(quizNormalized);
   return true;
 };
 
