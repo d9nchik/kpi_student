@@ -6,35 +6,33 @@ import firebase, {
 
 const LOCALSTORAGE_AUTHORIZED_USER = 'authorized_user';
 
-export const loginWithEmail = async (
+export const loginWithEmail = (
   email: string,
   password: string
 ): Promise<string | null> =>
-  executeAsyncFunctionIfErrReturnMessage(
-    async () => await auth.signInWithEmailAndPassword(email, password)
+  executeAsyncFunctionIfErrReturnMessage(() =>
+    auth.signInWithEmailAndPassword(email, password)
   );
 
-export const loginWithGithub = async (): Promise<string | null> =>
+export const loginWithGithub = (): Promise<string | null> =>
   executeAsyncFunctionIfErrReturnMessage(signInWithGitHub);
 
-export const loginWithGoogle = async (): Promise<string | null> =>
+export const loginWithGoogle = (): Promise<string | null> =>
   executeAsyncFunctionIfErrReturnMessage(signInWithGoogle);
 
-export const logout = async (): Promise<void> => await auth.signOut();
+export const logout = (): Promise<void> => auth.signOut();
 
-export const registerEmail = async (
+export const registerEmail = (
   email: string,
   password: string
 ): Promise<string | null> =>
-  executeAsyncFunctionIfErrReturnMessage(
-    async () => await auth.createUserWithEmailAndPassword(email, password)
+  executeAsyncFunctionIfErrReturnMessage(() =>
+    auth.createUserWithEmailAndPassword(email, password)
   );
 
-export const sendPasswordResetEmail = async (
-  email: string
-): Promise<string | null> =>
-  executeAsyncFunctionIfErrReturnMessage(
-    async () => await auth.sendPasswordResetEmail(email)
+export const sendPasswordResetEmail = (email: string): Promise<string | null> =>
+  executeAsyncFunctionIfErrReturnMessage(() =>
+    auth.sendPasswordResetEmail(email)
   );
 
 let user: firebase.User | null = (() => {
