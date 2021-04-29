@@ -133,7 +133,6 @@ export const getQuizWithSpecifiedRequirements = async (): Promise<QuizWithOnlyBo
   if (!user) {
     return { quizName: 'Empty', answerVariants: [] };
   }
-  console.log(JSON.stringify({ data: { uid: user.uid } }));
   const answer = await fetch(
     'https://europe-west3-kpi-student.cloudfunctions.net/getRandomQuiz',
     {
