@@ -3,4 +3,4 @@
 
 npm run lint
 npm run format:stage
-npm test
+firebase --project='kpi-student' emulators:exec --only auth,firestore,functions 'npm test'
