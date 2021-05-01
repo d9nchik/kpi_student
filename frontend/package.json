@@ -15,7 +15,7 @@
     "lint:write": "eslint --debug src/ --fix",
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "CI=true npm run test:watch",
+    "test": "CI=true npm run test:watch --forceExit",
     "test:watch": "react-scripts test",
     "test:coverage": "npm run test:watch -- --coverage",
     "eject": "react-scripts eject",
