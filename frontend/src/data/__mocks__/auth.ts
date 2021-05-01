@@ -36,6 +36,7 @@ interface User {
   displayName: string | null;
   isAnonymous: boolean;
   photoURL: string | null;
+  email: string;
 }
 
 const user: User = {
@@ -44,6 +45,7 @@ const user: User = {
   displayName: 'Vasyl',
   isAnonymous: false,
   photoURL: null,
+  email: 'smbtry@gmail.com',
 };
 
 export const isAuthenticated = (): boolean => isLogin;

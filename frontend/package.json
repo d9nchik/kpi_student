@@ -19,7 +19,7 @@
     "test:watch": "react-scripts test",
     "test:coverage": "npm run test:watch -- --coverage",
     "eject": "react-scripts eject",
-    "emulator": "firebase --project='kpi-student' emulators:start --only auth,firestore"
+    "emulator": "firebase --project='kpi-student' emulators:start --only auth,firestore,pubsub"
   },
   "browserslist": {
     "production": [
