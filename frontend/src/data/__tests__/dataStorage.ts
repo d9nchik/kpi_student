@@ -1,12 +1,11 @@
 import {
   addQuiz,
   AnswerVariant,
-  getQuizzes,
-  mapAnswerVarianToWithoutUndefined,
   QuizWithOnlyBody,
   removeUndefinedFromRange,
+  mapAnswerVarianToWithoutUndefined,
 } from '../dataStorage';
-import { loginWithEmail, logout } from '../auth';
+import { loginWithEmail } from '../auth';
 
 jest.mock('../auth.ts');
 jest.mock('../../firebase.ts');
@@ -158,4 +157,26 @@ describe('dataStorage', () => {
       removeUndefinedFromRange({ minValue: 1000, maxValue: undefined })
     ).toStrictEqual({ minValue: 1000 });
   });
+
+  //   test('subscribe', async () => {
+  //     let check = false;
+  //     subscribe(() => {
+  //       check = true;
+  //     });
+
+  //     await initializeUser();
+
+  //     await setGameObj({
+  //       isDead: true,
+  //       money: 0,
+  //       educationLevel: 0,
+  //       satietyLevel: 0,
+  //       careLevel: 0,
+  //       characterName: 'incognito',
+  //       heartsPoint: 0,
+  //       mentalStrength: 0,
+  //       gameLevel: 2,
+  //     });
+  //     expect(check).toBeTruthy();
+  //   });
 });
