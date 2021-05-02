@@ -1,7 +1,3 @@
-export const setGameObj = (): void => {
-  return;
-};
-
 export const getDateOfRegistration = (): Date => new Date();
 
 export interface GameStatus {
@@ -38,3 +34,7 @@ export const newGame = (characterName: string): boolean => {
 export const getGameObj = async (): Promise<GameStatus> => gameObj;
 
 export const getUserAvatar = (): null => null;
+
+export const setGameObj = (gameObject: GameStatus): void => {
+  gameObj = gameObject;
+};
