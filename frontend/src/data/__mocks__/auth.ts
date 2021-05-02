@@ -28,7 +28,12 @@ export const registerEmail = async (
 
 export const sendPasswordResetEmail = async (
   email: string
-): Promise<string | null> => null;
+): Promise<string | null> => {
+  if (email.indexOf('@') === -1) {
+    return 'Not valid email';
+  }
+  return null;
+};
 
 interface User {
   emailVerified: boolean;
