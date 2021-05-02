@@ -39,7 +39,7 @@ beforeEach(() =>
   )
 );
 
-test('characteristics should be passed to tools.ts', async () => {
+test('characteristics should be passed to tools.ts', () => {
   fireEvent.click(screen.getByText('Buy Milk'));
   expect(applyQuizVariantItem).toHaveBeenCalledWith(
     answerVariant.successProbability,
