@@ -37,7 +37,7 @@ const GameHeader: FunctionComponent<GameStatus> = ({
             alt="avatar"
             onClick={async () => {
               await logout();
-              history.push('/login');
+              if (history) history.push('/login');
             }}
           />
         </div>

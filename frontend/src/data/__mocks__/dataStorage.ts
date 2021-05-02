@@ -31,10 +31,10 @@ export const newGameObj: GameStatus = {
 export let gameObj: GameStatus = { ...newGameObj };
 
 export const newGame = (characterName: string): boolean => {
-  console.log('executed');
-
   gameObj = { ...newGameObj, characterName };
   return true;
 };
 
 export const getGameObj = async (): Promise<GameStatus> => gameObj;
+
+export const getUserAvatar = (): null => null;
