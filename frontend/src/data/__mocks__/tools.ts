@@ -2,6 +2,27 @@ export interface Range {
   minValue?: number;
   maxValue?: number;
 }
+export interface CharacteristicMenuItem {
+  heartsPoint?: string | number;
+  satietyLevel?: string | number;
+  mentalStrength?: string | number;
+  money?: string | number;
+  educationLevel?: string | number;
+  careLevel?: string | number;
+}
+export interface MenuItem {
+  name: string;
+  characteristics: CharacteristicMenuItem;
+}
+
+interface Categories {
+  hostel: MenuItem[];
+  university: MenuItem[];
+  work: MenuItem[];
+  relax: MenuItem[];
+  library: MenuItem[];
+  shop: MenuItem[];
+}
 
 export interface Characteristic {
   heartsPoint?: Range;
@@ -27,6 +48,24 @@ export interface QuizWithOnlyBody {
 }
 export const applyQuizVariantItem = jest.fn();
 export const applyMenuCharacteristic = jest.fn();
+
+export const getMenus = (): Categories => ({
+  relax: [
+    {
+      name: 'Play UNO',
+      characteristics: { money: -100, mentalStrength: 30 },
+    },
+    {
+      name: 'dance Hip-Hop',
+      characteristics: { mentalStrength: 40, satietyLevel: -35 },
+    },
+  ],
+  hostel: [],
+  shop: [],
+  library: [],
+  university: [],
+  work: [],
+});
 
 export const getQuizWithSpecifiedRequirements = (): QuizWithOnlyBody => ({
   quizName: 'Summary week',
