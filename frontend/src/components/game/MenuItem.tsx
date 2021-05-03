@@ -1,6 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import { MenuItem as Item } from '../../data/tools';
-import { applyMenuCharacteristic } from '../../data/tools';
+import { MenuItem as Item, applyMenuCharacteristic } from '../../data/tools';
 
 import Money from './images/money.png';
 import HealthCare from './images/health-care.png';

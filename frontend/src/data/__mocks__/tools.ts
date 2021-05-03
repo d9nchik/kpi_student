@@ -26,6 +26,7 @@ export interface QuizWithOnlyBody {
   imageURL?: string;
 }
 export const applyQuizVariantItem = jest.fn();
+export const applyMenuCharacteristic = jest.fn();
 
 export const getQuizWithSpecifiedRequirements = (): QuizWithOnlyBody => ({
   quizName: 'Summary week',
