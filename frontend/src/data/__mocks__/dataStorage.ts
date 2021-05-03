@@ -39,5 +39,50 @@ export const setGameObj = (gameObject: GameStatus): void => {
   gameObj = gameObject.isDead ? null : gameObject;
 };
 
+interface User {
+  uid: string;
+  displayName?: string;
+  photoURL?: string;
+}
+export interface CommentWithoutID {
+  content: string;
+  author: User;
+}
+
+export interface Comment extends CommentWithoutID {
+  id: string;
+}
+
 export const subscribe = jest.fn();
 export const unsubscribe = jest.fn();
+
+export const subscribeOnCommentsOfQuiz = (
+  quizID: string,
+  callBackFunction: (comments: Comment[]) => void
+): (() => void) => {
+  callBackFunction(comments);
+  return () => {
+    return;
+  };
+};
+
+const comments: Comment[] = [
+  {
+    content: 'Cool!',
+    author: {
+      uid: '473427398',
+      displayName: 'Pedro',
+    },
+    id: '1qa',
+  },
+  {
+    content: 'Awesome!',
+    id: '2qa',
+    author: {
+      uid: '2w3e4r',
+      displayName: 'Sebastian',
+    },
+  },
+];
+
+export const addComment = jest.fn();

@@ -4,7 +4,6 @@ import { Comment as CommentProps } from '../../../data/dataStorage';
 import Comment from '../Comment';
 
 jest.mock('../../../data/dataStorage.ts');
-jest.mock('../../../data/auth.ts');
 
 const commentProps: CommentProps = {
   id: '123',
