@@ -26,6 +26,21 @@ test('GameBody should contain characterName and daysInUniversity', () => {
 });
 
 test('GameBody should give ability to open menus', () => {
+  fireEvent.click(screen.getByText('Общага'));
+  expect(screen.getByRole('heading', { level: 2 })).toHaveTextContent('Общага');
+  fireEvent.click(screen.getByText('Работа'));
+  expect(screen.getByRole('heading', { level: 2 })).toHaveTextContent('Работа');
+  fireEvent.click(screen.getByText('Универ'));
+  expect(screen.getByRole('heading', { level: 2 })).toHaveTextContent('Универ');
+  fireEvent.click(screen.getByAltText('Библиотека'));
+  expect(screen.getByRole('heading', { level: 2 })).toHaveTextContent(
+    'Библиотека'
+  );
+  fireEvent.click(screen.getByAltText('Магазин'));
+  expect(screen.getByRole('heading', { level: 2 })).toHaveTextContent(
+    'Магазин'
+  );
+
   fireEvent.click(screen.getByText('Отдых'));
   const heading = screen.getByRole('heading', { level: 2 });
   expect(heading).toHaveTextContent('Отдых');
