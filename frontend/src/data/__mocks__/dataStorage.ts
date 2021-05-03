@@ -86,3 +86,95 @@ const comments: Comment[] = [
 ];
 
 export const addComment = jest.fn();
+
+export interface Range {
+  minValue?: number;
+  maxValue?: number;
+}
+
+export interface Characteristic {
+  heartsPoint?: Range;
+  satietyLevel?: Range;
+  mentalStrength?: Range;
+  money?: Range;
+  educationLevel?: Range;
+  careLevel?: Range;
+}
+
+export interface AnswerVariant {
+  name: string;
+  requirements: Characteristic;
+  successProbability: number;
+  successCharacteristics: Characteristic;
+  loseCharacteristics: Characteristic;
+}
+export interface QuizWithOnlyBody {
+  quizName: string;
+  answerVariants: AnswerVariant[];
+  imageURL?: string;
+}
+
+export interface QuizWithoutID extends QuizWithOnlyBody {
+  author: User;
+  likes: number;
+  commentsCount: number;
+  imageURL: string;
+}
+
+export interface Quiz extends QuizWithoutID {
+  id: string;
+}
+export const getQuiz = async (quizID: string): Promise<Quiz | undefined> => {
+  return quiz;
+};
+
+const quiz: Quiz = {
+  id: 'zjdejwljwfwfnwtrjktbtww',
+
+  quizName: 'Exam',
+  imageURL: '',
+  likes: 5,
+
+  author: { uid: '4', displayName: 'Artem' },
+
+  answerVariants: [
+    {
+      name: 'Learn all',
+
+      requirements: { educationLevel: { minValue: 700 } },
+
+      successProbability: 1,
+
+      successCharacteristics: {
+        educationLevel: { minValue: 300, maxValue: 500 },
+      },
+
+      loseCharacteristics: {
+        educationLevel: { minValue: 50, maxValue: 100 },
+
+        heartsPoint: { minValue: -20, maxValue: -50 },
+      },
+    },
+    {
+      name: 'Learn half',
+
+      requirements: { educationLevel: { minValue: 300 } },
+
+      successProbability: 0.5,
+
+      successCharacteristics: {
+        educationLevel: { minValue: 100, maxValue: 200 },
+      },
+
+      loseCharacteristics: {
+        educationLevel: { minValue: 30, maxValue: 40 },
+
+        heartsPoint: { minValue: -20, maxValue: -50 },
+      },
+    },
+  ],
+
+  commentsCount: 1,
+};
+
+export const isPostLiked = jest.fn(async () => true);
