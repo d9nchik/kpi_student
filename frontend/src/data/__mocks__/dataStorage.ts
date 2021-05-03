@@ -24,17 +24,20 @@ export const newGameObj: GameStatus = {
   isDead: false,
 };
 
-export let gameObj: GameStatus = { ...newGameObj };
+export let gameObj: GameStatus | null = { ...newGameObj };
 
 export const newGame = (characterName: string): boolean => {
   gameObj = { ...newGameObj, characterName };
   return true;
 };
 
-export const getGameObj = async (): Promise<GameStatus> => gameObj;
+export const getGameObj = async (): Promise<GameStatus | null> => gameObj;
 
 export const getUserAvatar = (): null => null;
 
 export const setGameObj = (gameObject: GameStatus): void => {
-  gameObj = gameObject;
+  gameObj = gameObject.isDead ? null : gameObject;
 };
+
+export const subscribe = jest.fn();
+export const unsubscribe = jest.fn();
