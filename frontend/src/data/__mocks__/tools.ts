@@ -48,6 +48,7 @@ export interface QuizWithOnlyBody {
 }
 export const applyQuizVariantItem = jest.fn();
 export const applyMenuCharacteristic = jest.fn();
+export const getDayInUniversity = (): string => '2 days';
 
 export const getMenus = (): Categories => ({
   relax: [
