@@ -14,9 +14,20 @@ const commentProps: CommentProps = {
   },
 };
 
-beforeEach(() => render(<Comment {...commentProps} />));
-
 test('comment should contain author and content information', () => {
+  render(<Comment {...commentProps} />);
   expect(screen.getByText('Senior developer')).toBeInTheDocument();
+  expect(screen.getByText('OMG!')).toBeInTheDocument();
+});
+
+test('if no display name, than incognito should be shown', () => {
+  render(
+    <Comment
+      id={commentProps.id}
+      content={commentProps.content}
+      author={{ uid: '12wsx' }}
+    />
+  );
+  expect(screen.getByText('incognito')).toBeInTheDocument();
   expect(screen.getByText('OMG!')).toBeInTheDocument();
 });
