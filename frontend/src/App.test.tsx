@@ -1,12 +1,14 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import App from './App';
 
-jest.mock('./firebase.ts');
+jest.mock('./data/dataStorage.ts');
+jest.mock('./data/tools.ts');
+jest.mock('./data/auth.ts');
 
-test('renders learn react link', () => {
+test('renders welcome message', () => {
   render(<App />);
-  // const linkElement = screen.getByText(/KPI student/i);
-  // expect(linkElement).toBeInTheDocument();
+  const linkElement = screen.getByRole('heading', { level: 1 });
+  expect(linkElement).toHaveTextContent('Welcome to game KPI Student!');
   expect(true).toBeTruthy();
 });
