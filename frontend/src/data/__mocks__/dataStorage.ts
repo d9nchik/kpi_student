@@ -178,3 +178,8 @@ const quiz: Quiz = {
 };
 
 export const isPostLiked = jest.fn(async () => true);
+
+export const getQuizzes = (): Quiz[] => [quiz];
+
+export const likePost = jest.fn();
+export const dislikePost = jest.fn();
