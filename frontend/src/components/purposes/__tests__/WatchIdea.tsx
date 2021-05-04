@@ -1,8 +1,9 @@
 import React from 'react';
-import { render, screen, act } from '@testing-library/react';
+import { render, screen, act, fireEvent } from '@testing-library/react';
 import { createMemoryHistory } from 'history';
 import WatchIdea from '../WatchIdea';
 import { Router } from 'react-router-dom';
+import { likePost, dislikePost } from '../../../data/dataStorage';
 
 jest.mock('../../../data/dataStorage.ts');
 
@@ -40,5 +41,18 @@ test('Comments of quiz should be present on page', () => {
 });
 
 test('Vote component should be on the page', () => {
+  expect(screen.getByText('Likes: 5')).toBeInTheDocument();
+});
+
+test('user should be able to vote', () => {
+  expect(likePost).toBeCalledTimes(0);
+  expect(screen.getByText('Likes: 5')).toBeInTheDocument();
+  fireEvent.click(screen.getByAltText('like'));
+  expect(likePost).toBeCalledTimes(1);
+
+  expect(dislikePost).toBeCalledTimes(0);
+  expect(screen.getByText('Likes: 6')).toBeInTheDocument();
+  fireEvent.click(screen.getByAltText('dislike'));
+  expect(dislikePost).toBeCalledTimes(1);
   expect(screen.getByText('Likes: 5')).toBeInTheDocument();
 });

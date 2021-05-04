@@ -3,7 +3,7 @@ import { render, screen, act, fireEvent } from '@testing-library/react';
 import { createMemoryHistory, MemoryHistory } from 'history';
 import PageWithQuizzes from '../PageWithQuizzes';
 import { Router } from 'react-router-dom';
-import { likePost } from '../../../data/dataStorage';
+import { likePost, dislikePost } from '../../../data/dataStorage';
 
 jest.mock('../../../data/dataStorage.ts');
 
@@ -23,6 +23,10 @@ test('user should be able to vote', async () => {
   expect(likePost).toBeCalledTimes(1);
   expect(likePost).toBeCalledWith('zjdejwljwfwfnwtrjktbtww');
   expect(await screen.findByText('Likes: 6')).toBeInTheDocument();
+  fireEvent.click(screen.getByAltText('dislike'));
+  expect(dislikePost).toBeCalledTimes(1);
+  expect(dislikePost).toBeCalledWith('zjdejwljwfwfnwtrjktbtww');
+  expect(screen.getByText('Likes: 5')).toBeInTheDocument();
 });
 
 test("if we have few quizzes, button more shouldn't be displayed", async () => {
