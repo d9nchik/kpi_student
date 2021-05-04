@@ -3,6 +3,8 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { GameStatus } from '../../../data/dataStorage';
 import GameHeader from '../GameHeader';
 import { isAuthenticated, loginWithGithub } from '../../../data/auth';
+import { createMemoryHistory } from 'history';
+import { Router } from 'react-router-dom';
 
 jest.mock('../../../data/dataStorage.ts');
 jest.mock('../../../data/auth.ts');
@@ -19,7 +21,15 @@ const gameStatus: GameStatus = {
   careLevel: 42,
 };
 
-beforeEach(() => render(<GameHeader {...gameStatus} />));
+const history = createMemoryHistory();
+
+beforeEach(() =>
+  render(
+    <Router history={history}>
+      <GameHeader {...gameStatus} />
+    </Router>
+  )
+);
 
 test('game status contains all characteristics', async () => {
   expect(screen.getByText(`${gameStatus.money}₴`)).toBeInTheDocument();
