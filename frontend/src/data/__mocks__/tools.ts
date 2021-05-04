@@ -130,3 +130,12 @@ export const getQuizWithSpecifiedRequirements = (): QuizWithOnlyBody => ({
     },
   ],
 });
+
+export const characteristicKeys = [
+  'heartsPoint',
+  'satietyLevel',
+  'mentalStrength',
+  'money',
+  'educationLevel',
+  'careLevel',
+] as const;
