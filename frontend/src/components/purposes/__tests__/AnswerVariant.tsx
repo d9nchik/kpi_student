@@ -24,12 +24,6 @@ const answerVariant: Answer = {
   },
 };
 
-// beforeEach(async () => {
-//   await act(async () => {
-//     render(<AnswerVariant {...answerVariant} />);
-//   });
-// });
-
 test('all details of props should be shown', () => {
   render(
     <AnswerVariant
