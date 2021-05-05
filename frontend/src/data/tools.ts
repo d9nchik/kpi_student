@@ -114,7 +114,7 @@ export const applyMenuCharacteristic = (
   setGameObj(newGameObj, level);
 };
 
-function parseMenuCharacteristic(
+export function parseMenuCharacteristic(
   characteristic: number | string,
   level: number
 ): number {
