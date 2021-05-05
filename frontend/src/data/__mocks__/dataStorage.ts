@@ -183,3 +183,5 @@ export const getQuizzes = (): Quiz[] => [quiz];
 
 export const likePost = jest.fn();
 export const dislikePost = jest.fn();
+
+export const addQuiz = jest.fn();
